@@ -19,8 +19,10 @@ $h1 = 'Coffee we offer';
  * include file which will be used as a template for each page as a header
  */
 include __DIR__ . '/../inc/header.inc.php';
-require 'functions.php';
-require 'connect.php';
+
+require __DIR__ . '/../lib/functions.php';
+require __DIR__ . '/../config/config.php';
+require __DIR__ . '/../classes/Validator.php';
 
 ?>
       <title><?=$title?></title>

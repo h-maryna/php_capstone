@@ -6,12 +6,11 @@
  * Instructor Steve George
  * Maryna Haidashevska
  */
-
+namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
-require __DIR__ . '/../config/connect.php';
 require __DIR__ . '/../config/config.php';
-require __DIR__ . '/classes/Validator.php';
+require __DIR__ . '/../classes/Validator.php';
 
 /**
   * assigning a new variable for title

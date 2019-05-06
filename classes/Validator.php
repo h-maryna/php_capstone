@@ -11,6 +11,7 @@
 // 2. Track our errors
 // 
 // 3. Give us the errors when we ask for them
+namespace classes;
 
 class Validator
 {   

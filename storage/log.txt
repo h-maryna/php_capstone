@@ -1,0 +1,7 @@
+/public/register_page.php/public/register_page.php/public/index.php/public/about_page.php/public/menu_page.php/public/shop_page.php/public/shop_page.php
+/public/index.php
+/public/menu_page.php
+/public/register_page.php
+/public/login_page.php
+/public/shop_page.php
+/public/contact_page.php
