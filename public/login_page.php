@@ -59,7 +59,7 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
   );
 
   $stmt->execute($params);
-  $customer = $stmt->fetch(PDO::FETCH_ASSOC);
+  $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
   // only test password if we find a customer with the provided email
   
   
@@ -73,6 +73,8 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
       if(password_verify($form_password, $stored_password)){
         // Set session logged_in to 1
         session_regenerate_id();
+        $_SESSION['customer_id'] = $customer['customer_id'];
+
         $_SESSION['logged_in'] = 1;
         setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
         // redirect customer to profile page

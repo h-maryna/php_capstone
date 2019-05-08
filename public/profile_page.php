@@ -30,7 +30,7 @@ if(empty($_SESSION['logged_in'])){
 	die;
 }
 
-$id = intval($_SESSION['logged_in']);
+$id = intval($_SESSION['customer_id']);
 
     // Create query to select a customer according its id
     $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
@@ -48,7 +48,7 @@ $id = intval($_SESSION['logged_in']);
     $stmt->execute($params);
 
     // get the result
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
 include __DIR__ . '/../inc/header.inc.php';
 
