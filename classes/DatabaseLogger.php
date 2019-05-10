@@ -18,7 +18,8 @@ class DatabaseLogger implements ILogger
 	}
 
 	public function write($event)
-	{
+	{   
+		var_dump($event);
     	$query = 'INSERT INTO log(event) VALUES (:event)';
         $params = array(
                         ':event' => $event);

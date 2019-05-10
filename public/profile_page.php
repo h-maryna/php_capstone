@@ -30,10 +30,24 @@ if(empty($_SESSION['logged_in'])){
 	die;
 }
 
+/*if(empty($_SESSION['customer_id'])){
+  die('Customer id is required');
+}*/
+
 $id = intval($_SESSION['customer_id']);
 
     // Create query to select a customer according its id
-    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
+    $query = "SELECT first_name, 
+                     last_name, 
+                     age, 
+                     street, 
+                     city, 
+                     postal_code, 
+                     province, 
+                     country, 
+                     phone, 
+                     email 
+                     FROM customer 
             WHERE customer_id = :customer_id";
 
       // prepare the query

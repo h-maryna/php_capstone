@@ -37,7 +37,7 @@ if(filter_input(INPUT_GET, 'logout')){
   // redirect to the same page
   header('Location: login_page.php');
 
-  die;
+  //die;
 }
 
 $v = new Validator();
@@ -62,13 +62,14 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
   $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
   // only test password if we find a customer with the provided email
   
-  
+  var_dump($customer);
+  die;
 
   if($customer){ 
   	// compare form password to stored password
   	//  if they match
   	  $form_password = filter_input(INPUT_POST, 'password');
-      $stored_password = password_hash($customer['password'], PASSWORD_DEFAULT);
+      $stored_password = $customer['password'];
       
       if(password_verify($form_password, $stored_password)){
         // Set session logged_in to 1
@@ -81,12 +82,12 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
         header('Location: profile_page.php');
         // die
         die;
-        }  
   	  }// else / end if
        setFlash('error', 'There were a problem with your credentials');
   	} // end if no errors
 }// end of post
 
+}
 $errors = $v->errors();
 
 
@@ -102,7 +103,7 @@ include __DIR__ . '/../inc/header.inc.php';
   <title><?=$title?></title>
   <main>
     <h1><?=$h1?></h1>
-
+    
 <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
 
 <form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
