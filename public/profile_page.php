@@ -6,13 +6,12 @@
  * Instructor Steve George
  * Maryna Haidashevska
  */
-
-
 namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
+
 
 /**
   * assigning a new variable for title
@@ -25,7 +24,7 @@ $title = 'profile_page';
 $h1 = 'Welcome to your profile page!';
 
 // User should not see this page
-if(empty($_SESSION['customer_id'])){
+if(empty($_SESSION['logged_in'])){
   setFlash('error', "You must be logged in to visit this page");
   header('Location: login_page.php');
   die;
@@ -63,7 +62,6 @@ include __DIR__ . '/../inc/header.inc.php';
 <div id="profile"></div>
 
 <?php if($result) : ?>
-  <h2><?=$result['first_name']?> , this is your profile!</h2>
   <ul><!-- Loop through $_POST to output user -->
   <?php foreach($result as $key => $value): ?>
     <!-- Test each value to see if it's an array, and

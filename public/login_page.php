@@ -13,7 +13,6 @@ require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
-
 /**
   * assigning a new variable for title
 */ 
@@ -73,8 +72,13 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
       
       if(password_verify($form_password, $stored_password)){
         // Set session logged_in to 1
-        session_regenerate_id();
+        //session_regenerate_id();
+        if($customer['is_admin'] == "admin"){
+          $_SESSION['admin'] = 1;
+        }
+
         $_SESSION['logged_in'] = 1;
+        $_SESSION['customer_id'] = $customer['customer_id'];
         setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
         // redirect customer to profile page
         header('Location: profile_page.php');
