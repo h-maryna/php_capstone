@@ -13,6 +13,7 @@ require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
+
 /**
   * assigning a new variable for title
 */ 
@@ -37,13 +38,13 @@ if(filter_input(INPUT_GET, 'logout')){
   // redirect to the same page
   header('Location: login_page.php');
 
-  //die;
+  die;
 }
 
 $v = new Validator();
 
 if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
-	// normally we had pull our hashed password from the DB
+  // normally we had pull our hashed password from the DB
   $v->required('first_name');
   $v->required('email');
   $v->required('password'); 
@@ -62,32 +63,29 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
   $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
   // only test password if we find a customer with the provided email
   
-  var_dump($customer);
-  die;
+  
 
   if($customer){ 
-  	// compare form password to stored password
-  	//  if they match
-  	  $form_password = filter_input(INPUT_POST, 'password');
-      $stored_password = $customer['password'];
+    // compare form password to stored password
+    //  if they match
+      $form_password = filter_input(INPUT_POST, 'password');
+      $stored_password = password_hash($customer['password'], PASSWORD_DEFAULT);
       
       if(password_verify($form_password, $stored_password)){
         // Set session logged_in to 1
         session_regenerate_id();
-        $_SESSION['customer_id'] = $customer['customer_id'];
-
         $_SESSION['logged_in'] = 1;
         setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
         // redirect customer to profile page
         header('Location: profile_page.php');
         // die
         die;
-  	  }// else / end if
+        }  
+      }// else / end if
        setFlash('error', 'There were a problem with your credentials');
-  	} // end if no errors
+    } // end if no errors
 }// end of post
 
-}
 $errors = $v->errors();
 
 
@@ -103,7 +101,7 @@ include __DIR__ . '/../inc/header.inc.php';
   <title><?=$title?></title>
   <main>
     <h1><?=$h1?></h1>
-    
+
 <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
 
 <form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
@@ -115,11 +113,11 @@ include __DIR__ . '/../inc/header.inc.php';
     <input type="text" name="last_name"
     value="<?=clean('last_name')?>" placeholder="Please enter your last name" /></p>
   <p><label for="email">Email</label><br />
-	  <input type="text" name="email" 
+    <input type="text" name="email" 
     value="<?=clean('email')?>" placeholder="Please enter your email"/></p>
   <p><label for="password">Password</label><br />
-	   <input type="password" name="password" placeholder="Your password" /><br />
-	<p><button>Login</button></p>
+     <input type="password" name="password" placeholder="Your password" /><br />
+  <p><button>Login</button></p>
 </form>
 
 

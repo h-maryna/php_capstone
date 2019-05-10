@@ -7,6 +7,7 @@
  * Maryna Haidashevska
  */
 
+
 namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
@@ -94,16 +95,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         ':phone' => $_POST['phone'],
         ':email' => $_POST['email'],
         ':password' => $_POST['password'],
-        ':conf_passw' => $_POST['conf_passw']//password_hash($_POST['password'], PASSWORD_DEFAULT)
+        ':conf_passw' => $_POST['conf_password']//password_hash($_POST['password'], PASSWORD_DEFAULT)
       );
 
       // execute query
       $stmt->execute($params);
 
       $customer_id = $dbh->lastInsertId();
-      //header('Location: redirect_form.php');
-      header('Location: redirect_form.php?customer_id=' . $customer_id);
-      //exit;
+      $_SESSION['customer_id'] = $customer_id;
+      header('Location: profile_page.php');
+      //header('Location: redirect_form.php?customer_id=' . $customer_id);
+      exit;
 /*
       // Create query to select a customer according its id
     $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 

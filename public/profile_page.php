@@ -7,6 +7,7 @@
  * Maryna Haidashevska
  */
 
+
 namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
@@ -24,30 +25,16 @@ $title = 'profile_page';
 $h1 = 'Welcome to your profile page!';
 
 // User should not see this page
-if(empty($_SESSION['logged_in'])){
-	setFlash('error', "You must be logged in to visit this page");
-	header('Location: login_page.php');
-	die;
+if(empty($_SESSION['customer_id'])){
+  setFlash('error', "You must be logged in to visit this page");
+  header('Location: login_page.php');
+  die;
 }
-
-/*if(empty($_SESSION['customer_id'])){
-  die('Customer id is required');
-}*/
 
 $id = intval($_SESSION['customer_id']);
 
     // Create query to select a customer according its id
-    $query = "SELECT first_name, 
-                     last_name, 
-                     age, 
-                     street, 
-                     city, 
-                     postal_code, 
-                     province, 
-                     country, 
-                     phone, 
-                     email 
-                     FROM customer 
+    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
             WHERE customer_id = :customer_id";
 
       // prepare the query
@@ -76,6 +63,7 @@ include __DIR__ . '/../inc/header.inc.php';
 <div id="profile"></div>
 
 <?php if($result) : ?>
+  <h2><?=$result['first_name']?> , this is your profile!</h2>
   <ul><!-- Loop through $_POST to output user -->
   <?php foreach($result as $key => $value): ?>
     <!-- Test each value to see if it's an array, and

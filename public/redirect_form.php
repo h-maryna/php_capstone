@@ -8,11 +8,13 @@
  * Maryna Haidashevska
  */
 
+
 namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
+
 /**
   * assigning a new variable for title
   */
@@ -27,13 +29,12 @@ $h1 = 'Form submittion';
 if(empty($_SESSION['logged_in'])){
   setFlash('error', "You must be logged in to visit this page");
   header('Location: login_page.php');
- // var_dump($customer);
   die;
 }
 
-$id = intval($_SESSION['customer_id']);
+$id = intval($_SESSION['logged_in']);
  // Create query to select a customer according its id
-  $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
+  $query = "SELECT first_name, last_name, street, city, postal_code, province, country, phone, email FROM customer 
             WHERE customer_id = :customer_id";
 
       // prepare the query
