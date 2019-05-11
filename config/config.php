@@ -40,6 +40,7 @@ spl_autoload_register('my_autoload');
  */
 function my_autoload($class)
 {
+	/*
 	$class = trim($class, '\\');
 	$class = str_replace('\\', '/', $class);
 	$class = $class . '.php';
@@ -51,6 +52,25 @@ function my_autoload($class)
 		var_dump('found!');die;
 		require $file;
 	}
+	*/
+
+
+	// this is my code. working for me. 
+	$class = trim($class, "\\");
+    $class = str_replace('\\','/',$class);
+    
+    $class .= '.php';
+    $file =   trim(__DIR__, "\\") . '\/' . $class;
+    
+    
+    $class = trim($file, "\\");
+    
+    $file = str_replace('/config\\','',$file);
+    
+    if(file_exists($file)){
+    
+        require $file;
+    }
 }
 
 require __DIR__ . '/../config/log.php';
