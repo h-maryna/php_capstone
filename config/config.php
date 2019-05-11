@@ -41,6 +41,8 @@ function my_autoload($class)
 	$file = __DIR__ . '/' . $class;
 	$file = str_replace('\config', '', $file);
 	if(file_exists($file)){
+		var_dump($file);
+		die;
 		require $file;
 	}
 }
