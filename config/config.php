@@ -7,12 +7,12 @@ ob_start();
 
 // Set a session CSRF token in token
 // if empty session csrf token
-if(empty($_SESSION['token'])){
+/*if(empty($_SESSION['token'])){
    $_SESSION['token'] = md5(rand());
-}
+}*/
 
 // define your base path
-define('BASE_PATH', __DIR__);
+//define('BASE_PATH', __DIR__);
 
 define('DB_USER', 'web_user');
 define('DB_PASS', 'Studies_2018');
@@ -33,16 +33,22 @@ if('dev' == $environment){
 
 spl_autoload_register('my_autoload');
 
+/**
+ * Auto loads the class and trims your path
+ * @param  [type] $class [description]
+ * @return [type]        [description]
+ */
 function my_autoload($class)
 {
 	$class = trim($class, '\\');
 	$class = str_replace('\\', '/', $class);
 	$class = $class . '.php';
-	$file = __DIR__ . '/' . $class;
+	$file = BASE_PATH . '/' . $class;
 	$file = str_replace('\config', '', $file);
 	if(file_exists($file)){
+		
 		require $file;
 	}
 }
 
-require __DIR__ . '/../config/log.php';
+require 'log.php';
