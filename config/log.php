@@ -10,8 +10,8 @@ $logfile = __DIR__ . '/../storage/log.txt';
 $logsqlite = __DIR__ . '/../storage/log.sqlite';
 
 //$logger = new FileLogger($logfile); // 
-$logger = new DatabaseLogger($dbh); // for server
-//$logger = new DatabaseLogger(new PDO('sqlite:'.$logsqlite));
+//$logger = new DatabaseLogger($dbh); // for server
+$logger = new DatabaseLogger(new PDO('sqlite:'.$logsqlite));
 //var_dump($logfile);
 
 function logEvent(Ilogger $logger){
