@@ -9,6 +9,13 @@
  /**
   * assigning a new variable for title
   */
+ 
+namespace classes;
+
+use classes\Ilogger;
+use classes\DatabaseLogger;
+use classes\FileLogger;
+
 $title = 'coffee_beans_page';
 
 /**

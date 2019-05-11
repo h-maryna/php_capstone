@@ -7,9 +7,9 @@ ob_start();
 
 // Set a session CSRF token in token
 // if empty session csrf token
-//if(empty($_SESSION['token'])){
-   //$_SESSION['token'] = md5(rand());
-//}
+if(empty($_SESSION['token'])){
+   $_SESSION['token'] = md5(rand());
+}
 
 // define your base path
 define('BASE_PATH', __DIR__);
@@ -19,7 +19,7 @@ define('DB_PASS', 'Studies_2018');
 define('DB_DSN', 'mysql:host=localhost;dbname=php_capstone');
 
 $dbh = new PDO(DB_DSN, DB_USER, DB_PASS);
-$dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
 $environment = 'dev'; // prod or dev
@@ -50,7 +50,7 @@ function my_autoload($class)
 	$file = str_replace('/conf', '', $file);
 	//var_dump($file);echo '<br />';
 	if(file_exists($file)){
-		var_dump('found!');die;
+		//var_dump('found!');die;
 		require $file;
 	}
 	

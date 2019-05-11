@@ -9,6 +9,11 @@
 
 namespace classes;
 
+use classes\Ilogger;
+use classes\DatabaseLogger;
+use classes\FileLogger;
+
+
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';

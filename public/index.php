@@ -15,7 +15,6 @@ require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
 
-try{
 /**
   * assigning a new variable for title
   */
@@ -30,10 +29,7 @@ $h1 = 'Our Atmosphere';
  * include file which will be used as a template for each page as a header
  */
 include __DIR__ . '/../inc/header.inc.php';
-}catch(\Exception $e){
-  echo $e->getMessage();
-  die;
-}
+
 ?>
     <title><?=$title?></title>  
     <main>
