@@ -20,16 +20,11 @@ function logEvent(Ilogger $logger){
 	// request_uri, data/time/ broowser info
 	// concat all info together separated by
 	// some delimeter .. | or ,
-	/*
-    $event = array(
-                 //  'date' =>
-                  //  'ip' =>
-                //)
-                // */
+	
     $formatted_date = date('Y/m/d H:i:s', $_SERVER['REQUEST_TIME']);
     $event = 'Created at: ' . $formatted_date . ' ' .
              'REQUEST_URI: ' . $_SERVER['REQUEST_URI'] . ' ' . 
-             'Browser: ' . $_SERVER['HTT<li><strong><?php echo $value['customer_id'] ?></strong></li>P_USER_AGENT'] . ' ' .
+             'Browser: ' . $_SERVER['HTTP_USER_AGENT'] . ' ' .
              'IP-address: ' . $_SERVER['REMOTE_ADDR'] . ' ' .
              'HTTP status: ' .  http_response_code();
 

@@ -46,8 +46,7 @@ include __DIR__ . '/../inc/header.inc.php';
   <main>
     <h1><?=$h1?></h1>
 
-<div id="admin_page"></div>
-
+<div id="admin_page" style="background-color: #fc9">
 <?php if($result) : ?>
 
 <ul>
@@ -60,7 +59,7 @@ include __DIR__ . '/../inc/header.inc.php';
 <?php else : ?>
   <h2>Sorry ther is an error in your events</h2>
 <?php endif; ?>
-
+</div>
 </body>
   
   <?php 

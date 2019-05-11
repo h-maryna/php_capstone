@@ -58,7 +58,7 @@ include __DIR__ . '/../inc/header.inc.php';
   <title><?=$title?></title>
   <main>
     <h1><?=$h1?></h1>
-
+<div id="profile_wrapper"  style="background-color: #fc9">
 <div id="profile"></div>
 
 <?php if($result) : ?>
@@ -78,7 +78,7 @@ include __DIR__ . '/../inc/header.inc.php';
     <h2>There were some problem adding a new user</h2>
 <?php endif; ?>
 
-
+</div>
 </body>
   
   <?php 
