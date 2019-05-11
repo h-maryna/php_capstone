@@ -8,7 +8,7 @@
  */
 
 
-namespace classes;
+//namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
