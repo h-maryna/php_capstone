@@ -19,7 +19,7 @@ define('DB_PASS', 'Studies_2018');
 define('DB_DSN', 'mysql:host=localhost;dbname=php_capstone');
 
 $dbh = new PDO(DB_DSN, DB_USER, DB_PASS);
-$dbh->setAttribute(\PDO::ATTR_ERRMODE, PDO::/ERRMODE_EXCEPTION);
+$dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 
 $environment = 'dev'; // prod or dev
@@ -54,8 +54,8 @@ function my_autoload($class)
 		require $file;
 	}
 	
-
-	/*var_dump('here');die;
+/*
+	var_dump('here');die;
 
 	// this is my code. working for me. 
 	$class = trim($class, "\\");
@@ -72,7 +72,7 @@ function my_autoload($class)
     if(file_exists($file)){
     
         require $file;
-    } /*
+    } */
 }
 
 require __DIR__ . '/../config/log.php';
