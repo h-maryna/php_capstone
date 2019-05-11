@@ -6,6 +6,8 @@
  * Instructor Steve George
  * Maryna Haidashevska
  */
+
+try{
 namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
@@ -26,7 +28,10 @@ $h1 = 'Our Atmosphere';
  * include file which will be used as a template for each page as a header
  */
 include __DIR__ . '/../inc/header.inc.php';
-
+}catch(\Exception $e){
+  echo $e->getMessage();
+  die;
+}
 ?>
     <title><?=$title?></title>  
     <main>
