@@ -9,12 +9,12 @@
 
 
 namespace classes;
-/*
+
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
-*/
-var_dump('here');die;
+
+
 try{
 /**
   * assigning a new variable for title

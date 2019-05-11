@@ -54,6 +54,7 @@ function my_autoload($class)
 	}
 	*/
 
+	var_dump('here');die;
 
 	// this is my code. working for me. 
 	$class = trim($class, "\\");
