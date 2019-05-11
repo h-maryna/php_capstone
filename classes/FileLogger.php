@@ -15,16 +15,11 @@ class FileLogger implements ILogger
 	{    
 		$this ->file = $file; 
 	}
-	public function write($event)
-	{   
-		// we create a file
-	    $myfile = fopen($this->file, "a");
-        
-        // we write an event in this file
-	    fwrite($myfile, $event . "\n");
-        
-        // we close our file after doing changes there
-	    fclose($myfile);
-	}
-
+	public function write($event){
+       
+        if (is_string($event)) {
+              
+             file_put_contents($this->file, date("Y-m-d H:i:s")." ".$event."\n", FILE_APPEND);
+        }
+    }
 } 
