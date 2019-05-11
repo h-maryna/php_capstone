@@ -14,9 +14,9 @@ if(empty($_SESSION['token'])){
 // define your base path
 define('BASE_PATH', __DIR__);
 
-//define('DB_USER', 'web_user');
-//define('DB_PASS', 'Studies_2018');
-//define('DB_DSN', 'mysql:host=localhost;dbname=php_capstone');
+define('DB_USER', 'web_user');
+define('DB_PASS', 'Studies_2018');
+define('DB_DSN', 'mysql:host=localhost;dbname=php_capstone');
 
 $dbh = new PDO(DB_DSN, DB_USER, DB_PASS);
 $dbh->setAttribute(\PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -41,8 +41,6 @@ function my_autoload($class)
 	$file = __DIR__ . '/' . $class;
 	$file = str_replace('\config', '', $file);
 	if(file_exists($file)){
-		var_dump($file);
-		die;
 		require $file;
 	}
 }
