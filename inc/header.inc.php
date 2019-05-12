@@ -52,9 +52,9 @@
     <!-- Assigning a new style to coffee_beans_page 
       -- return changing a style
     -->
-    <?php if($title == 'shop_page') {
+    <?php if ($title == 'shop_page') {
          include __DIR__ . '/../inc/embedded.css';
-    } 
+    }
     ?>
     
     <style>
@@ -107,22 +107,18 @@
             <li><a href="about_page.php" class="page2">About</a></li>
             <li><a href="menu_page.php" class="page3">Menu</a></li>
             <li><a href="shop_page.php" class="page4">Shop</a></li>
-            <?php if(empty($_SESSION['logged_in'])) : ?>
-
+            <?php if (empty($_SESSION['logged_in'])) : ?>
             <li><a href="login_page.php" class="page5">LogIn</a></li>
             <li><a href="register_page.php" class="page6">Register</a></li>
-            <?php else: ?>
-
-
-              <?php if(!empty($_SESSION['admin'])) :?>
+            <?php else : ?>
+                <?php if (!empty($_SESSION['admin'])) :?>
               <li><a href="admin_page.php" class="page9">Log Events</a></li>
               <li><a href="profile_page.php" class="page7">Profile</a></li>
               <li><a href="login_page.php?logout=1">Logout</a></li>
-              <?php else :?>
-
+                <?php else :?>
               <li><a href="profile_page.php" class="page7">Profile</a></li>
               <li><a href="login_page.php?logout=1">LogOut</a></li>        
-              <?php endif ?>
+                <?php endif ?>
             <?php endif ?>
 
             <li><a href="contact_page.php" class="page8">Contact</a></li>

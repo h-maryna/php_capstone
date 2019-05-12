@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -15,7 +15,7 @@ require __DIR__ . '/../classes/Validator.php';
 
 /**
   * assigning a new variable for title
-*/ 
+*/
 $title = 'login_page';
 
 /**
@@ -25,68 +25,67 @@ $h1 = 'Please log in into your account';
 
 
 // conditions for logout session
-if(filter_input(INPUT_GET, 'logout')){
-
-  session_destroy();
+if (filter_input(INPUT_GET, 'logout')) {
+    session_destroy();
   
   //start new session after logged in
-  session_start();
+    session_start();
   
   // Message for success logged out
-  setFlash('success', 'You have successfully logged out');
+    setFlash('success', 'You have successfully logged out');
   // redirect to the same page
-  header('Location: login_page.php');
+    header('Location: login_page.php');
 
-  die;
+    die;
 }
 
 $v = new Validator();
 
-if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
+if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
   // normally we had pull our hashed password from the DB
-  $v->required('first_name');
-  $v->required('email');
-  $v->required('password'); 
-  $v->string('first_name');
-  $v->password('password');
+    $v->required('first_name');
+    $v->required('email');
+    $v->required('password');
+    $v->string('first_name');
+    $v->password('password');
 
-  if(!$v->errors()){
-  $query = "SELECT * FROM customer WHERE email = :email";
-  $stmt = $dbh->prepare($query);
+    if (!$v->errors()) {
+        $query = "SELECT * FROM customer WHERE email = :email";
+        $stmt = $dbh->prepare($query);
 
-  $params = array(
-    ':email' => filter_input(INPUT_POST, 'email')
-  );
+        $params = array(
+        ':email' => filter_input(INPUT_POST, 'email')
+        );
 
-  $stmt->execute($params);
-  $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
-  // only test password if we find a customer with the provided email
+        $stmt->execute($params);
+        $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
+    // only test password if we find a customer with the provided email
   
   
 
-  if($customer){ 
-    // compare form password to stored password
-    //  if they match
-      $form_password = filter_input(INPUT_POST, 'password');
-      $stored_password = password_hash($customer['password'], PASSWORD_DEFAULT);
+        if ($customer) {
+          // compare form password to stored password
+          //  if they match
+            $form_password = filter_input(INPUT_POST, 'password');
+            $stored_password = password_hash($customer['password'], PASSWORD_DEFAULT);
       
-      if(password_verify($form_password, $stored_password)){
-        // Set session logged_in to 1
-        //session_regenerate_id();
-        if($customer['is_admin'] == "admin"){
-          $_SESSION['admin'] = 1;
-        }
+            if (password_verify($form_password, $stored_password)) {
+              // Set session logged_in to 1
+              //session_regenerate_id();
+                if ($customer['is_admin'] == "admin") {
+                    $_SESSION['admin'] = 1;
+                }
 
-        $_SESSION['logged_in'] = 1;
-        $_SESSION['customer_id'] = $customer['customer_id'];
-        setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
-        // redirect customer to profile page
-        header('Location: profile_page.php');
-        // die
-        die;
-        }  
-      }// else / end if
-       setFlash('error', 'There were a problem with your credentials');
+                $_SESSION['logged_in'] = 1;
+                $_SESSION['customer_id'] = $customer['customer_id'];
+                setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
+              // redirect customer to profile page
+                header('Location: profile_page.php');
+              // die
+                die;
+            }
+        }// else / end if
+        setFlash('error', 'There were a problem with your credentials');
     } // end if no errors
 }// end of post
 
@@ -128,11 +127,11 @@ include __DIR__ . '/../inc/header.inc.php';
 
 </body>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
 </html>

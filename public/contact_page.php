@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -11,7 +11,6 @@ namespace classes;
 use classes\Ilogger;
 use classes\DatabaseLogger;
 use classes\FileLogger;
-
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
@@ -60,11 +59,11 @@ include __DIR__ . '/../inc/header.inc.php';
 
 </body>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
 </html>

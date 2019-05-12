@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -12,7 +12,6 @@ namespace classes;
 use classes\Ilogger;
 use classes\DatabaseLogger;
 use classes\FileLogger;
-
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
@@ -142,7 +141,7 @@ include __DIR__ . '/../inc/header.inc.php';
         fraction packs in a variety of sizes.<p>
      </main>
      
-<?php 
+<?php
 /**
  * include file which will be used as a template for each page as a  footer
  */

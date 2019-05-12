@@ -15,8 +15,8 @@ ob_start();
 
 // Set a session CSRF token in token
 // if empty session csrf token
-if(empty($_SESSION['token'])){
-   $_SESSION['token'] = md5(rand());
+if (empty($_SESSION['token'])) {
+    $_SESSION['token'] = md5(rand());
 }
 
 // define your base path
@@ -32,11 +32,11 @@ $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 $environment = 'dev'; // prod or dev
 
-if('dev' == $environment){
-	ini_set('display_errors', 1);
-	ini_set('error_reporting', E_ALL);
+if ('dev' == $environment) {
+    ini_set('display_errors', 1);
+    ini_set('error_reporting', E_ALL);
 } else {
-	ini_set('display_errors', 0);
+    ini_set('display_errors', 0);
 }
 
 spl_autoload_register('my_autoload');
@@ -48,35 +48,35 @@ spl_autoload_register('my_autoload');
  */
 function my_autoload($class)
 {
-	
-	$class = trim($class, '\\');
-	$class = str_replace('\\', '/', $class);
-	$class = $class . '.php';
-	$file = __DIR__ . '/' . $class;
-	//var_dump($file);echo '<br />';
-	$file = str_replace('\config', '', $file);
-	$file = str_replace('/config', '', $file);
-	if(file_exists($file)){
-		require $file;
-	}
-	
-/*
-	var_dump('here');die;
-
-	// this is my code. working for me. 
-	$class = trim($class, "\\");
-    $class = str_replace('\\','/',$class);
     
+    $class = trim($class, '\\');
+    $class = str_replace('\\', '/', $class);
+    $class = $class . '.php';
+    $file = __DIR__ . '/' . $class;
+    //var_dump($file);echo '<br />';
+    $file = str_replace('\config', '', $file);
+    $file = str_replace('/config', '', $file);
+    if (file_exists($file)) {
+        require $file;
+    }
+    
+/*
+    var_dump('here');die;
+
+    // this is my code. working for me.
+    $class = trim($class, "\\");
+    $class = str_replace('\\','/',$class);
+
     $class .= '.php';
     $file =   trim(__DIR__, "\\") . '\/' . $class;
-    
-    
+
+
     $class = trim($file, "\\");
-    
+
     $file = str_replace('\/config\\','',$file);
-    
+
     if(file_exists($file)){
-    
+
         require $file;
     } */
 }

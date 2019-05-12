@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -13,7 +13,6 @@ use classes\Ilogger;
 use classes\DatabaseLogger;
 use classes\FileLogger;
 
-
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
@@ -21,7 +20,7 @@ require __DIR__ . '/../classes/Validator.php';
 
 /**
   * assigning a new variable for title
-*/ 
+*/
 $title = 'profile_page';
 
 /**
@@ -30,10 +29,10 @@ $title = 'profile_page';
 $h1 = 'Welcome to your profile page!';
 
 // User should not see this page
-if(empty($_SESSION['logged_in'])){
-  setFlash('error', "You must be logged in to visit this page");
-  header('Location: login_page.php');
-  die;
+if (empty($_SESSION['logged_in'])) {
+    setFlash('error', "You must be logged in to visit this page");
+    header('Location: login_page.php');
+    die;
 }
 
 $id = intval($_SESSION['customer_id']);
@@ -48,17 +47,17 @@ $id = intval($_SESSION['customer_id']);
       // Prepare params array
       $params = array(
         ':customer_id' => $id
-    );
+      );
 
     // execute the query
-    $stmt->execute($params);
+      $stmt->execute($params);
 
     // get the result
-    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-include __DIR__ . '/../inc/header.inc.php';
+      include __DIR__ . '/../inc/header.inc.php';
 
-?>
+        ?>
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?>
 
   <title><?=$title?></title>
@@ -67,31 +66,31 @@ include __DIR__ . '/../inc/header.inc.php';
 <div id="profile_wrapper"  style="background-color: #fc9">
 <div id="profile"></div>
 
-<?php if($result) : ?>
+<?php if ($result) : ?>
   <ul><!-- Loop through $_POST to output user -->
-  <?php foreach($result as $key => $value): ?>
+    <?php foreach ($result as $key => $value) : ?>
     <!-- Test each value to see if it's an array, and
       if it's NOT an array, we can print it out -->
-    <?php if(!is_array($value)) : ?>
+        <?php if (!is_array($value)) : ?>
       <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
 
-    <?php endif; ?>
-  <?php endforeach; ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
     </ul>
 
     <p><a href="register_page.php">Add another user</a></p>
-  <?php else : ?>
+<?php else : ?>
     <h2>There were some problem adding a new user</h2>
 <?php endif; ?>
 
 </div>
 </body>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
 </html>

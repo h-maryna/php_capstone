@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -13,14 +13,13 @@ use classes\Ilogger;
 use classes\DatabaseLogger;
 use classes\FileLogger;
 
-
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 
 
 /**
   * assigning a new variable for title
-*/ 
+*/
 $title = 'admin_page';
 
 /**
@@ -52,13 +51,12 @@ include __DIR__ . '/../inc/header.inc.php';
     <h1><?=$h1?></h1>
 
 <div id="admin_page" style="background-color: #fc9">
-<?php if($result) : ?>
-
+<?php if ($result) : ?>
 <ul>
-  <?php foreach ($result as $value) :?> 
+    <?php foreach ($result as $value) :?> 
      <li><strong><?php echo $value['id'] ?></strong></li>
      <li><?php echo $value['event'] ?></li>
-  <?php endforeach; ?>
+    <?php endforeach; ?>
 </ul>
 
 <?php else : ?>
@@ -67,11 +65,11 @@ include __DIR__ . '/../inc/header.inc.php';
 </div>
 </body>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
 </html>

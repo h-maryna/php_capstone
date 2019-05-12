@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -24,10 +24,10 @@ $title = 'redirect_page';
 $h1 = 'Form submittion';
 
 // conditions for cheking if used looged in
-if(empty($_SESSION['logged_in'])){
-  setFlash('error', "You must be logged in to visit this page");
-  header('Location: login_page.php');
-  die;
+if (empty($_SESSION['logged_in'])) {
+    setFlash('error', "You must be logged in to visit this page");
+    header('Location: login_page.php');
+    die;
 }
 
 $id = intval($_SESSION['logged_in']);
@@ -41,43 +41,42 @@ $id = intval($_SESSION['logged_in']);
       // Prepare params array
       $params = array(
         ':customer_id' => $id
-    );
+      );
     // execute the query
-    $stmt->execute($params);
+      $stmt->execute($params);
 
     // get the result
-    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+      $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-include __DIR__ . '/../inc/header.inc.php';
-?>
+      include __DIR__ . '/../inc/header.inc.php';
+        ?>
     <title><?=$title?></title>
     <main><!--Main page -->
       <h1><?=$h1?></h1>
 
-<?php if($result) : ?>
-
+<?php if ($result) : ?>
 <h2><?=$result['first_name']?> , this is your profile!</h2>
 
   <ul><!-- Loop through $_POST to output user -->
-  <?php foreach($result as $key => $value): ?>
+    <?php foreach ($result as $key => $value) : ?>
     <!-- Test each value to see if it's an array, and
       if it's NOT an array, we can print it out -->
       <li><strong><?=$key?></strong>: <?=$value?></li>
-  <?php endforeach; ?>
+    <?php endforeach; ?>
     </ul>
 
     <p><a href="register_page.php">Add another user</a></p>
-  <?php else : ?>
+<?php else : ?>
     <h2>There were some problem adding a new user</h2>
 <?php endif; ?>
 
 </body>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
 </html>

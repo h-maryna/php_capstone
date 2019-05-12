@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace classes;
 
@@ -8,5 +8,5 @@ namespace classes;
 
 interface ILogger
 {
-	public function write($event);
-} 
+    public function write($event);
+}

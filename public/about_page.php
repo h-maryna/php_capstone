@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WDD4
  * Object oriented PHP
@@ -13,14 +13,13 @@ use classes\Ilogger;
 use classes\DatabaseLogger;
 use classes\FileLogger;
 
-
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
 /**
   * assigning a new variable for title
-*/ 
+*/
 $title = 'about_page';
 
 /**
@@ -58,12 +57,12 @@ include __DIR__ . '/../inc/header.inc.php';
           <p id="example1"><img src="images/coffee_heart.jpg" alt="Cup with coffee formed heart" style="width:100%" />
        </main>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
      
     
