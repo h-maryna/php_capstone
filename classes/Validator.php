@@ -77,7 +77,7 @@ class Validator
 
     public function postal_code($field){
         $postal_code = filter_input(INPUT_POST, $field);
-        $pattern = '/[A-Z][0-9][A-Z][0-9][A-Z][0-9]/';
+        $pattern = '/[a-zA-Z][0-9][a-zA-Z][0-9][a-zA-Z][0-9]/';
         if(!preg_match($pattern, $postal_code)){
             $this->setError($field, 'Please provide a valid Canadian postal code');
         } 

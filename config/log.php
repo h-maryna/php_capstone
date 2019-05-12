@@ -21,6 +21,7 @@ function logEvent(Ilogger $logger){
 	// concat all info together separated by
 	// some delimeter .. | or ,
 	
+    // assigning variable for time in proper format
     $formatted_date = date('Y/m/d H:i:s', $_SERVER['REQUEST_TIME']);
     $event = 'Created at: ' . $formatted_date . ' ' .
              'REQUEST_URI: ' . $_SERVER['REQUEST_URI'] . ' ' . 
