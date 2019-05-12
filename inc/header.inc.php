@@ -109,7 +109,7 @@
             <li><a href="shop_page.php" class="page4">Shop</a></li>
             <?php if(empty($_SESSION['logged_in'])) : ?>
 
-            <li><a href="login_page.php" class="page5">Login</a></li>
+            <li><a href="login_page.php" class="page5">LogIn</a></li>
             <li><a href="register_page.php" class="page6">Register</a></li>
             <?php else: ?>
 
@@ -121,7 +121,7 @@
               <?php else :?>
 
               <li><a href="profile_page.php" class="page7">Profile</a></li>
-              <li><a href="login_page.php?logout=1">Logout</a></li>        
+              <li><a href="login_page.php?logout=1">LogOut</a></li>        
               <?php endif ?>
             <?php endif ?>
 
