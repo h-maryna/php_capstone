@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * WDD4
+ * Object oriented PHP
+ * Assignment 2
+ * Instructor Steve George
+ * Maryna Haidashevska
+ */
+
 session_start();
 
 // buffer overflow to prevent showing HTML
@@ -48,9 +56,7 @@ function my_autoload($class)
 	//var_dump($file);echo '<br />';
 	$file = str_replace('\config', '', $file);
 	$file = str_replace('/config', '', $file);
-	//var_dump($file);echo '<br />';
 	if(file_exists($file)){
-		//var_dump('found!');die;
 		require $file;
 	}
 	

@@ -1,11 +1,12 @@
 <?php 
 /**
  * WDD4
- * Intermrdiate PHP
+ * Object oriented PHP
  * Assignment 2
  * Instructor Steve George
  * Maryna Haidashevska
  */
+
 namespace classes;
 
 use classes\Ilogger;

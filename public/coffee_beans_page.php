@@ -1,11 +1,12 @@
 <?php 
 /**
  * WDD4
- * Intro PHP
+ * Object oriented PHP
  * Assignment 2
  * Instructor Steve George
  * Maryna Haidashevska
  */
+
  /**
   * assigning a new variable for title
   */

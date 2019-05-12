@@ -1,11 +1,19 @@
 <?php 
 
+/**
+ * WDD4
+ * Object oriented PHP
+ * Assignment 2
+ * Instructor Steve George
+ * Maryna Haidashevska
+ */
+
 namespace classes;
 
 use classes\ILogger;
 /**
- * The all method returns
- */
+ * The all method returns files
+ */ 
 
 class FileLogger implements ILogger
 {   
