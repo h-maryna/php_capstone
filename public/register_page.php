@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       // create query
       $query = "INSERT INTO
-             customer
+             user
              (first_name, last_name, age, street, city, postal_code, province, country, phone, email, password, conf_passw)
              VALUES
              (:first_name, :last_name, :age, :street, :city, :postal_code, :province, :country, :phone, :email, :password, :conf_passw)";
@@ -106,21 +106,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       // execute query
       $stmt->execute($params);
 
-      $customer_id = $dbh->lastInsertId();
+      $user_id = $dbh->lastInsertId();
       //header('Location: redirect_form.php');
-      header('Location: redirect_form.php?customer_id=' . $customer_id);
+      header('Location: redirect_form.php?user_id=' . $user_id);
       //exit;
 /*
-      // Create query to select a customer according its id
-    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
-            WHERE customer_id = :customer_id";
+      // Create query to select a user according its id
+    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM user 
+            WHERE user_id = :user_id";
 
       // prepare the query
       $stmt = $dbh->prepare($query);
 
       // Prepare params array
       $params = array(
-        ':customer_id' => $customer_id
+        ':user_id' => $user_id
     );
 
     // execute the query

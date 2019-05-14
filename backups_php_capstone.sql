@@ -47,11 +47,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Product`.`Customer` ;
 
-CREATE TABLE IF NOT EXISTS customer (
-  `customer_id` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE user (
+  `customer_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  `is_admin` VARCHAR(45) NOT NULL,
+  `is_admin` VARCHAR(45) NOT NULL DEFAULT 'REGULAR',
   `age` INT NOT NULL,
   `street` VARCHAR(45) NOT NULL,
   `city` VARCHAR(45) NOT NULL,
@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS customer (
   `country` VARCHAR(45) NOT NULL,
   `phone` CHAR(10) NOT NULL,
   `email` VARCHAR(125) NOT NULL,
-  `order_id` INT NOT NULL,
+  `password` VARCHAR(12) NOT NULL,
+  `conf_passw` VARCHAR(12) NOT NULL,
   `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL,
-  PRIMARY KEY (`customer_id`))
+  `updated_at` DATETIME NOT NULL)
 ENGINE = InnoDB;
 
 

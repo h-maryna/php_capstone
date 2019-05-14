@@ -50,7 +50,7 @@ if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
     $v->password('password');
 
     if (!$v->errors()) {
-        $query = "SELECT * FROM customer WHERE email = :email";
+        $query = "SELECT * FROM user WHERE email = :email";
         $stmt = $dbh->prepare($query);
 
         $params = array(
@@ -58,28 +58,28 @@ if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
         );
 
         $stmt->execute($params);
-        $customer = $stmt->fetch(\PDO::FETCH_ASSOC);
-    // only test password if we find a customer with the provided email
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+    // only test password if we find a user with the provided email
   
   
 
-        if ($customer) {
+        if ($user) {
           // compare form password to stored password
           //  if they match
             $form_password = filter_input(INPUT_POST, 'password');
-            $stored_password = password_hash($customer['password'], PASSWORD_DEFAULT);
+            $stored_password = password_hash($user['password'], PASSWORD_DEFAULT);
       
             if (password_verify($form_password, $stored_password)) {
               // Set session logged_in to 1
               //session_regenerate_id();
-                if ($customer['is_admin'] == "admin") {
+                if ($user['is_admin'] == "admin") {
                     $_SESSION['admin'] = 1;
                 }
 
                 $_SESSION['logged_in'] = 1;
-                $_SESSION['customer_id'] = $customer['customer_id'];
+                $_SESSION['user_id'] = $user['user_id'];
                 setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
-              // redirect customer to profile page
+              // redirect user to profile page
                 header('Location: profile_page.php');
               // die
                 die;
