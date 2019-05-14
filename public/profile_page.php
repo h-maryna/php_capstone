@@ -35,18 +35,18 @@ if (empty($_SESSION['logged_in'])) {
     die;
 }
 
-$id = intval($_SESSION['customer_id']);
+$id = intval($_SESSION['user_id']);
 
-    // Create query to select a customer according its id
-    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
-            WHERE customer_id = :customer_id";
+    // Create query to select a user according its id
+    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM user 
+            WHERE user_id = :user_id";
 
       // prepare the query
       $stmt = $dbh->prepare($query);
 
       // Prepare params array
       $params = array(
-        ':customer_id' => $id
+        ':user_id' => $id
       );
 
     // execute the query

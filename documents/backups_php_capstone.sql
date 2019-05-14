@@ -28,6 +28,7 @@ DROP TABLE IF EXISTS `Product`.`Product` ;
 CREATE TABLE IF NOT EXISTS `Product`(
   `product_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `product_name` VARCHAR(45) NOT NULL,
+  `product_image` VARCHAR(255) NOT NULL,
   `long_description` TEXT NOT NULL,
   `short_description` VARCHAR(255) NOT NULL,
   `availability` TINYINT NOT NULL,
@@ -47,25 +48,24 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Product`.`Customer` ;
 
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-  `first_name` varchar(55) DEFAULT NULL,
-  `last_name` varchar(55) DEFAULT NULL,
-  `is_admin` varchar(15) NOT NULL DEFAULT 'regular',
-  `age` int(11) DEFAULT NULL,
-  `street` varchar(55) DEFAULT NULL,
-  `city` varchar(45) DEFAULT NULL,
-  `postal_code` varchar(6) DEFAULT NULL,
-  `province` varchar(45) DEFAULT NULL,
-  `country` varchar(45) DEFAULT NULL,
-  `phone` char(10) DEFAULT NULL,
-  `email` varchar(125) DEFAULT NULL,
-  `password` varchar(12) DEFAULT NULL,
-  `conf_passw` varchar(12) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)
-   ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS customer (
+  `customer_id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(45) NOT NULL,
+  `last_name` VARCHAR(45) NOT NULL,
+  `is_admin` VARCHAR(45) NOT NULL,
+  `age` INT NOT NULL,
+  `street` VARCHAR(45) NOT NULL,
+  `city` VARCHAR(45) NOT NULL,
+  `postal_code` VARCHAR(6) NOT NULL,
+  `province` VARCHAR(45) NOT NULL,
+  `country` VARCHAR(45) NOT NULL,
+  `phone` CHAR(10) NOT NULL,
+  `email` VARCHAR(125) NOT NULL,
+  `order_id` INT NOT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
+  PRIMARY KEY (`customer_id`))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -106,3 +106,23 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `first_name` varchar(55) DEFAULT NULL,
+  `last_name` varchar(55) DEFAULT NULL,
+  `is_admin` varchar(15) NOT NULL DEFAULT 'regular',
+  `age` int(11) DEFAULT NULL,
+  `street` varchar(55) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `postal_code` varchar(6) DEFAULT NULL,
+  `province` varchar(45) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  `phone` char(10) DEFAULT NULL,
+  `email` varchar(125) DEFAULT NULL,
+  `password` varchar(12) DEFAULT NULL,
+  `conf_passw` varchar(12) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)
+   ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;

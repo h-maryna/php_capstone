@@ -29,12 +29,56 @@ $h1 = 'Coffee we offer';
 /**
  * include file which will be used as a template for each page as a header
  */
+try {
+
+  if(!empty($_GET['s'])) {
+    // we have a search
+      $query = 'SELECT * FROM product
+        WHERE
+        product_name LIKE :search
+        ORDER by product.product_name';
+
+        $params = array(
+          ':search' => "%{$_GET['s']}%"
+        );
+
+  } else {
+    // create query
+        $query = 'SELECT * FROM 
+        product
+        
+        ORDER by product.product_name';
+
+        $params = [];
+
+  } // end GET s
+
+  // create statement
+  $stmt = $dbh->prepare($query);
+
+  $stmt->execute($params);
+
+  // fetch our results
+  $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+// end try
+} catch (Exception $e) {
+  echo $e->getMessage();
+  die;
+}
 
 include __DIR__ . '/../inc/header.inc.php';
 ?>
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>
+
+      <!--  <form method="get" action="process_search.php">
+        <input type="text" name="product_name" />
+        <button>Search</button> 
+        </form>
+
+
       <table>
         <caption><div id="free">Free shipping over 49$</div></caption>
       
@@ -105,10 +149,47 @@ include __DIR__ . '/../inc/header.inc.php';
           <td>Full Body. Delicate sweetness. Complex and Fruity Aroma</td>
           <td>$15.00</td>
         </tr>
-     
-      <!-- Bottom level row -->
-      </table>
-    
+     -->
+       <!--Bottom level row -->
+<!--      </table> -->
+      <h1>Coffee beans list</h1>
+
+      <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
+    <p><input type="text" name="s" /><button>Search</button></p>
+  </form>
+
+  <!-- Only show this line if $_GET['s'] is set 
+    -- That is, only show this block if there is a search -->
+  <?php if(!empty($_GET['s'])) : ?>
+
+  <h3>Your search for <span class="search"><?=e($_GET['s'])?></span> returned <?=count($results)?> result(s)</h3>
+
+  <?php endif; ?>
+
+  <!-- End if -->
+
+  <table>
+    <tr>
+      <th>Product name</th>
+      <th>Product image</th>
+      <th>Country of origin</th>
+      <th>Roast</th>
+      <th>Grind</th>
+      <th>Price, $ per 100 gramm</th>
+    </tr>
+    <?php foreach($results as $key => $row) : ?>
+    <tr>
+      <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
+      <td><img src = '/images/orders/<?=$row['product_image']?>' /></td>
+      <td><?=$row['country_of_origin']?></td>
+      <td><?=$row['roast']?></td>
+      <td><?=$row['grind']?></td>
+      <td><?=$row['price']?></td>
+    </tr>
+    <?php endforeach; ?>
+
+  </table>
+
       <h2>Fresh Roasted Coffee Beans</h2><a href="#" class="go_top">Go to the top</a>  
         <p>Your arabica coffee beans are roasted within hours of placing your order and
          shipped to you immediately. It's as fresh as you can get, without roasting 
