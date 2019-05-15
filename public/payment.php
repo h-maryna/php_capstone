@@ -11,6 +11,11 @@ $title = 'payment';
  */
 $h1 = 'You can start your payment here:';
 
+if (empty($_SESSION['logged_in'])) {
+    setFlash('error', "You must be logged to make a payment");
+    header('Location: login_page.php');
+    die;
+}
 include __DIR__ . '/../inc/header.inc.php';
 
 ?><!DOCTYPE html>
@@ -24,6 +29,7 @@ include __DIR__ . '/../inc/header.inc.php';
 <body>
 
 <h1></h1>
+
 
 
 <form method="post" action="">
