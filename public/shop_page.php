@@ -79,7 +79,8 @@ include __DIR__ . '/../inc/header.inc.php';
       <main>
         <h1><?=$h1?></h1>
         <div id="cart">
-              <form action="view_cart.php" method="post"><input type="submit" name="action" value="View Cart" /><?=getCart()?></form></div>
+              <form action="view_cart.php" method="post"><input type="submit" name="action" value="View Cart" /><?=getCart()?></form>
+        </div>
         <h2>Types of roast</h2>
 
         <ul>
@@ -89,7 +90,7 @@ include __DIR__ . '/../inc/header.inc.php';
 
       <div id="search">
           <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-              <p><input type="text" name="s" /></p><button>Search</button>
+              <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>
           </form>
       </div>
 
