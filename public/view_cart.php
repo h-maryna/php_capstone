@@ -4,20 +4,52 @@
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 
-  if(!empty($_SESSION['cart'])) {
-    // we have a search
-      global $dbh;
-      $query = 'SELECT * FROM product
-        WHERE
-        product_name LIKE :cart
-        ORDER by product.product_name';
 
-        $params = array(
-          ':cart' => "%{$_SESSION['cart']}%"
-        );
-         // fetch our results
-       $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    }
+$title = 'view_cart';
+
+/**
+ * assigning a new variable for h1
+ */
+$h1 = 'View Your Items';
+
+$status="";
+
+$product_id = intval($_SESSION['cart']);
+
+
+// create query (remeber it will have a parameter)
+/*
+$query = 'SELECT
+			product.product_id,
+		    product.product_name,
+		    product.product_image,
+		    product.long_description,
+		    product.availability,
+		    product.country_of_origin,
+		    product.weight,
+		    product.price,
+		    product.delivery_cost,
+		    product.roast,
+		    product.grind
+		    FROM product
+			WHERE
+			product_id = :product_id';
+
+// create your param array
+$params = [
+	':product_id' => $product_id
+];
+
+// prepare query
+$stmt = $dbh->prepare($query);
+
+// execute query with params
+$stmt->execute($params);
+
+// fetch your result
+$result = $stmt->fetch(\PDO::FETCH_ASSOC);*/
+
+
 
 include __DIR__ . '/../inc/header.inc.php';
 
@@ -28,6 +60,46 @@ include __DIR__ . '/../inc/header.inc.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<title>View Cart</title>
+	<style>
+    table{  /*CSS style for table */
+      border-spacing: 0px;
+      /*border: 1px solid #fc9;*/
+      border-collapse: collapse;
+      color: #000;
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      display: inline-block;
+      margin: 15px 2px 5px 2px;
+    }
+    caption{  /*CSS style for caption in tables */
+      color: #000;
+      text-align: left;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+    td,th{
+      border: 1px solid #fb6; 
+    }
+    th{ 
+      color: #000;
+      background-color: #fc9;
+      text-align: center;
+    }
+    th img{
+      background-color: #fff;
+    }
+    td{
+      text-align: left;
+      padding: 5px;
+    }
+    h2 p{
+      padding: 5px;
+    }
+    
+</style>
 </head>
 <body>
 
@@ -41,18 +113,30 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Total</th>
     </tr>
     <div class="cart">
-<?php foreach ($_SESSION["cart"] as $product_name) : ?>
-<tr>
-<td><?=$product["product_name"]; ?><br />
-<td><?=$product["price"]; ?><br />
-<form method='post' action=''>
-<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
+<?php foreach($_SESSION['cart'] as $key => $row) : ?>
+    <tr>
+      <td><?=$row['product_name']?></td>
+      <td><?=$row['qty']?></td>
+      <td><?=$row['price']?></td>
+      <td><?=$row['total']?></td>
+      <td><form method='post' action=''>
 <input type='hidden' name='action' value="remove" />
-<button type='submit' class='remove'>Remove Item</button>
-</form>
+<button type='submit' class='remove'>remove Item</button>
+</form></td>
+     </tr>
 <?php endforeach; ?>
-  </table>
+</div>
+</table>
 
+<form method='post' action='shop_page.php'>
+<input type='hidden' name='action' value="make payment" />
+<button type='submit' class='make_payment' style="width: 100px;" >Back to Shopping</button>
+</form><br />
+
+<form method='post' action='login_page.php'>
+<input type='hidden' name='action' value="make payment" />
+<button type='submit' class='make_payment' style="width: 100px;">Buy</button>
+</form>
 
 <?php
 /**
