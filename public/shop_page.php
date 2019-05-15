@@ -30,8 +30,14 @@ $h1 = 'Coffee beans list';
  * include file which will be used as a template for each page as a header
  */
 try {
+if(!empty($_GET['roast'])){
+  $roast = $_GET['roast'];
+  $query = "SELECT * FROM product WHERE roast = :roasted";
+  $params = array(
+          ':roasted' => $roast);
 
-  if(!empty($_GET['s'])) {
+}
+elseif(!empty($_GET['s'])) {
     // we have a search
       $query = 'SELECT * FROM product
         WHERE
@@ -67,32 +73,18 @@ try {
   die;
 }
 
-$roast = $_GET['roast'];
-
-$query = "SELECT * FROM product WHERE roast = 'roasted'";
-$params = array(
-          ':roasted' => $roast);
-$stmt = $dbh->prepare($query);
-
-$stmt->execute($param);
-
-  // fetch our results
-  $result = $stmt->fetch(\PDO::FETCH_ASSOC); 
-
 include __DIR__ . '/../inc/header.inc.php';
 ?>
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>
         <div id="cart">
-        <?=getCart()?>
-        </div>
+              <form action="view_cart.php" method="post"><input type="submit" name="action" value="View Cart" /><?=getCart()?></form></div>
+        <h2>Types of roast</h2>
 
-        <h2>Categories</h2>
         <ul>
-          <?php if(!empty($_GET['roast'])) : ?>
-          <li><?=e($_GET['roast'])?></li>
-        <?php endif; ?>
+          <li><a href="shop_page.php?roast=roasted">Roasted</a></li>
+          <li><a href="shop_page.php?roast=unroasted">Unroasted</a></li>  
         </ul>
 
       <div id="search">
@@ -125,7 +117,7 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php foreach($results as $key => $row) : ?>
     <tr>
       <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
-      <td><img src = '/images/orders/<?=$row['product_image']?>' /></td>
+      <td><img src = '/images/orders/<?=$row['product_image']?>'/></td>
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>
       <td><?=$row['grind']?></td>

@@ -39,6 +39,11 @@ if ('dev' == $environment) {
     ini_set('display_errors', 0);
 }
 
+if(empty($_SESSION['cart'])){
+    $_SESSION['cart'] = [];
+}
+$cart = $_SESSION['cart'];
+
 spl_autoload_register('my_autoload');
 
 /**
@@ -80,5 +85,6 @@ function my_autoload($class)
         require $file;
     } */
 }
+
 
 require __DIR__ . '/../config/log.php';

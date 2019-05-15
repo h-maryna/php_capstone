@@ -36,12 +36,5 @@
     h2 p{
       padding: 5px;
     }
-    #cart{
-      border: 1px solid #f00;
-      border-radius: 15px;
-      background-color: #fee;
-      padding: 15px;
-      width: 75px;
-      margin-left: 800px;
-    }
+    
 </style>

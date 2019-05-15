@@ -60,11 +60,36 @@ function getCart(){
  * Single item Shopping Cart
  * @param  Array $iten
  */
-function addToCart($item)
+function getOneProduct($product_id)
 {   
-	$item_id = $item['product_id'];
-	// single item cart
-	$_SESSION['cart'][$product_id] = $item;
+   global $dbh;
+   $query = "SELECT * from product where product_id = :product_id ";
+   $params = array(
+           ':product_id' => $product_id
+       );
+   $stmt = $dbh->prepare($query);
+   $stmt->execute($params);
+   return $stmt->fetch();
+
+	
+}
+
+/**
+ * Add to the cart 
+ * @param [type] $product_id [description]
+ */
+function addToCart($post)
+{   
+	$qty = $post['qty'];
+	$product_id = $post['product_id'];
+	$product = getOneProduct($product_id);
+	$item = array(
+        'product_name' =>$product['product_name'],
+        'price' => $product['price'],
+        'qty' => $qty,
+        'total' => $product['price'] * $qty
+	    );
+    $_SESSION['cart'][$product_id] = $item;
 }
 
 function deleteFromCart($item)

@@ -91,7 +91,8 @@ include __DIR__ . '/../inc/header.inc.php';
 		<li><strong><?=$key?></strong>: <?=($value) ? 'yes' : 'no' ?></li>
 
 		<?php elseif ($key == 'product_image') :?>
-		<li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> /></li>
+		<li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> width="350" height="250" align="right" /></li>
+
 
 		<?php elseif ($key == 'product_id') : ?>
 	<?php else : ?>

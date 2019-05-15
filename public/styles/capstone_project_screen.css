@@ -141,6 +141,10 @@
     body#admin_page div#wrapper header nav ul#navlist li a.page9{
       background-color: #c60;
     }
+
+    #cart{
+      width: 150px;
+    }
     /* CSS style for main content */
     main{
       font-size: 18px;
@@ -430,7 +434,7 @@
       opacity: 0.6;
     }
     button{
-      width: 150px;
+      width: 75px;
       padding-left: 10px;
       font-size: 18px;
       padding-top: 2px;
