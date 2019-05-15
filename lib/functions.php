@@ -47,3 +47,27 @@ function setFlash($type, $message)
 {
 	$_SESSION['message'] = [$type, $message];
 }
+
+function getCart(){
+	if(empty($_SESSION['cart'])){
+		return 'Your cart is empty';
+	}else{
+		$count = count($_SESSION['cart']);
+		return "$count items in a cart";
+	}
+}
+/**
+ * Single item Shopping Cart
+ * @param  Array $iten
+ */
+function addToCart($item)
+{   
+	$item_id = $item['product_id'];
+	// single item cart
+	$_SESSION['cart'][$product_id] = $item;
+}
+
+function deleteFromCart($item)
+{
+	unset($_SESSION['cart'][$product_id]);
+}

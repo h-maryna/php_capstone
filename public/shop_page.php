@@ -25,7 +25,7 @@ $title = 'shop_page';
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Coffee we offer';
+$h1 = 'Coffee beans list';
 /**
  * include file which will be used as a template for each page as a header
  */
@@ -67,96 +67,39 @@ try {
   die;
 }
 
+$roast = $_GET['roast'];
+
+$query = "SELECT * FROM product WHERE roast = 'roasted'";
+$params = array(
+          ':roasted' => $roast);
+$stmt = $dbh->prepare($query);
+
+$stmt->execute($param);
+
+  // fetch our results
+  $result = $stmt->fetch(\PDO::FETCH_ASSOC); 
+
 include __DIR__ . '/../inc/header.inc.php';
 ?>
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>
+        <div id="cart">
+        <?=getCart()?>
+        </div>
 
-      <!--  <form method="get" action="process_search.php">
-        <input type="text" name="product_name" />
-        <button>Search</button> 
-        </form>
+        <h2>Categories</h2>
+        <ul>
+          <?php if(!empty($_GET['roast'])) : ?>
+          <li><?=e($_GET['roast'])?></li>
+        <?php endif; ?>
+        </ul>
 
-
-      <table>
-        <caption><div id="free">Free shipping over 49$</div></caption>
-      
-        <tr class="round">
-          <th>Coffee Beans</th>
-          <th>Coffee variety</th>
-          <th>Description</th>
-          <th>Price per lb</th>
-        </tr>
-      
-        <tr>
-          <th><img src="images/order1.jpg" 
-                   width="100" 
-                   height="75" 
-                   alt="Bolivia Colonial Caranavi(South America)" /></th>
-          <a href="#"><td>Bolivia Colonial Caranavi(South America)</td></a>
-          <td>Slightly Spicy, Full Body, Good Balance</td>
-          <td>$25.00</td>
-        </tr>
-      
-        <tr>
-          <th><img src="images/order2.jpg" 
-                   width="100" 
-                   height="75" 
-                   alt="Mexican “Oaxaca” (North America)" /></th>
-          <td>Mexican “Oaxaca” (North America)</td>
-          <td>Full Bodied, Sweet, Nutty Elixir (Medium-Dark Roast)</td>
-          <td>$18.00</td>
-        </tr>
-      
-        <tr>
-          <th><img src="images/order3.jpg" 
-                   width="100" 
-                   height="75" 
-                   alt="Café Femenino Peru (South America)" /></th>
-          <td>Café Femenino Peru (South America)</td>
-          <td>Quality Coffee, Equality in Life. Grown by a women's coffee
-              co-op in Per</td>
-          <td>$20.00</td>
-        </tr>
-      
-        <tr>
-          <th><img src="images/order4.jpg" 
-                   width="100" 
-                   height="75" 
-                   alt="Ethiopian Sidamo (Africa)" /></th>
-          <td>Ethiopian Sidamo (Africa)</td>
-          <td>Fruity flavour, medium body. The “fine red wine” of coffee</td>
-          <td>$24.00</td>
-        </tr>
-      
-        <tr>
-          <th><img src="images/order5.jpg" 
-                   width="100" 
-                   height="75" 
-                   alt="Rwanda “Ikawa-Nini”(Indonesia)" /></th>
-          <td>Rwanda “Ikawa-Nini”(Indonesia)</td>
-          <td>Dark, heady and heavy on the tongue</td>
-          <td>$20.00</td>
-        </tr>
-      
-        <tr class="round">
-          <th><img src="images/order6.jpg" 
-                   width="100" 
-                   height="75" 
-                   alt="Sumatra “Café Femenino” (Medium-Full)(Indonesia)" /></th>
-          <td>Sumatra “Café Femenino” (Medium-Full)(Indonesia)</td>
-          <td>Full Body. Delicate sweetness. Complex and Fruity Aroma</td>
-          <td>$15.00</td>
-        </tr>
-     -->
-       <!--Bottom level row -->
-<!--      </table> -->
-      <h1>Coffee beans list</h1>
-
-      <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-    <p><input type="text" name="s" /><button>Search</button></p>
-  </form>
+      <div id="search">
+          <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
+              <p><input type="text" name="s" /></p><button>Search</button>
+          </form>
+      </div>
 
   <!-- Only show this line if $_GET['s'] is set 
     -- That is, only show this block if there is a search -->
@@ -167,7 +110,6 @@ include __DIR__ . '/../inc/header.inc.php';
   <?php endif; ?>
 
   <!-- End if -->
-
   <table>
     <tr>
       <th>Product name</th>
@@ -175,7 +117,10 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Country of origin</th>
       <th>Roast</th>
       <th>Grind</th>
+      <th>Short description</th>
       <th>Price, $ per 100 gramm</th>
+      <th></th>
+      <th></th>
     </tr>
     <?php foreach($results as $key => $row) : ?>
     <tr>
@@ -184,7 +129,20 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>
       <td><?=$row['grind']?></td>
+      <td><?=$row['short_description']?></td>
       <td><?=$row['price']?></td>
+      <td><form action="cart.php" method="post">
+            <select name="qty">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <input type="hidden" name="product_id" value="<?=$row['product_id']?>" />
+            <button>add to cart</button>
+          </form>
+      </td>
     </tr>
     <?php endforeach; ?>
 

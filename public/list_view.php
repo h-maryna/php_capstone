@@ -38,8 +38,7 @@ $product_id = intval($_GET['product_id']);
 
 $query = 'SELECT
 			product.product_id,
-		    product.name,
-		    product.short_description,
+		    product.product_name,
 		    product.product_image,
 		    product.long_description,
 		    product.availability,
@@ -67,6 +66,8 @@ $stmt->execute($params);
 // fetch your result
 $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
+include __DIR__ . '/../inc/header.inc.php';
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,6 +89,11 @@ $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
 	<?php if($key == 'availability') : ?>
 		<li><strong><?=$key?></strong>: <?=($value) ? 'yes' : 'no' ?></li>
+
+		<?php elseif ($key == 'product_image') :?>
+		<li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> /></li>
+
+		<?php elseif ($key == 'product_id') : ?>
 	<?php else : ?>
 		<li><strong><?=$key?></strong>: <?=$value?></li>
 	<?php endif; ?>
@@ -96,6 +102,13 @@ $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 </ul>
 
 
+<?php
+/**
+ * include file which will be used as a template for each page as a  footer
+ */
+    include __DIR__ . '/../inc/footer.inc.php';
+
+?>
 
 </body>
 </html>
