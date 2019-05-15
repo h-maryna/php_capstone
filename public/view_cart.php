@@ -133,9 +133,9 @@ include __DIR__ . '/../inc/header.inc.php';
 <button type='submit' class='make_payment' style="width: 100px;" >Back to Shopping</button>
 </form><br />
 
-<form method='post' action='login_page.php'>
+<form method='post' action='payment.php'>
 <input type='hidden' name='action' value="make payment" />
-<button type='submit' class='make_payment' style="width: 100px;">Buy</button>
+<button type='submit' class='make_payment' style="width: 100px;">Make Payment</button>
 </form>
 
 <?php

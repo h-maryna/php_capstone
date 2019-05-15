@@ -114,6 +114,7 @@
                 <?php if (!empty($_SESSION['admin'])) :?>
               <li><a href="admin_page.php" class="page9">Log Events</a></li>
               <li><a href="profile_page.php" class="page7">Profile</a></li>
+              <li><a href="payment.php" class="page10">Payment</a></li>
               <li><a href="login_page.php?logout=1">Logout</a></li>
                 <?php else :?>
               <li><a href="profile_page.php" class="page7">Profile</a></li>

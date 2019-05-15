@@ -138,7 +138,8 @@
     body#register_page div#wrapper header nav ul#navlist li a.page6, 
     body#profile_page div#wrapper header nav ul#navlist li a.page7,
     body#contact_page div#wrapper header nav ul#navlist li a.page8,
-    body#admin_page div#wrapper header nav ul#navlist li a.page9{
+    body#admin_page div#wrapper header nav ul#navlist li a.page9,
+    body#payment div#wrapper header nav ul#navlist li a.page10{
       background-color: #c60;
     }
 
