@@ -20,6 +20,7 @@ require __DIR__ . '/../config/config.php';
     }
 
 include __DIR__ . '/../inc/header.inc.php';
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,19 +40,17 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Price</th>
       <th>Total</th>
     </tr>
-    <?php foreach($results as $key => $row) : ?>
-    <tr>
-      <td><?=$row['product_name']?></td>
-      <td><?=$row['quantity']?></td>
-      <td><?=$row['price']?></td>
-      <td><form action="cart.php" method="post">
-            <input type="hidden" name="product_id" value="<?=$row['product_id']?>" />
-            <button>remove</button>
-          </form>
-      </td>
-    </tr>
-    <?php endforeach; ?>
-
+    <div class="cart">
+<?php foreach ($_SESSION["cart"] as $product_name) : ?>
+<tr>
+<td><?=$product["product_name"]; ?><br />
+<td><?=$product["price"]; ?><br />
+<form method='post' action=''>
+<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
+<input type='hidden' name='action' value="remove" />
+<button type='submit' class='remove'>Remove Item</button>
+</form>
+<?php endforeach; ?>
   </table>
 
 

@@ -28,21 +28,31 @@ if(!empty($_SESSION["cart"])) {
 
 <div class="cart">
 <?php
-if(isset($_SESSION["cart"])){
-    $total = 0;
-?>	
+if(isset($_SESSION["shopping_cart"])){
+    $total_price = 0;
+?>  
 <table class="table">
-    <fieldset>
-    	<tr>
-			<td></td>
-			<td>ITEM NAME</td>
-			<td>QUANTITY</td>
-			<td>PRICE</td>
-			<td>TOTAL</td>
-			</tr>
-    </fieldset>>
-	
-</table>		
+<tbody>
+<tr>
+<td></td>
+<td>ITEM NAME</td>
+<td>QUANTITY</td>
+<td>UNIT PRICE</td>
+<td>ITEMS TOTAL</td>
+</tr> 
+<?php   
+foreach ($_SESSION["cart"] as $product_name){
+?>
+<tr>
+<td>
+<img src='<?php echo $product["image"]; ?>' width="50" height="40" />
+</td>
+<td><?php echo $product["name"]; ?><br />
+<form method='post' action=''>
+<input type='hidden' name='code' value="<?php echo $product["code"]; ?>" />
+<input type='hidden' name='action' value="remove" />
+<button type='submit' class='remove'>Remove Item</button>
+</form>
   
 
 </div>
