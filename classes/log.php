@@ -14,6 +14,11 @@ $logger = new DatabaseLogger($dbh); // for server
 //$logger = new DatabaseLogger(new \PDO('sqlite:'.$logsqlite));
 var_dump($logfile);
 
+/**
+ * Function for getting events frim the server
+ * @param  Ilogger $logger [description]
+ * @return [type]          [description]
+ */
 function logEvent(Ilogger $logger)
 {
     // vreate event ... gather info

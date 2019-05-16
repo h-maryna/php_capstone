@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
            die('CSRF token mismatch');
            }
         } 
-  } 
+  
   
 
   $errors = $v->errors();
@@ -63,38 +63,53 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       // create query
       $query = "INSERT INTO
              orders
-             (sub_total, pst, gst, total, cc_num, auth_code)
+             (customer_id, sub_total, gst, pst, total, cc_num, auth_code)
              VALUES
-             (:sub_total, :pst, :gst, :total, :cc_num, :auth_code)";
+             (:customer_id, :sub_total, :gst, :pst, :total, :cc_num, :auth_code)";
       
       // prepare query
       $stmt = $dbh->prepare($query);
-
       $params = array(
+        ':customer_id' => $_SESSION['user_id'],
         ':sub_total' => getCartSubtotal(),
-        ':pst' => getPst(),
         ':gst' => getGst(),
+        ':pst' => getPst(),
         ':total' => getTotal(),
-        ':cc_num' => substr($_POST['credit_card'], -4),
+        ':cc_num' => intval(substr($_POST['credit_card'], -4)),
         ':auth_code' => rand(1111,9999)
       );
-
       // execute query
       $stmt->execute($params);
 
       $order_id = $dbh->lastInsertId();
-      foreach($order_id as $key){
-        return 
-      }
+      
+      //prepare query
+      $query = "INSERT INTO order_product (
+                                       order_id, product_id, product_name, price, quantity
+                                          )
+                                          VALUES (:order_id, :product_id, :product_name, :price, :quantity)";
+
+      foreach($_SESSION['cart'] as $key =>$item){
+      $params = array(
+                      ':order_id' => $order_id,
+                      ':product_id' => $key, 
+                       ':product_name' =>$item['product_name'],
+                       ':price' => $item['price'],
+                       ':quantity' => $item['qty']);
+      $stmt = $dbh->prepare($query);
+      $stmt->execute($params);
+      } 
+      
+     $_SESSION['order_id'] =$order_id;
       //header('Location: redirect_form.php');
-      header('Location: thankyou.php?order_id=' . $order_id);
+      header('Location: thankyou.php');
+        die;
+
       //exit;
         } catch(Exception $e) {
           die($e->getMessage());
         }
-    
-  } // end if
-
+    } // end if errors
 } // END IF POST
 
 include __DIR__ . '/../inc/header.inc.php';
@@ -146,18 +161,24 @@ include __DIR__ . '/../inc/header.inc.php';
             <tr>
               <th>Product name</th>
               <th>Quantity</th>
-              <th>Price</th>
-              <th>Total</th>
+              <th>Subtotal</th>
+              <th>Pst</th>
+              <th>Gst</th>
             </tr>
             <div class="cart">
             <?php foreach ($_SESSION['cart'] as $key => $row) : ?>
             <tr>
               <td><?=$row['product_name']?></td>
               <td><?=$row['qty']?></td>
-              <td><?=$row['price']?></td>
-              <td><?=$row['total']?></td>
+              <td><?=getCartSubtotal()?></td>
+              <td><?=getPst()?></td>
+              <td><?=getGst()?></td>
             </tr>
             <?php endforeach; ?>
+            <tr>
+                <td>Total</td>
+                <td><?=getTotal()?></td>
+            </tr>
             </div>
         </table>
 <p><a href="shop_page.php">Back to shopping cart</a></p>

@@ -61,7 +61,7 @@ function getCart(){
 }
 /**
  * Single item Shopping Cart
- * @param  Array $iten
+ * @param  Array $product_id
  */
 function getOneProduct($product_id)
 {   
@@ -78,8 +78,8 @@ function getOneProduct($product_id)
 }
 
 /**
- * Add to the cart 
- * @param [type] $product_id [description]
+ * Multiple items in shopping cart 
+ * @param Array with multiple items
  */
 function addToCart($post)
 {   
@@ -106,6 +106,10 @@ function removeFromCart($product_id)
 		
 } */
 
+/**
+ * Function to get sub total from the cart by adding all items
+ * @return $sub
+ */
 function getCartSubTotal()
 {
 	$sub = 0;
@@ -115,16 +119,28 @@ function getCartSubTotal()
 	return $sub;
 }
 
+/**
+ * Function for gettin PST
+ * @return PST
+ */
 function getPst()
 {
 	return getCartSubTotal() * PST;
 }
 
+/**
+ * Function for getting GST
+ * @return GST
+ */
 function getGst()
 {
 	return getCartSubTotal() * GST;
 }
 
+/**
+ * Function for getting total by adding subtotal, gst and pst
+ * @return total
+ */
 function getTotal()
 {
 	$sub = getCartSubTotal();
