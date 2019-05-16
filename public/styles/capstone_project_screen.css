@@ -136,8 +136,7 @@
     body#shop_page div#wrapper header nav ul#navlist li a.page4,
     body#login_page div#wrapper header nav ul#navlist li a.page5,
     body#register_page div#wrapper header nav ul#navlist li a.page6, 
-    body#profile_page div#wrapper header nav ul#navlist li a.page7,
-    body#admin_page div#wrapper header nav ul#navlist li a.page9,
+    body#profile_page div#wrapper header nav ul#navlist li a.page7    body#admin_page div#wrapper header nav ul#navlist li a.page9,
     body#payment div#wrapper header nav ul#navlist li a.page8{
       background-color: #c60;
     }
@@ -419,6 +418,7 @@
     input[type="email"],
     input[type="tel"],
     input[type="date"],
+    input[type="month"],
     input[type="password"],
     input[type="submit"],
     input[type="reset"]{

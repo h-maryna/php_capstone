@@ -79,7 +79,9 @@ include __DIR__ . '/../inc/header.inc.php';
       <main>
         <h1><?=$h1?></h1>
         <div id="cart">
-              <form action="view_cart.php" method="post"><input type="submit" name="action" value="View Cart" /><?=getCart()?></form>
+              <form action="view_cart.php" method="post">
+                <input type="submit" name="action" value="View Cart" /><?=getCart()?>
+              </form>
         </div>
         <h2>Types of roast</h2>
 

@@ -17,40 +17,6 @@ $status="";
 $product_id = intval($_SESSION['cart']);
 
 
-// create query (remeber it will have a parameter)
-/*
-$query = 'SELECT
-			product.product_id,
-		    product.product_name,
-		    product.product_image,
-		    product.long_description,
-		    product.availability,
-		    product.country_of_origin,
-		    product.weight,
-		    product.price,
-		    product.delivery_cost,
-		    product.roast,
-		    product.grind
-		    FROM product
-			WHERE
-			product_id = :product_id';
-
-// create your param array
-$params = [
-	':product_id' => $product_id
-];
-
-// prepare query
-$stmt = $dbh->prepare($query);
-
-// execute query with params
-$stmt->execute($params);
-
-// fetch your result
-$result = $stmt->fetch(\PDO::FETCH_ASSOC);*/
-
-
-
 include __DIR__ . '/../inc/header.inc.php';
 
 ?><!DOCTYPE html>
@@ -121,6 +87,8 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['total']?></td>
       <td><form method='post' action=''>
 <input type='hidden' name='action' value="remove" />
+
+
 <button type='submit' class='remove'>remove Item</button>
 </form></td>
      </tr>

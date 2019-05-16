@@ -91,8 +91,14 @@ function addToCart($post)
 	    );
     $_SESSION['cart'][$product_id] = $item;
 }
-
-function deleteFromCart($item)
+/*
+function removeFromCart($product_id)
 {
-	unset($_SESSION['cart'][$product_id]);
-}
+    if(!empty($_SESSION['cart'])){
+	    foreach($_SESSION['cart'] as $key => $row){
+           if($key == 'product_id'){
+           	unset($_SESSION["cart"][$key]); ?>
+           }	
+	    }
+		
+} */
