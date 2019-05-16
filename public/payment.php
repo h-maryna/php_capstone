@@ -16,6 +16,7 @@ if (empty($_SESSION['logged_in'])) {
     header('Location: login_page.php');
     die;
 }
+
 include __DIR__ . '/../inc/header.inc.php';
 
 ?> <title><?=$title?></title>
@@ -25,16 +26,16 @@ include __DIR__ . '/../inc/header.inc.php';
 
 <form method="post" action="">
   <input type="hidden" name="" value="" />
-            <p><label for="cname">Name on Card</label></p>
+            <p><label for="cname">Name on card</label></p>
             <input type="text" id="cname" name="cardname" placeholder="John More Doe"><br />
-            <p><label for="address">Billing Address</label></p>
+            <p><label for="address">Billing address</label></p>
             <input type="text" id="address" name="address" placeholder="Billing Address"><br />
             <p><label for="ccnum">Credit card number</label></p>
             <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"><br />
             <p><label for="expmonth">Expiration date</label></p>
             <input type="date" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
             <p><label for="cvv">CVV</label></p>
-            <input type="text" id="cvv" name="cvv" placeholder="352"><br />
+            <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3"><br />
 </form>
 
 <form method='post' action='thankyou.php'>

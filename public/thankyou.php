@@ -7,25 +7,21 @@ require __DIR__ . '/../classes/Validator.php';
  /**
   * assigning a new variable for title
   */
-$title = 'shop_page';
+$title = 'thankyou';
 
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Coffee beans list';
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<title>Thank</title>
-</head>
-<body>
+$h1 = 'Thank you for shopping with us!';
 
-<h1></h1>
+include __DIR__ . '/../inc/header.inc.php';
+?>
 
+<img src="/images/thankyou.png" alt="Thank You for your order" width="960" height="550" align="centre" />
+<?php
+/**
+ * include file which will be used as a template for each page as a  footer
+ */
+    include __DIR__ . '/../inc/footer.inc.php';
 
-
-</body>
-</html>
+?>

@@ -48,6 +48,7 @@ if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
     $v->required('password');
     $v->string('first_name');
     $v->password('password');
+    $v->cvv('cvv');
 
     if (!$v->errors()) {
         $query = "SELECT * FROM user WHERE email = :email";
