@@ -1,8 +1,7 @@
 <?php
 /**
  * WDD4
- * Object oriented PHP
- * Assignment 2
+ * PHP CAPSTONE PROJECT
  * Instructor Steve George
  * Maryna Haidashevska
  */
@@ -30,16 +29,14 @@ $h1 = 'Coffee beans list';
  * include file which will be used as a template for each page as a header
  */
 try {
-if(!empty($_GET['roast'])){
-  $roast = $_GET['roast'];
-  $query = "SELECT * FROM product WHERE roast = :roasted";
-  $params = array(
+    if (!empty($_GET['roast'])) {
+        $roast = $_GET['roast'];
+        $query = "SELECT * FROM product WHERE roast = :roasted";
+        $params = array(
           ':roasted' => $roast);
-
-}
-elseif(!empty($_GET['s'])) {
-    // we have a search
-      $query = 'SELECT * FROM product
+    } elseif (!empty($_GET['s'])) {
+        // we have a search
+          $query = 'SELECT * FROM product
         WHERE
         product_name LIKE :search
         ORDER by product.product_name';
@@ -47,30 +44,28 @@ elseif(!empty($_GET['s'])) {
         $params = array(
           ':search' => "%{$_GET['s']}%"
         );
-
-  } else {
-    // create query
+    } else {
+      // create query
         $query = 'SELECT * FROM 
         product
         
         ORDER by product.product_name';
 
         $params = [];
-
-  } // end GET s
+    } // end GET s
 
   // create statement
-  $stmt = $dbh->prepare($query);
+    $stmt = $dbh->prepare($query);
 
-  $stmt->execute($params);
+    $stmt->execute($params);
 
   // fetch our results
-  $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 // end try
 } catch (Exception $e) {
-  echo $e->getMessage();
-  die;
+    echo $e->getMessage();
+    die;
 }
 
 include __DIR__ . '/../inc/header.inc.php';
@@ -98,11 +93,10 @@ include __DIR__ . '/../inc/header.inc.php';
 
   <!-- Only show this line if $_GET['s'] is set 
     -- That is, only show this block if there is a search -->
-  <?php if(!empty($_GET['s'])) : ?>
-
+    <?php if (!empty($_GET['s'])) : ?>
   <h3>Your search for <span class="search"><?=e($_GET['s'])?></span> returned <?=count($results)?> result(s)</h3>
 
-  <?php endif; ?>
+    <?php endif; ?>
 
   <!-- End if -->
   <table>
@@ -117,7 +111,7 @@ include __DIR__ . '/../inc/header.inc.php';
       <th></th>
       <th></th>
     </tr>
-    <?php foreach($results as $key => $row) : ?>
+    <?php foreach ($results as $key => $row) : ?>
     <tr>
       <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
       <td><img src = '/images/orders/<?=$row['product_image']?>'/></td>
@@ -140,8 +134,9 @@ include __DIR__ . '/../inc/header.inc.php';
       </td>
     </tr>
     <?php endforeach; ?>
-
   </table>
+
+
 
       <h2>Fresh Roasted Coffee Beans</h2><a href="#" class="go_top">Go to the top</a>  
         <p>Your arabica coffee beans are roasted within hours of placing your order and

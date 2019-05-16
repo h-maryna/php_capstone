@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * WDD4
+ * PHP CAPSTONE PROJECT
+ * Instructor Steve George
+ * Maryna Haidashevska
+ */
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
@@ -22,11 +27,11 @@ include __DIR__ . '/../inc/header.inc.php';
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<title>View Cart</title>
-	<style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>View Cart</title>
+    <style>
     table{  /*CSS style for table */
       border-spacing: 0px;
       /*border: 1px solid #fc9;*/
@@ -79,7 +84,7 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Total</th>
     </tr>
     <div class="cart">
-<?php foreach($_SESSION['cart'] as $key => $row) : ?>
+<?php foreach ($_SESSION['cart'] as $key => $row) : ?>
     <tr>
       <td><?=$row['product_name']?></td>
       <td><?=$row['qty']?></td>
@@ -87,8 +92,6 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['total']?></td>
       <td><form method='post' action=''>
 <input type='hidden' name='action' value="remove" />
-
-
 <button type='submit' class='remove'>remove Item</button>
 </form></td>
      </tr>

@@ -1,9 +1,7 @@
 <?php
-
 /**
  * WDD4
- * Object oriented PHP
- * Assignment 2
+ * PHP CAPSTONE PROJECT
  * Instructor Steve George
  * Maryna Haidashevska
  */

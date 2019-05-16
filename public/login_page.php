@@ -1,12 +1,10 @@
 <?php
 /**
  * WDD4
- * Object oriented PHP
- * Assignment 2
+ * PHP CAPSTONE PROJECT
  * Instructor Steve George
  * Maryna Haidashevska
  */
-
 namespace classes;
 
 require __DIR__ . '/../lib/functions.php';

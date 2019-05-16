@@ -1,4 +1,10 @@
 <?php
+/**
+ * WDD4
+ * PHP CAPSTONE PROJECT
+ * Instructor Steve George
+ * Maryna Haidashevska
+ */
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';

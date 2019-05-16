@@ -1,8 +1,7 @@
 <?php
 /**
  * WDD4
- * Object oriented PHP
- * Assignment 2
+ * PHP CAPSTONE PROJECT
  * Instructor Steve George
  * Maryna Haidashevska
  */
@@ -91,7 +90,8 @@ include __DIR__ . '/../inc/header.inc.php';
 		<li><strong><?=$key?></strong>: <?=($value) ? 'yes' : 'no' ?></li>
 
 		<?php elseif ($key == 'product_image') :?>
-		<li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> width="350" height="250" align="right" /></li>
+		<li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> width="350" height="250" align="right" />
+		</li>
 
 
 		<?php elseif ($key == 'product_id') : ?>
