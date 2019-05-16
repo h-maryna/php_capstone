@@ -101,12 +101,12 @@ class Validator
         }
     }
 
-    public function cvv($field)
+  /*  public function cvv($field)
     {
         $cvv = filter_input(INPUT_POST, $field);
         $pattern = '/[0-9]{3}/'; 
         if (!preg_match($pattern, $cvv)) {
             $this->setError($field, 'Please provide a proper cvv code');
         }
-    }
+    } */
 }

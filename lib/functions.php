@@ -1,5 +1,8 @@
 <?php
 
+define('PST', 0.6);
+define('GST', 0.5);
+
 /**
  * Escape string for general use in HTML
  * @param  String $string data to be sanitized
@@ -102,3 +105,30 @@ function removeFromCart($product_id)
 	    }
 		
 } */
+
+function getCartSubTotal()
+{
+	$sub = 0;
+	foreach ($_SESSION['cart'] as $key => $item) {
+		$sub += $item['total'];
+	}
+	return $sub;
+}
+
+function getPst()
+{
+	return getCartSubTotal() * PST;
+}
+
+function getGst()
+{
+	return getCartSubTotal() * GST;
+}
+
+function getTotal()
+{
+	$sub = getCartSubTotal();
+	$pst = getPst();
+	$gst = getGst();
+	return $sub + $pst + $gst;
+}

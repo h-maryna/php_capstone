@@ -5,6 +5,7 @@
  * Instructor Steve George
  * Maryna Haidashevska
  */
+namespace classes;
 
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
@@ -24,6 +25,77 @@ if (empty($_SESSION['logged_in'])) {
     header('Location: login_page.php');
     die;
 }
+
+// empty errors array
+// serves as flag... we
+// can test at any time to see
+// if we have errors
+$errors = [];
+
+$v = new Validator();
+// Set flag that form has not been
+// submitted successfully.  This will
+// be used as a conditional to determine
+// what to display in the view.
+$success = false;
+
+
+// If the request is POST (a form submission)
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  
+  // Our required fields
+   if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
+       if($_SESSION['token'] != filter_input(INPUT_POST, 'token')){
+           die('CSRF token mismatch');
+           }
+        } 
+  } 
+  
+
+  $errors = $v->errors();
+
+  
+  
+  // If there are no errors after processing all POST
+   if(!$errors) {
+        try {
+
+      // create query
+      $query = "INSERT INTO
+             orders
+             (sub_total, pst, gst, total, cc_num, auth_code)
+             VALUES
+             (:sub_total, :pst, :gst, :total, :cc_num, :auth_code)";
+      
+      // prepare query
+      $stmt = $dbh->prepare($query);
+
+      $params = array(
+        ':sub_total' => getCartSubtotal(),
+        ':pst' => getPst(),
+        ':gst' => getGst(),
+        ':total' => getTotal(),
+        ':cc_num' => substr($_POST['credit_card'], -4),
+        ':auth_code' => rand(1111,9999)
+      );
+
+      // execute query
+      $stmt->execute($params);
+
+      $order_id = $dbh->lastInsertId();
+      foreach($order_id as $key){
+        return 
+      }
+      //header('Location: redirect_form.php');
+      header('Location: thankyou.php?order_id=' . $order_id);
+      //exit;
+        } catch(Exception $e) {
+          die($e->getMessage());
+        }
+    
+  } // end if
+
+} // END IF POST
 
 include __DIR__ . '/../inc/header.inc.php';
 
@@ -91,24 +163,22 @@ include __DIR__ . '/../inc/header.inc.php';
 <p><a href="shop_page.php">Back to shopping cart</a></p>
 
 
-<form method="post" action="">
-  <input type="hidden" name="" value="" />
-            <p><label for="cname">Name on card</label></p>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe"><br />
-            <p><label for="address">Billing address</label></p>
-            <input type="text" id="address" name="address" placeholder="Billing Address"><br />
-            <p><label for="ccnum">Credit card number</label></p>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"><br />
+<form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
+   <input type="hidden" name="token" value="<?=getToken()?>" />
+            <p><label for="card_name">Name on card</label></p>
+            <input type="text" id="card_name" name="card_name" value="<?=clean('card_name')?>" placeholder="John More Doe"><br />
+            <p><label for="billing_address">Billing address</label></p>
+            <input type="text" id="billing_address" name="billing_address" value="<?=clean('billing_address')?>" placeholder="Billing Address"><br />
+            <p><label for="credit_card">Credit card number</label></p>
+            <input type="text" id="credit_card" name="credit_card" value="<?=clean('credit_card')?>" placeholder="1111-2222-3333-4444" minlength="16" maxlength="19"><br />
             <p><label for="expmonth">Expiration date</label></p>
             <input type="date" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
             <p><label for="cvv">CVV</label></p>
             <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3"><br />
+            <p><button>Complete Purchase</button></p>
 </form>
 
-<form method='post' action='thankyou.php'>
-<input type='hidden' name='action' value="thankyou" />
-<button type='submit' class='thankyou' style="width: 100px;">Copmlete Purchase</button>
-</form>
+
 
 <?php
 /**

@@ -126,3 +126,28 @@ CREATE TABLE `user` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)
    ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+   CREATE TABLE `invoice` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `product_name` varchar(55) DEFAULT NULL,
+  `is_admin` varchar(15) NOT NULL DEFAULT 'regular',
+  `quantity` int(11) DEFAULT NULL,
+  `sub_total` float DEFAULT NULL,
+  `card_name` varchar(55) DEFAULT NULL,
+  `billing_address` varchar(125) DEFAULT NULL,
+  `email` varchar(125) DEFAULT NULL,
+  `credit_card` varchar(16) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)
+   ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+
+  CREATE TABLE `invoice` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `is_admin` varchar(15) NOT NULL DEFAULT 'regular',
+  `card_name` varchar(55) DEFAULT NULL,
+  `billing_address` varchar(125) DEFAULT NULL,
+  `credit_card` varchar(19) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)
+   ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;

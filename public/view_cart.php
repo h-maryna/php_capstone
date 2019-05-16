@@ -99,15 +99,11 @@ include __DIR__ . '/../inc/header.inc.php';
 </div>
 </table>
 
-<form method='post' action='shop_page.php'>
-<input type='hidden' name='action' value="make payment" />
-<button type='submit' class='make_payment' style="width: 100px;" >Back to Shopping</button>
-</form><br />
 
-<form method='post' action='payment.php'>
-<input type='hidden' name='action' value="make payment" />
-<button type='submit' class='make_payment' style="width: 100px;">Make Payment</button>
-</form>
+
+<p><a href="shop_page.php">Back to shopping</a> | <a href="payment.php">Make a payment</a></p>
+
+
 
 <?php
 /**

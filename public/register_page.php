@@ -5,7 +5,6 @@
  * Instructor Steve George
  * Maryna Haidashevska
  */
-
 namespace classes;
 
 use classes\Ilogger;
@@ -109,25 +108,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       //header('Location: redirect_form.php');
       header('Location: redirect_form.php?user_id=' . $user_id);
       //exit;
-/*
-      // Create query to select a user according its id
-    $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM user 
-            WHERE user_id = :user_id";
-
-      // prepare the query
-      $stmt = $dbh->prepare($query);
-
-      // Prepare params array
-      $params = array(
-        ':user_id' => $user_id
-    );
-
-    // execute the query
-    $stmt->execute($params);
-
-    // get the result
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $success = true; */
         } catch(Exception $e) {
           die($e->getMessage());
         }
