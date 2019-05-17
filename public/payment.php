@@ -101,7 +101,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       } 
       
      $_SESSION['order_id'] =$order_id;
-      //header('Location: redirect_form.php');
+           //header('Location: redirect_form.php');
       header('Location: thankyou.php');
         die;
 
@@ -176,8 +176,8 @@ include __DIR__ . '/../inc/header.inc.php';
             </tr>
             <?php endforeach; ?>
             <tr>
-                <td>Total</td>
-                <td><?=getTotal()?></td>
+                <strong><td colspan="1">Total</td></strong>
+                <strong><td colspan="5"><?=getTotal()?></td></strong>
             </tr>
             </div>
         </table>
@@ -196,7 +196,7 @@ include __DIR__ . '/../inc/header.inc.php';
             <input type="date" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
             <p><label for="cvv">CVV</label></p>
             <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3"><br />
-            <p><button>Complete Purchase</button></p>
+            <p><button style="width: 120px">Complete Purchase</button></p>
 </form>
 
 

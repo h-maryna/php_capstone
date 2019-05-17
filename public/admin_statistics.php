@@ -19,24 +19,13 @@ require __DIR__ . '/../config/config.php';
 /**
   * assigning a new variable for title
 */
-$title = 'admin_page';
+$title = 'admin_statistics';
 
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Welcome Admin!';
+$h1 = 'Page is under construction!';
 
-// Create query to select events from our log file
-$query = "SELECT * 
-          FROM log
-          ORDER BY id DESC
-          LIMIT 10";
-// Prepare query
-$stmt = $dbh->prepare($query);
-// Execute the query
-$stmt->execute();
-// get the result
-$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
  
 /**
  * include file which will be used as a template for each page as a header
@@ -46,24 +35,13 @@ include __DIR__ . '/../inc/header.inc.php';
 
 ?>  
   <title><?=$title?></title>
-
+<?php include __DIR__ . '/../inc/admin.inc.php'; ?>
   <main>
 
-<div id="admin_page" style="background-color: #fff">
+<div id="admin_statistics">
 <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
-<?php if ($result) : ?>
-<ul>
-    <?php foreach ($result as $value) :?> 
-     <li><strong><?php echo $value['id'] ?></strong></li>
-     <li><?php echo $value['event'] ?></li>
-    <?php endforeach; ?>
-</ul>
 
-<?php else : ?>
-  <h2>Sorry ther is an error in your events</h2>
-<?php endif; ?>
-</div>
-</body>
+<img src="/images/construction.jpg" width="700px" height="550px">
   
     <?php
   /**

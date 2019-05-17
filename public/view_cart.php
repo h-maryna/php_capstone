@@ -80,22 +80,30 @@ include __DIR__ . '/../inc/header.inc.php';
     <tr>
       <th>Product name</th>
       <th>Quantity</th>
-      <th>Price</th>
-      <th>Total</th>
+      <th>Subtotal</th>
+      <th>PST</th>
+      <th>GST</th>
     </tr>
     <div class="cart">
 <?php foreach ($_SESSION['cart'] as $key => $row) : ?>
     <tr>
       <td><?=$row['product_name']?></td>
       <td><?=$row['qty']?></td>
-      <td><?=$row['price']?></td>
-      <td><?=$row['total']?></td>
+      <td><?=getCartSubtotal()?></td>
+      <td><?=getPst()?></td>
+      <td><?=getGst()?></td>
       <td><form method='post' action=''>
-<input type='hidden' name='action' value="remove" />
-<button type='submit' class='remove'>remove Item</button>
-</form></td>
+          <input type='hidden' name='action' value="remove" />
+          <button type='submit' class='remove'>remove Item</button>
+          </form>
+      </td>
      </tr>
+     <tr>
 <?php endforeach; ?>
+        <td colspan="1">Total</td>
+        <td colspan="5"><?=getTotal()?></td>
+      </tr>
+
 </div>
 </table>
 

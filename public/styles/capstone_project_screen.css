@@ -92,6 +92,43 @@
       background-image: url(../images/user.jpg);
       background-repeat: no-repeat;
     }
+    div #admin_profile{
+      min-height: 1000px;
+    }
+    div#nav_admin nav{
+        width: 130px;
+        height: 300px;
+        float: left;
+        background-color: #000;
+        text-align: left;
+        margin-top: 25px;
+        color: #fff;
+      }
+      /* CSS for unordered list in Navigation menu*/
+    div#nav_admin nav ul{
+        margin: 0px;
+        padding-left: 1px;
+        left: 5px;
+      }
+      /* CSS for styling and displaying navigation menu */
+    div#nav_admin nav ul li{
+        display: inline-block;
+        list-style-type: none;
+      }
+      /* Styling a hyperlink, which is used to link from one page to another using CSS*/
+    div#nav_admin nav ul li a{
+        padding: 5px 0px 10px 5px;
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        font-size: 20px;
+    }
+    div#nav_admin nav ul li a:hover{
+        background-color: #f00;
+    }
+    #admin_results{
+        left: 100px;
+    }
     header nav{
       width: 100%;
       min-height: auto;
@@ -130,6 +167,7 @@
       text-decoration: underline;
       text-shadow: none;
     }
+
     body#index_page div#wrapper header nav ul#navlist li a.page1,
     body#about_page div#wrapper header nav ul#navlist li a.page2,
     body#menu_page div#wrapper header nav ul#navlist li a.page3,
@@ -139,10 +177,12 @@
     body#profile_page div#wrapper header nav ul#navlist li a.page7,
     body#admin_page div#wrapper header nav ul#navlist li a.page9,
     body#payment div#wrapper header nav ul#navlist li a.page8,
-    body#admin_profile div#wrapper header nav ul#navlist li a.page10{
+    {
       background-color: #c60;
     }
-    
+    body#admin_profile div#wrapper header nav ul#navlist li a.page10{
+      background-color: #000;
+    }
     #cart{
       width: 150px;
     }

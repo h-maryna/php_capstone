@@ -33,37 +33,43 @@ if (empty($_SESSION['logged_in'])) {
     die;
 }
 
-$id = intval($_SESSION['user_id']);
-if(!empty($_SESSION['cart'])){
+$user_id = intval($_SESSION['user_id']);
+$order_id =intval($_SESSION['order_id']);
+
+$query1 = "SELECT * FROM orders WHERE order_id = :order_id";
+$query2 = "SELECT * FROM order_product 
+              WHERE order_id = :order_id";
+$query3 = "SELECT * FROM user WHERE user_id = :customer_id";
+
 
  // Create query to select an order according its id
- /* $query = "SELECT * FROM order_product
-            WHERE order_id = :order_id";
-        $params = array(
-        ':order_id' => 'order_id'
-        );
-        $stmt = $dbh->prepare($query);
-        $stmt->execute($params);
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC); */
-
-     // Prepare query
-    $query = "SELECT first_name, last_name, postal_code, province, country, phone, email FROM user 
-            WHERE user_id = :user_id";
-    // prepare the query
-    $stmt = $dbh->prepare($query);
+  
 
     // Prepare params array
     $params = array(
-      ':user_id' => $id
+      ':order_id' => $order_id
   );
+
+        // prepare the query
+    $stmt = $dbh->prepare($query1);
+
 
     // execute the query
     $stmt->execute($params);
 
     // get the result
-    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+    $order = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-}
+    $stmt = $dbh->prepare($query2);
+    $stmt->execute($params);
+    $line_items = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    
+    $stmt = $dbh->prepare($query3);
+    $params = array(
+            ':customer_id' => $order['customer_id']
+        );
+    $stmt->execute($params);
+    $customer =$stmt->fetch(\PDO::FETCH_ASSOC);
 
 include __DIR__ . '/../inc/header.inc.php';
 ?>
@@ -71,34 +77,38 @@ include __DIR__ . '/../inc/header.inc.php';
     <main><!--Main page -->
       <h1><?=$h1?></h1>
    <table>
-<?php foreach ($result as $key => $row) : ?>
+    <tr>
+      <th>Product name</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+      <th>PST</th>
+      <th>GST</th>
+      <th>PST</th>
+      <th>GST</th>
+    </tr>
+    <div class="cart">
+
+<?php foreach ($line_items as $key => $row) : ?>
     <tr>
       <td><?=$row['order_id']?></td>
       <td><?=$row['product_id']?></td>
       <td><?=$row['product_name']?></td>
       <td><?=$row['price']?></td>
       <td><?=$row['quantity']?></td>
-    <?php endforeach; ?>
-  </table>
+<?php endforeach; ?>
 
-  <?php if ($result) : ?>
-  <ul><!-- Loop through $_POST to output user -->
-    <?php foreach ($result as $key => $value) : ?>
-    <!-- Test each value to see if it's an array, and
-      if it's NOT an array, we can print it out -->
-        <?php if (!is_array($value)) : ?>
-      <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
+<?php foreach ($order as $key => $row) : ?>
+      <td><?=$row['order_id']?></td>
 
-        <?php endif; ?>
-    <?php endforeach; ?>
-    </ul>
-
+<?php endforeach; ?>
+      </tr>
+    </div>
+</table>
 
     <p><a href="shop_page.php">Continue to shopping</a></p>
 
-    <?php else : ?>
     <h2>There were some problem adding a new user</h2>
-<?php endif; ?>
+
 
 
 </body>
