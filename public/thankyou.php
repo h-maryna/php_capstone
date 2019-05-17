@@ -33,17 +33,36 @@ if (empty($_SESSION['logged_in'])) {
     die;
 }
 
+$id = intval($_SESSION['user_id']);
 if(!empty($_SESSION['cart'])){
 
  // Create query to select an order according its id
-  $query = "SELECT * FROM order_product
+ /* $query = "SELECT * FROM order_product
             WHERE order_id = :order_id";
         $params = array(
         ':order_id' => 'order_id'
         );
         $stmt = $dbh->prepare($query);
         $stmt->execute($params);
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC); */
+
+     // Prepare query
+    $query = "SELECT first_name, last_name, postal_code, province, country, phone, email FROM user 
+            WHERE user_id = :user_id";
+    // prepare the query
+    $stmt = $dbh->prepare($query);
+
+    // Prepare params array
+    $params = array(
+      ':user_id' => $id
+  );
+
+    // execute the query
+    $stmt->execute($params);
+
+    // get the result
+    $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
 }
 
 include __DIR__ . '/../inc/header.inc.php';
@@ -62,10 +81,24 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php endforeach; ?>
   </table>
 
+  <?php if ($result) : ?>
+  <ul><!-- Loop through $_POST to output user -->
+    <?php foreach ($result as $key => $value) : ?>
+    <!-- Test each value to see if it's an array, and
+      if it's NOT an array, we can print it out -->
+        <?php if (!is_array($value)) : ?>
+      <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
+
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </ul>
+
 
     <p><a href="shop_page.php">Continue to shopping</a></p>
 
+    <?php else : ?>
     <h2>There were some problem adding a new user</h2>
+<?php endif; ?>
 
 
 </body>

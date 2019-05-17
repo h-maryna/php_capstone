@@ -43,13 +43,49 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
  */
 
 include __DIR__ . '/../inc/header.inc.php';
-
+include __DIR__ . '/../inc/admin.inc.php';
 ?>  
   <title><?=$title?></title>
+  
+  <style>
+   div#admin nav{
+        width: 150px;
+        height: 500px;
+        float: left;
+        background-color: #000;
+        text-align: left;
+        margin-top: 25px;
+        color: #fff;
+      }
+      /* CSS for unordered list in Navigation menu*/
+    div#admin nav ul{
+        margin: 0px;
+        padding-top: 90px;
+        padding-left: 10px;
+        left: 5px;
+      }
+      /* CSS for styling and displaying navigation menu */
+    div#admin nav ul li{
+        display: inline-block;
+        list-style-type: none;
+      }
+      /* Styling a hyperlink, which is used to link from one page to another using CSS*/
+    div#admin nav ul li a{
+        padding: 15px 35px 25px 35px;
+        display: block;
+        text-decoration: none;
+        color: #fff;
+        font-size: 20px;
+      }
+    div#admin nav ul li a:hover{
+        color: #fff;
+        background-color: #99c;
+      }
+   
+  </style>
   <main>
-    <h1><?=$h1?></h1>
 
-<div id="admin_page" style="background-color: #fc9">
+<div id="admin_page" style="background-color: #fff">
 <?php if ($result) : ?>
 <ul>
     <?php foreach ($result as $value) :?> 

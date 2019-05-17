@@ -138,9 +138,11 @@
     body#register_page div#wrapper header nav ul#navlist li a.page6, 
     body#profile_page div#wrapper header nav ul#navlist li a.page7,
     body#admin_page div#wrapper header nav ul#navlist li a.page9,
-    body#payment div#wrapper header nav ul#navlist li a.page8{
+    body#payment div#wrapper header nav ul#navlist li a.page8,
+    body#admin_profile div#wrapper header nav ul#navlist li a.page10{
       background-color: #c60;
     }
+    
     #cart{
       width: 150px;
     }
@@ -189,6 +191,11 @@
       font-size: 22px;
       font-weight: 700;
       margin-top: 17px;
+    }
+    h1.admin{
+      background-color: #000;
+      color: #fff;
+      padding: 15px;
     }
     h2{
       font-size: 20px;
