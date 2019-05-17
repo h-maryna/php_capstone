@@ -28,10 +28,21 @@ $h1 = 'Coffee beans list';
 /**
  * include file which will be used as a template for each page as a header
  */
-$errors = [];
-
-$success = false;
-
+if('POST' == $_SERVER['REQUEST_METHOD']){
+  $product_id = intval($_POST['product_id']);
+  $query = 'INSERT INTO product_arc SELECT * from product where product_id = :product_id';
+  $params = array(
+            ':product_id' =>$product_id
+          );
+  $stmt = $dbh->prepare($query);
+  $stmt->execute($params);
+  $query = 'DELETE FROM product where product_id = :product_id';
+  $stmt=$dbh->prepare($query);
+  $stmt->execute($params);
+  setFlash('success', 'You successfulle eleted');
+  header('Location: admin_products.php');
+  die;
+}
 try {
     if (!empty($_GET['roast'])) {
         $roast = $_GET['roast'];
@@ -56,33 +67,8 @@ try {
         ORDER by product.product_name';
 
         $params = [];
-        $query2 = $query = "INSERT INTO
-             product(
-             product_name, 
-             country_of_origin,
-             price,
-             roast
-             )
-             VALUES
-             (
-             :product_name,
-             :country_of_origin,
-             :price,
-             :roast)";
     } // end GET s
-    $query2 = $query = "INSERT INTO
-             product(
-             product_name,
-             country_of_origin,
-             price,
-             roast
-             )
-             VALUES
-             (
-             :product_name,
-             :country_of_origin,
-             :price,
-             :roast)";
+
   // create statement
     $stmt = $dbh->prepare($query);
 
@@ -90,19 +76,7 @@ try {
 
   // fetch our results
     $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-    
-    $stmt = $dbh->prepare($query2);
-    $params =array(
-             ':product_name' => $product_name, 
-             ':country_of_origin' => $country_of_origin,
-             ':price' => $price,
-             ':roast' => $roast
-           );
 
-    $stmt->execute($params);
-    $product_id = $dbh->lastInsertId();
-    header('Location: admin_detail_added.php?product_id=' . $product_id);
-    exit;
 // end try
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -136,6 +110,7 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php endif; ?>
 
   <!-- End if -->
+  <a href="admin_add_product.php">Add</a>
   <table>
     <tr>
       <th>Product name</th>
@@ -157,14 +132,12 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['grind']?></td>
       <td><?=$row['short_description']?></td>
       <td><?=$row['price']?></td>
-      <td><form action="" method="post">
-            <input type="hidden" name="edit" value="edit" />
-            <button>add</button>
+      <td><form action="admin_products.php" method="post">
+            <input type="hidden" name="product_id" value="<?=$row['product_id']?>" />
+            <button>delete</button>
           </form>
-          <form action="" method="post">
-            <input type="hidden" name="edit" value="edit" />
-            <button>edit</button>
-          </form>
+      <p><a href="admin_edit.php">edit</a></p>    
+         
       </td>
     </tr>
     <?php endforeach; ?>

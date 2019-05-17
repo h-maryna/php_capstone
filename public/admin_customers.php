@@ -156,7 +156,7 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['email']?></td>
       <td><form action="" method="post">
             <input type="hidden" name="edit" value="edit" />
-            <button>add</button>
+            <button>delete</button>
           </form>
           <form action="" method="post">
             <input type="hidden" name="edit" value="edit" />

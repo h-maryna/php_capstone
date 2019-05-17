@@ -26,8 +26,13 @@ $title = 'shop_page';
  */
 $h1 = 'Coffee beans list';
 
+// errors flag
+$errors = [];
+
+$success = false;
+
 if(empty($_GET['product_id'])) {
-	die('Author id required');
+	die('product_id required');
 }
 
 // a little bit of sanitization
@@ -35,15 +40,15 @@ $id = intval($_GET['product_id']);
 
 
 // Create query to select an author based on id
-$query = "SELECT * FROM product
-			WHERE product_id = :aproduct_id";
+$query = "SELECT * FROM product 
+			WHERE product_id = :product_id";
 
 // prepare the query
 $stmt = $dbh->prepare($query);
 
 // Prepare params array
 $params = array(
-	':product_id' => $product_id
+	':product_id' => $id
 );
 
 // execute the query
@@ -64,15 +69,13 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <?php if($result) : ?>
 
-<h1><?=$result['name']?></h1>
-
 <ul>
 	<?php foreach($result as $key => $value) : ?>
 		<li><strong><?=$key?></strong>: <?=$value?></l>
 	<?php endforeach; ?>
 </ul>
 
-<p><a href="04_first_insert.php">Add another author</a></p>
+<p><a href="admin_add_product.php">Go back to check products</a></p>
 
 <?php else : ?>
 
@@ -81,5 +84,14 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 <?php endif; ?>
 
 
-</body>
+<?php
+/**
+ * include file which will be used as a template for each page as a  footer
+ */
+    include __DIR__ . '/../inc/footer.inc.php';
+
+?>
+    </div>
+  </body>
+
 </html>

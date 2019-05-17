@@ -15,7 +15,8 @@
           <li><a href="admin_page.php">Log</a></li>
           <li><a href="admin_products.php">Products</a></li>
           <li><a href="admin_customers.php">Customers</a></li>
-          <li><a href="">Products</a></li>
+          <li><a href="admin_products.php">Products</a></li>
+          <li><a href="admin_orders.php">Orders</a></li>
           <li><a href="admin_statistics">Statistics</a></li>
           
         </ul>
