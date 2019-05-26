@@ -10,21 +10,26 @@
       display: inline-block;
       margin: 15px 2px 5px 2px;
     }
+    tbody{
+      width: 100%;
+    }
     caption{  /*CSS style for caption in tables */
       color: #000;
       text-align: left;
       font-weight: 700;
       font-size: 20px;
-      padding: 5px;
+      padding: 15px;
       margin-bottom: 5px;
     }
     td,th{
       border: 1px solid #fb6; 
+      padding: 5px;
     }
     th{ 
       color: #000;
       background-color: #fc9;
       text-align: center;
+      padding: 15px;
     }
     th img{
       background-color: #fff;

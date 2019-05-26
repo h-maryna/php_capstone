@@ -39,7 +39,7 @@ $order_id =intval($_SESSION['order_id']);
 $query1 = "SELECT * FROM orders WHERE order_id = :order_id";
 $query2 = "SELECT * FROM order_product 
               WHERE order_id = :order_id";
-$query3 = "SELECT * FROM user WHERE user_id = :customer_id";
+$query3 = "SELECT first_name, last_name, email, street, city, postal_code, province, country FROM user WHERE user_id = :customer_id";
 
 
  // Create query to select an order according its id
@@ -47,10 +47,10 @@ $query3 = "SELECT * FROM user WHERE user_id = :customer_id";
 
     // Prepare params array
     $params = array(
-      ':order_id' => $order_id
-  );
+              ':order_id' => $order_id
+              );
 
-        // prepare the query
+    // prepare the query
     $stmt = $dbh->prepare($query1);
 
 
@@ -59,53 +59,78 @@ $query3 = "SELECT * FROM user WHERE user_id = :customer_id";
 
     // get the result
     $order = $stmt->fetch(\PDO::FETCH_ASSOC);
-
+    
+    // prepare the query
     $stmt = $dbh->prepare($query2);
+
+    // execute the query
     $stmt->execute($params);
+
+    // get the result
     $line_items = $stmt->fetchAll(\PDO::FETCH_ASSOC);
     
+    // prepare the query
     $stmt = $dbh->prepare($query3);
+
+    // Prepare params array
     $params = array(
-            ':customer_id' => $order['customer_id']
-        );
+              ':customer_id' => $order['customer_id']
+            );
+
+    // execute the query
     $stmt->execute($params);
+
+    // get the result
     $customer =$stmt->fetch(\PDO::FETCH_ASSOC);
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
 include __DIR__ . '/../inc/header.inc.php';
+
 ?>
+
     <title><?=$title?></title>
     <main><!--Main page -->
       <h1><?=$h1?></h1>
+    <!-- List to show some customer's info -->
+      <ul>
+          <?php foreach($customer as $key => $value) : ?>
+
+          <li><strong><?=$key?></strong>: <?=$value?></li>
+    
+         <?php endforeach; ?>
+     </ul>
+  <!-- table to show some info about customer's order -->
    <table>
     <tr>
+      <th>Order ID</th>
       <th>Product name</th>
+      <th>Price</th>
       <th>Quantity</th>
-      <th>Subtotal</th>
-      <th>PST</th>
-      <th>GST</th>
-      <th>PST</th>
-      <th>GST</th>
     </tr>
-    <div class="cart">
-
 <?php foreach ($line_items as $key => $row) : ?>
     <tr>
       <td><?=$row['order_id']?></td>
-      <td><?=$row['product_id']?></td>
       <td><?=$row['product_name']?></td>
       <td><?=$row['price']?></td>
       <td><?=$row['quantity']?></td>
 <?php endforeach; ?>
-
-<?php foreach ($order as $key => $row) : ?>
-      <td><?=$row['order_id']?></td>
-
-<?php endforeach; ?>
-      </tr>
-    </div>
+    </tr>
 </table>
 
-    <p><a href="shop_page.php">Continue to shopping</a></p>
+
+    <ul>
+          <?php foreach($order as $key => $value) : ?>
+
+          <li><strong><?=$key?></strong>: <?=$value?></li>
+    
+         <?php endforeach; ?>
+     </ul>
+
+  <img src="/images/thankyou.png" width="auto">
+
+    <p><a href="shop_page.php" style="text-decoration: none; color: #f00">Continue to shopping</a></p>
 
     <h2>There were some problem adding a new user</h2>
 

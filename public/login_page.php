@@ -72,8 +72,6 @@ if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
               //session_regenerate_id();
                 if ($user['is_admin'] == "admin") {
                     $_SESSION['admin'] = 1;
-                } else{
-                  setFlash('error', 'Sorry bud, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have to be admin to visit this page.');
                 }
 
                 $_SESSION['logged_in'] = 1;

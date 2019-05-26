@@ -19,7 +19,7 @@ require __DIR__ . '/../classes/Validator.php';
  /**
   * assigning a new variable for title
   */
-$title = 'shop_page';
+$title = 'admin_new_product';
 
 /**
  * assigning a new variable for h1
@@ -63,7 +63,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
-	<title>Author Detail</title>
+	<title>Add new prodcut</title>
 </head>
 <body>
 

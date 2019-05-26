@@ -92,17 +92,18 @@
       background-image: url(../images/user.jpg);
       background-repeat: no-repeat;
     }
-    div #admin_profile{
-      min-height: 1000px;
+    div#admin_info ul#admin_info{
+      left: 300px;
     }
     div#nav_admin nav{
-        width: 130px;
-        height: 300px;
+        width: 140px;
+        height: 235px;
         float: left;
         background-color: #000;
         text-align: left;
         margin-top: 25px;
         color: #fff;
+        margin-bottom: 15px;
       }
       /* CSS for unordered list in Navigation menu*/
     div#nav_admin nav ul{
@@ -123,11 +124,21 @@
         color: #fff;
         font-size: 20px;
     }
-    div#nav_admin nav ul li a:hover{
-        background-color: #f00;
+ 
+    
+    #admin_dashboard_page div#nav_admin nav ul li a.page11,
+    #admin_page div#nav_admin nav ul li a.page12,
+    #admin_products_page div#nav_admin nav ul li a.page13,
+    #admin_customers_page div#nav_admin nav ul li a.page14,
+    #admin_orders_page div#nav_admin nav ul li a.page15{
+      background-color: #f00;
+      padding: 10px;
+      margin-left: 5px;
+      border-radius: 10px;
     }
+    
     #admin_results{
-        left: 100px;
+      left: 100px;
     }
     header nav{
       width: 100%;
@@ -176,13 +187,48 @@
     body#register_page div#wrapper header nav ul#navlist li a.page6, 
     body#profile_page div#wrapper header nav ul#navlist li a.page7,
     body#admin_page div#wrapper header nav ul#navlist li a.page9,
-    body#payment div#wrapper header nav ul#navlist li a.page8,
-    {
+    body#payment div#wrapper header nav ul#navlist li a.page8{
       background-color: #c60;
     }
+
     body#admin_profile div#wrapper header nav ul#navlist li a.page10{
       background-color: #000;
     }
+
+    div#letters{
+      top: 100px;
+      width: 150px;
+      height: 0px;
+      color: #f00;
+      text-shadow: 1px 3px 5px rgba(0,0,0,0.7);
+      font-family: 'PT Sans', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      position: relative;
+      -webkit-animation: mymove 9s infinite; /* Safari 4.0 - 8.0 */
+      animation: mymove 9s infinite;
+    }
+
+    /* Safari 4.0 - 8.0 */
+    
+    .1 .2 .3 .4 {-webkit-animation-timing-function: ease-in;}
+    
+
+    /* Standard syntax */
+    .1 .2 .3 .4{animation-timing-function: ease-in;}
+
+    /* Safari 4.0 - 8.0 */
+    @-webkit-keyframes mymove {
+      from {left: 0px;}
+      to {left: 700px;}
+    }
+
+    /* Standard syntax */
+    @keyframes mymove {
+      from {left: 0px;}
+      to {left: 700px;}
+    }
+
     #cart{
       width: 150px;
     }
@@ -201,31 +247,7 @@
     main p{
       margin-left: 5px;
     }
-    div #inside img{  /*CSS style for images on home page */
-      float: left;
-      opacity: 0.85;
-      margin-top: 10px;
-      margin-right: 22px;
-      margin-left: 5px;
-      border-radius: 15px;
-      width: 465px;
-      height: 310px; 
-      margin-bottom: 10px;
-      box-shadow: 0 2px 1px rgba(0,0,0,0.75);
-    }
-    div #outside img{
-      float: left;
-      opacity: 0.85;
-      margin-top: 10px;
-      border-radius: 15px;
-      width: 465px;
-      height: 310px; 
-      margin-bottom: 10px;
-      box-shadow: 0 2px 1px rgba(0,0,0,0.75);
-    }
-    div #mobile_img{
-      display: none;
-    }
+
     h1{
       text-align: left;
       font-size: 22px;
@@ -243,84 +265,6 @@
       font-weight: 700;
       margin-left: 5px;
     }  
-    /* CSS style for call to action */
-    div #cta{
-      float: right;
-      width: 250px;
-      height: 80px;
-      right: 3px;
-      padding-bottom: 15px;
-      padding-top: 10px;
-      padding-right: 0;
-      background-color: #fff;
-      color: #f00;
-      text-shadow: 1px 3px 5px rgba(0,0,0,0.7);
-      font-family: 'PT Sans', sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      text-align: center;
-      box-shadow: 0px 7px 10px rgba(50,0,0,0.75);
-      border-radius: 15px;
-      -webkit-animation-name: color; 
-      -webkit-animation-duration: 4s; 
-      animation-name: color;
-      animation-iteration-count: infinite;
-    }
-      
-    @-webkit-keyframes color {
-      0%  {background-color: #fff;}
-      25%  {background-color: #f61;}
-      50%  {background-color: #f63;}
-      100% {background-color: #f93;}
-    }
-
-    @keyframes color {
-      0%  {background-color: #fff;}
-      25%  {background-color: #f61;}
-      50%  {background-color: #f63;}
-      100% {background-color: #f93;}
-    }
-
-   
-    div #cta.shaking:hover {  /*CSS style for call to action when mouse over */
-      -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-      animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
-      backface-visibility: hidden;
-      perspective: 1000px;       
-    }
-    @-webkit-keyframes shake {
-      10%, 90% {
-      transform: translate3d(-1px, 0, 0);
-      }
-      20%, 80% {
-      transform: translate3d(2px, 0, 0);
-      }
-
-      30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
-      }
-
-      40%, 60% {
-      transform: translate3d(4px, 0, 0);
-      }
-    }
-  
-    @keyframes shake {
-      10%, 90% {
-      transform: translate3d(-1px, 0, 0);
-      }
-      20%, 80% {
-      transform: translate3d(2px, 0, 0);
-      }
-
-      30%, 50%, 70% {
-      transform: translate3d(-4px, 0, 0);
-      }
-
-      40%, 60% {
-      transform: translate3d(4px, 0, 0);
-      }
-    }
     div#home_page{
       margin-left: 5px;
     }
@@ -565,3 +509,44 @@
 
     /* ----- Css for Menu Page ends ----- */
 
+   table{  /*CSS style for table */
+      border-spacing: 0px;
+      /*border: 1px solid #fc9;*/
+      border-collapse: collapse;
+      color: #000;
+      width: 80%;
+      height: auto;
+      border-radius: 15px;
+      display: inline-block;
+      margin: 15px 2px 5px 2px;
+    }
+    caption{  /*CSS style for caption in tables */
+      color: #000;
+      text-align: left;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 15px;
+      margin-bottom: 5px;
+    }
+    td,th{
+      border: 1px solid #fb6; 
+      padding: 15px;
+    }
+    th{ 
+      color: #000;
+      background-color: #fc9;
+      text-align: center;
+    }
+    tr{
+      padding: 15px;
+    }
+    th img{
+      background-color: #fff;
+    }
+    td{
+      text-align: left;
+      padding: 15px;
+    }
+    h2 p{
+      padding: 5px;
+    }   

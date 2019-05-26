@@ -127,6 +127,8 @@ CREATE TABLE `user` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP)
    ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
+   update user set is_admin = 'admin' where first_name = 'Vadim'
+
    CREATE TABLE `invoice` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `product_name` varchar(55) DEFAULT NULL,

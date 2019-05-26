@@ -134,7 +134,7 @@ function getPst()
  */
 function getGst()
 {
-	return getCartSubTotal() * GST;
+	return number_format((getCartSubTotal() * GST), 2);
 }
 
 /**
@@ -146,5 +146,6 @@ function getTotal()
 	$sub = getCartSubTotal();
 	$pst = getPst();
 	$gst = getGst();
-	return $sub + $pst + $gst;
+	return number_format(($sub + $pst + $gst), 2);
 }
+

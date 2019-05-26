@@ -25,9 +25,8 @@ $title = 'shop_page';
  * assigning a new variable for h1
  */
 $h1 = 'Coffee beans list';
-/**
- * include file which will be used as a template for each page as a header
- */
+
+
 try {
     if (!empty($_GET['roast'])) {
         $roast = $_GET['roast'];
@@ -68,6 +67,9 @@ try {
     die;
 }
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
 include __DIR__ . '/../inc/header.inc.php';
 ?>
       <title><?=$title?></title>
@@ -109,12 +111,11 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Short description</th>
       <th>Price, $ per 100 gramm</th>
       <th></th>
-      <th></th>
     </tr>
     <?php foreach ($results as $key => $row) : ?>
     <tr>
       <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
-      <td><img src = '/images/orders/<?=$row['product_image']?>'/></td>
+      <td><img src = '/images/orders/<?=$row['product_image']?>'style="width: 100px; height: 75px;"/></td>
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>
       <td><?=$row['grind']?></td>

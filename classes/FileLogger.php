@@ -2,10 +2,9 @@
 
 /**
  * WDD4
- * Object oriented PHP
- * Assignment 2
- * Instructor Steve George
- * Maryna Haidashevska
+ * Capstone Project PHP
+ * Instructor: Steve George
+ * Student: Maryna Haidashevska
  */
 
 namespace classes;
@@ -30,7 +29,7 @@ class FileLogger implements ILogger
     {
        
         if (is_string($event)) {
-             file_put_contents($this->file, date("Y-m-d H:i:s")." ".$event."\n", FILE_APPEND);
+            file_put_contents($this->file, date("Y-m-d H:i:s")." ".$event."\n", FILE_APPEND);
         }
     }
 }

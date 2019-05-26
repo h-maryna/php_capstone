@@ -19,27 +19,28 @@ require __DIR__ . '/../classes/Validator.php';
  /**
   * assigning a new variable for title
   */
-$title = 'admin_customers_list';
+$title = 'admin_orders_list';
 
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Here you can see list of all our customers';
+$h1 = 'Here you can see list of all our orders';
 /**
  * include file which will be used as a template for each page as a header
  */
 try {
-    if (!empty($_GET['roast'])) {
-        $roast = $_GET['roast'];
-        $query = "SELECT * FROM user WHERE user_ = :roasted";
+    if (!empty($_GET['order_id'])) {
+        $roast = $_GET['order_id'];
+        $query = "SELECT * FROM orders WHERE order_id = :order_id";
         $params = array(
-          ':roasted' => $roast);
+          ':order_id' => $order_id);
+
     } elseif (!empty($_GET['s'])) {
         // we have a search
-          $query = 'SELECT * FROM user
+          $query = 'SELECT * FROM orders
         WHERE
         first_name LIKE :search
-        ORDER by user.first_name';
+        ORDER by orders.sub_total';
 
         $params = array(
           ':search' => "%{$_GET['s']}%"
@@ -47,9 +48,9 @@ try {
     } else {
       // create query
         $query = 'SELECT * FROM 
-        user
+        orders
         
-        ORDER by user.first_name';
+        ORDER by orders.sub_total';
 
         $params = [];
     } // end GET s
@@ -69,15 +70,15 @@ try {
 }
 
 include __DIR__ . '/../inc/header.inc.php';
+
 ?>
-      <title><?=$title?></title>
-      <style>
-      table{  /*CSS style for table */
+  <title><?=$title?></title>
+  <style>
+     table{  /*CSS style for table */
       border-spacing: 0px;
-      /*border: 1px solid #fc9;*/
       border-collapse: collapse;
       color: #000;
-      width: 70%;
+      width: 960px;
       height: auto;
       border-radius: 15px;
       display: inline-block;
@@ -108,18 +109,20 @@ include __DIR__ . '/../inc/header.inc.php';
     }
     h2 p{
       padding: 5px;
-    }   
-</style>
-      <main>
-        <h1><?=$h1?></h1>
-        <div id="admin_customers_page">
-      <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
-      <div id="search">
-          <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-              <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>
-          </form>
-      </div>
+    } 
+  </style>
+  <main>
+      
+    <h1><?=$h1?></h1> 
 
+<div id="admin_orders_page">
+ <?php include __DIR__ . '/../inc/admin.inc.php'; ?>  
+  <div id="search">
+      <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
+          <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>
+      </form>
+  </div>
+ 
   <!-- Only show this line if $_GET['s'] is set 
     -- That is, only show this block if there is a search -->
     <?php if (!empty($_GET['s'])) : ?>
@@ -129,34 +132,33 @@ include __DIR__ . '/../inc/header.inc.php';
 
   <!-- End if -->
 
-  <p><a href="admin_add_customer.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
+  <p><a href="admin_add_order.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
                                                     padding-bottom: 2px; border-radius: 10px; font-size: 18px;
                                                     color: #000; text-decoration: none; padding-right: 10px;">Add</a></p>
   <table>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>City</th>
-      <th>Postal code</th>
-      <th>Province</th>
-      <th>Country</th>
-      <th>Email</th>
-      <th></th>
+      <th>Sub total</th>
+      <th>GST</th>
+      <th>PST</th>
+      <th>Total</th>
+      <th>Custome Id</th>
+      <th>CC num</th>
+      <th>Auth code</th>
     </tr>
     <?php foreach ($results as $key => $row) : ?>
     <tr>
-      <td><?=$row['first_name']?></td>
-      <td><?=$row['last_name']?></td>
-      <td><?=$row['city']?></td>
-      <td><?=$row['postal_code']?></td>
-      <td><?=$row['province']?></td>
-      <td><?=$row['country']?></td>
-      <td><?=$row['email']?></td>
+      <td><?=$row['sub_total']?></td>
+      <td><?=$row['gst']?></td>
+      <td><?=$row['pst']?></td>
+      <td><?=$row['total']?></td>
+      <td><?=$row['customer_id']?></td>
+      <td><?=$row['cc_num']?></td>
+      <td><?=$row['auth_code']?></td>
       <td><form action="" method="post">
             <input type="hidden" name="edit" value="edit" />
             <button>delete</button>
           </form>
-          <p><a href="admin_update_customers.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
+          <p><a href="admin_update_orders.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
                                                     padding-bottom: 2px; border-radius: 10px; font-size: 18px;
                                                     color: #000; text-decoration: none; padding-right: 10px;">edit</a></p>    
       </td>
@@ -164,7 +166,7 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php endforeach; ?>
   </table>
 
-  </div>   
+</div>     
 <?php
 /**
  * include file which will be used as a template for each page as a  footer

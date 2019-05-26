@@ -34,6 +34,7 @@ if (empty($_SESSION['logged_in'])) {
     die;
 }
 
+
 $id = intval($_SESSION['user_id']);
 
     // Create query to select a user according its id
@@ -54,9 +55,10 @@ $id = intval($_SESSION['user_id']);
     // get the result
       $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-      include __DIR__ . '/../inc/header.inc.php';
+include __DIR__ . '/../inc/header.inc.php';
 
-        ?>
+?>
+
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?>
 
   <title><?=$title?></title>

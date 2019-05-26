@@ -39,7 +39,7 @@ if('POST' == $_SERVER['REQUEST_METHOD']){
   $query = 'DELETE FROM product where product_id = :product_id';
   $stmt=$dbh->prepare($query);
   $stmt->execute($params);
-  setFlash('success', 'You successfulle eleted');
+  setFlash('success', 'You successfully deleted one product!');
   header('Location: admin_products.php');
   die;
 }
@@ -85,9 +85,11 @@ try {
 
 include __DIR__ . '/../inc/header.inc.php';
 ?>
+<?php include __DIR__ . '/../inc/flash.inc.php'; ?>
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>
+  <div id="admin_products_page">
         <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
         <h2>Types of roast</h2>
 
@@ -110,7 +112,9 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php endif; ?>
 
   <!-- End if -->
-  <a href="admin_add_product.php">Add</a>
+  <p><a href="admin_add_product.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
+                                                    padding-bottom: 2px; border-radius: 10px; font-size: 18px;
+                                                    color: #000; text-decoration: none; padding-right: 10px;">Add</a></p>
   <table>
     <tr>
       <th>Product name</th>
@@ -121,12 +125,11 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Short description</th>
       <th>Price, $ per 100 gramm</th>
       <th></th>
-      <th></th>
     </tr>
     <?php foreach ($results as $key => $row) : ?>
     <tr>
       <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
-      <td><img src = '/images/orders/<?=$row['product_image']?>'/></td>
+      <td><img src = '/images/orders/<?=$row['product_image']?>' style="width: 100px; height: 75px;"/></td>
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>
       <td><?=$row['grind']?></td>
@@ -136,13 +139,15 @@ include __DIR__ . '/../inc/header.inc.php';
             <input type="hidden" name="product_id" value="<?=$row['product_id']?>" />
             <button>delete</button>
           </form>
-      <p><a href="admin_edit.php">edit</a></p>    
+      <p><a href="admin_update_products.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
+                                                    padding-bottom: 2px; border-radius: 10px; font-size: 18px;
+                                                    color: #000; text-decoration: none; padding-right: 10px;">edit</a></p>    
          
       </td>
     </tr>
     <?php endforeach; ?>
   </table>
-
+</div>
 
 
       <h2>Fresh Roasted Coffee Beans</h2><a href="#" class="go_top">Go to the top</a>  

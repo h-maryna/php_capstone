@@ -48,9 +48,10 @@ include __DIR__ . '/../inc/header.inc.php';
   <title><?=$title?></title>
 
   <main>
-
-<div id="admin_page" style="background-color: #fff">
+    <h1><?=$h1?></h1>
 <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
+<div id="admin_page" style="background-color: #fff; margin-left: 150px" >
+
 <?php if ($result) : ?>
 <ul>
     <?php foreach ($result as $value) :?> 

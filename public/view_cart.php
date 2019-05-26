@@ -22,6 +22,9 @@ $status="";
 $product_id = intval($_SESSION['cart']);
 
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
 include __DIR__ . '/../inc/header.inc.php';
 
 ?><!DOCTYPE html>
@@ -54,10 +57,14 @@ include __DIR__ . '/../inc/header.inc.php';
     td,th{
       border: 1px solid #fb6; 
     }
+    tr{
+      padding: 15px;
+    }
     th{ 
       color: #000;
       background-color: #fc9;
       text-align: center;
+      padding: 15px;
     }
     th img{
       background-color: #fff;
@@ -101,7 +108,10 @@ include __DIR__ . '/../inc/header.inc.php';
      <tr>
 <?php endforeach; ?>
         <td colspan="1">Total</td>
-        <td colspan="5"><?=getTotal()?></td>
+        <td colspan="4"><?=getTotal()?></td>
+        <td><p><a href="payment.php" style="width: 85px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
+                                            padding-bottom: 2px; border-radius: 10px; font-size: 18px;
+                                            color: #000; text-decoration: none; padding-right: 10px;">Make<br />a payment</a></p></td>
       </tr>
 
 </div>
@@ -109,7 +119,7 @@ include __DIR__ . '/../inc/header.inc.php';
 
 
 
-<p><a href="shop_page.php">Back to shopping</a> | <a href="payment.php">Make a payment</a></p>
+<p><a href="shop_page.php">Back to shopping</a></p>
 
 
 

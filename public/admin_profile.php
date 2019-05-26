@@ -34,6 +34,8 @@ if (empty($_SESSION['logged_in'])) {
     die;
 }
 
+
+if(!empty($_SESSION['admin'])) {
 $id = intval($_SESSION['user_id']);
 
     // Create query to select a user according its id
@@ -53,7 +55,7 @@ $id = intval($_SESSION['user_id']);
 
     // get the result
       $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-
+}
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
@@ -63,10 +65,11 @@ include __DIR__ . '/../inc/header.inc.php';
   <main>
     <h1><?=$h1?></h1>
 
-<div id="admin_profile">
+
 <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
+<div id="admin_profile">
 <?php if ($result) : ?>
-  <ul id="admin_results"><!-- Loop through $_POST to output user -->
+  <ul id="admin_info" style="margin-left: 150px"><!-- Loop through $_POST to output user -->
     <?php foreach ($result as $key => $value) : ?>
     <!-- Test each value to see if it's an array, and
       if it's NOT an array, we can print it out -->

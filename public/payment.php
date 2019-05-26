@@ -112,6 +112,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     } // end if errors
 } // END IF POST
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
 include __DIR__ . '/../inc/header.inc.php';
 
 ?> <title><?=$title?></title>

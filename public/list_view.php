@@ -36,17 +36,7 @@ $product_id = intval($_GET['product_id']);
 // create query (remeber it will have a parameter)
 
 $query = 'SELECT
-			product.product_id,
-		    product.product_name,
-		    product.product_image,
-		    product.long_description,
-		    product.availability,
-		    product.country_of_origin,
-		    product.weight,
-		    product.price,
-		    product.delivery_cost,
-		    product.roast,
-		    product.grind
+			*
 		    FROM product
 			WHERE
 			product_id = :product_id';
