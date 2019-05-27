@@ -44,7 +44,7 @@ if ('GET' == $_SERVER['REQUEST_METHOD']) {
     // only load page if $_GET['product_id'] is set
     if (empty($_GET['product_id'])) {
         die('Please choose a product to edit');
-    } // end empty book_id
+    } // end empty product_id
     
     try {
         $product_id = intval($_GET['product_id']);

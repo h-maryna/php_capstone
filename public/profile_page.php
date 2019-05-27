@@ -85,7 +85,7 @@ include __DIR__ . '/../inc/header.inc.php';
 <?php endif; ?>
 </div>
 </div>
-</body>
+
   
     <?php
   /**
@@ -93,5 +93,6 @@ include __DIR__ . '/../inc/header.inc.php';
    */
     include __DIR__ . '/../inc/footer.inc.php';
 
-    ?>    
+    ?>  
+  
 </html>

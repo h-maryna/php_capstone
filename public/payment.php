@@ -194,7 +194,7 @@ include __DIR__ . '/../inc/header.inc.php';
             <?php endforeach; ?>
             <tr>
                 <td colspan="1"><strong>Total</strong></td>
-                <td colspan="5" style="text-align: right;"><strong><?=getTotal()?></strong></td>
+                <td colspan="5" style="text-align: right;"><strong><?=number_format(getTotal(), 1)?></strong></td>
             </tr>
             </div>
         </table>

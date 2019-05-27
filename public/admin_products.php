@@ -24,7 +24,7 @@ if(!$_SESSION['admin']  || !$_SESSION['logged_in'])
     die;
   }
 
-  
+
  /**
   * assigning a new variable for title
   */
@@ -148,7 +148,7 @@ include __DIR__ . '/../inc/header.inc.php';
             <input type="hidden" name="product_id" value="<?=$row['product_id']?>" />
             <button>delete</button>
           </form>
-      <p><a href="admin_update_products.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
+      <p><a href="admin_update_products.php?product_id=<?=$row['product_id']?>" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
                                                     padding-bottom: 2px; border-radius: 10px; font-size: 18px;
                                                     color: #000; text-decoration: none; padding-right: 10px;">edit</a></p>    
          
