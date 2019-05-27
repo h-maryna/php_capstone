@@ -180,6 +180,10 @@ include __DIR__ . '/../inc/header.inc.php';
     h2 p{
       padding: 5px;
     }
+    .errors{
+      color: #f00;
+      font-size: 22px;
+    }
 </style>
       <main>
         <h1><?=$h1?></h1>
@@ -204,7 +208,7 @@ include __DIR__ . '/../inc/header.inc.php';
             <?php endforeach; ?>
             <tr>
                 <td colspan="1"><strong>Total</strong></td>
-                <td colspan="5" style="text-align: right;"><strong><?=number_format(getTotal(), 1)?></strong></td>
+                <td colspan="5" style="text-align: right;"><strong><?='$' . number_format(getTotal(), 1)?></strong></td>
             </tr>
             </div>
         </table>
@@ -222,7 +226,7 @@ include __DIR__ . '/../inc/header.inc.php';
             <p><label for="credit_card">Credit card number</label></p>
             <input type="text" id="credit_card" name="credit_card" value="<?=clean('credit_card')?>" placeholder="1111-2222-3333-4444" minlength="16" maxlength="19"><br />
             <p><label for="expmonth">Expiration date</label></p>
-            <input type="date" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
+            <input type="month" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
             <p><label for="cvv">CVV</label></p>
             <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3"><br />
     </fieldset>

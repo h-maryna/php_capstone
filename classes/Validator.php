@@ -24,6 +24,11 @@ class Validator
      */
     private $errors = [];
 
+    /**
+     * Checking if all fields that required are filled in
+     * @param  [type] $field [description]
+     * @return error if detecting error
+     */
     public function required($field)
     {
         if (!filter_input(INPUT_POST, $field)) {

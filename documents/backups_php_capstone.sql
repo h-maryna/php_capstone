@@ -73,17 +73,18 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Product`.`Orders` ;
 
-CREATE TABLE IF NOT EXISTS `order`(
-  `order_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `cost` FLOAT NOT NULL,
+CREATE TABLE IF NOT EXISTS `orders`(
+  `order_id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `sub_total` FLOAT NULL,
-  `quantity` INT NOT NULL,
   `gst` INT NOT NULL,
-  `pst` FLOAT NULL,
+  `pst` INT NOT NULL,
   `total` FLOAT NULL,
-  `customer_id` INT NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `updated_at` DATETIME NOT NULL)
+  `customer_id` INT(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cc_num` INT(4) NULL,
+  `auth_code` CHAR(4) NULL
+  )
 ENGINE = InnoDB;
 
 
