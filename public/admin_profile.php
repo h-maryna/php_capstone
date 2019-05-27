@@ -16,6 +16,13 @@ require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
+// condition for cheching if user has admin access
+if(!$_SESSION['admin']  || !$_SESSION['logged_in'])
+  { 
+    setFlash('error','Not authorized, please log in as an admin');
+    header('Location: login_page.php'); 
+    die;
+  }
 
 /**
   * assigning a new variable for title
@@ -25,7 +32,7 @@ $title = 'profile_page';
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Welcome, Admin, this is your page!';
+$h1 = "Here you can see all users' events!";
 
 // User should not see this page
 if (empty($_SESSION['logged_in'])) {
@@ -35,8 +42,8 @@ if (empty($_SESSION['logged_in'])) {
 }
 
 
-if(!empty($_SESSION['admin'])) {
-$id = intval($_SESSION['user_id']);
+if (!empty($_SESSION['admin'])) {
+    $id = intval($_SESSION['user_id']);
 
     // Create query to select a user according its id
     $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM user 

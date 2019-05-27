@@ -40,11 +40,9 @@ if (filter_input(INPUT_GET, 'logout')) {
 $v = new Validator();
 
 if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
-  // normally we had pull our hashed password from the DB
-    $v->required('first_name');
+  // normally we had pull our hashed password from the DB 
     $v->required('email');
     $v->required('password');
-    $v->string('first_name');
     $v->password('password');
 
     if (!$v->errors()) {
@@ -67,21 +65,33 @@ if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
             $form_password = filter_input(INPUT_POST, 'password');
             $stored_password = password_hash($user['password'], PASSWORD_DEFAULT);
       
-            if (password_verify($form_password, $stored_password)) {
+            if (password_verify($form_password, $stored_password))  
+            {
               // Set session logged_in to 1
               //session_regenerate_id();
-                if ($user['is_admin'] == "admin") {
-                    $_SESSION['admin'] = 1;
+                if ($user['is_admin'] == "admin")  
+                {    
+                  $_SESSION['logged_in'] = 1; // first we check if user logged in 
+                  $_SESSION['admin'] = 1; // if user has admin access
+                  $_SESSION['user_id'] = $user['user_id'];
+                  setFlash('success', 'Welcome back, ' . $user['first_name'] . ' ! You have successfully logged in.');
+                // redirect user to profile page
+                  header('Location: admin_dashboard.php');
+                // die
+                  die; 
+                } 
+                else 
+                {   
+                  $_SESSION['logged_in'] = 1; // check if user logged in
+                  $_SESSION['user_id'] = $user['user_id'];
+                  setFlash('success', 'Welcome back, ' . $user['first_name'] . ' ! You have successfully logged in.');
+                // redirect user to profile page
+                  header('Location: profile_page.php');
+                // die
+                  die;
                 }
+              } 
 
-                $_SESSION['logged_in'] = 1;
-                $_SESSION['user_id'] = $user['user_id'];
-                setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
-              // redirect user to profile page
-                header('Location: profile_page.php');
-              // die
-                die;
-            }
         }// else / end if
         setFlash('error', 'There were a problem with your credentials');
     } // end if no errors
@@ -107,12 +117,6 @@ include __DIR__ . '/../inc/header.inc.php';
 
 <form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
   <input type="hidden" name="token" value="<?=getToken()?>" />
-  <p><label for="first_name">First Name</label><br />
-    <input type="text" name="first_name" 
-    value="<?=clean('first_name')?>" placeholder="Please enter your first name" /></p>
-  <p><label for="last_name">Last Name</label><br />
-    <input type="text" name="last_name"
-    value="<?=clean('last_name')?>" placeholder="Please enter your last name" /></p>
   <p><label for="email">Email</label><br />
     <input type="text" name="email" 
     value="<?=clean('email')?>" placeholder="Please enter your email"/></p>

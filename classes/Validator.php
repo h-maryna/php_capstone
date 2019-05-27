@@ -63,7 +63,12 @@ class Validator
             $this->errors[$field] = $message;
         }
     }
-
+    
+    /**
+     * Check if inputed field mathes with string
+     * @param  String  $field to check if matches the pattern
+     * @return [type]        [description]
+     */
     public function string($field)
     {
         $string = filter_input(INPUT_POST, $field);
@@ -72,7 +77,7 @@ class Validator
             $this->setError($field, 'Please provide a valid' . ' ' . $field);
         }
     }
-
+    
     public function integer($field)
     {
         $integer = filter_input(INPUT_POST, $field);
@@ -94,10 +99,10 @@ class Validator
     public function password($field)
     {
         $password = filter_input(INPUT_POST, $field);
-        //pattern = '/(?=.*[A-Z]+[$%^&@#!+-~]+[A-Z]{2}[a-zA-Z]+[0-9]!)/'; //Myp@SSword3!
+        //$pattern = '/(?=.*[A-Z]+[$%^&@#!+-~]+[A-Z]{2}[a-zA-Z])/'; //Myp@SSword3!
         $pattern = '/[A-z]{6}/'; // for testing
         if (!preg_match($pattern, $password)) {
-            $this->setError($field, 'Please provide a proper password');
+            $this->setError($field, 'Please provide a proper password, it should consist at least one number and special character');
         }
     }
 

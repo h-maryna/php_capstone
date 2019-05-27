@@ -11,6 +11,3 @@ $product_name = htmlentities($_GET['product_name']);
 // The third parameter is the character set.  You should
 // always define it
 $product_name = htmlentities($_GET['product_name'], ENT_QUOTES, 'UTF-8');
-
-
-

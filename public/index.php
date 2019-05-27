@@ -97,14 +97,14 @@ include __DIR__ . '/../inc/header.inc.php';
     </div>
   </main>
   
-  <?php
+    <?php
 
  /**
  * include file which will be used as a template for each page as a footer
  */
-  include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>
+    ?>
   </div>
 </body>
 

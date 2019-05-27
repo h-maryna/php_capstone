@@ -11,7 +11,6 @@ use classes\Ilogger;
 use classes\DatabaseLogger;
 use classes\FileLogger;
 
-
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
@@ -42,78 +41,74 @@ $v = new Validator();
 $success = false;
 
 // If the request is POST (a form submission)
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Our required fields
-  $required = ['first_name', 'last_name', 'age', 'street', 'city', 'postal_code', 'province', 'country', 'phone', 'email', 'password', 'conf_passw'];
+    $required = ['first_name', 'last_name', 'age', 'street', 'city', 'postal_code', 'province', 'country', 'phone', 'email', 'password', 'conf_passw'];
 
   // Make sure there is a POST value for each
   // required field
-  foreach($required  as $key => $value) {
-    $v->required($value);
-    $v->string('first_name');
-    $v->string('last_name');
-    $v->string('city');
-    $v->string('street');
-    $v->string('country');
-    $v->integer('age');
-    $v->postal_code('postal_code');
-    $v->password('password');
+    foreach ($required as $key => $value) {
+        $v->required($value);
+        $v->string('first_name');
+        $v->string('last_name');
+        $v->string('city');
+        $v->string('street');
+        $v->string('country');
+        $v->integer('age');
+        $v->postal_code('postal_code');
+        $v->password('password');
 
-    if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
-       if($_SESSION['token'] != filter_input(INPUT_POST, 'token')){
-           die('CSRF token mismatch');
-           }
+        if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
+            if ($_SESSION['token'] != filter_input(INPUT_POST, 'token')) {
+                die('CSRF token mismatch');
+            }
         }
-  }
+    }
   
 
-  $errors = $v->errors();
+    $errors = $v->errors();
 
   
   
   // If there are no errors after processing all POST
-   if(!$errors) {
+    if (!$errors) {
         try {
-
       // create query
-      $query = "INSERT INTO
+            $query = "INSERT INTO
              user
              (first_name, last_name, age, street, city, postal_code, province, country, phone, email, password, conf_passw)
              VALUES
              (:first_name, :last_name, :age, :street, :city, :postal_code, :province, :country, :phone, :email, :password, :conf_passw)";
       
       // prepare query
-      $stmt = $dbh->prepare($query);
+            $stmt = $dbh->prepare($query);
 
-      $params = array(
-        ':first_name' => $_POST['first_name'],
-        ':last_name' => $_POST['last_name'],
-        ':age' => $_POST['age'],
-        ':street' => $_POST['street'],
-        ':city' => $_POST['city'],
-        ':postal_code' => $_POST['postal_code'],
-        ':province' => $_POST['province'],
-        ':country' => $_POST['country'],
-        ':phone' => $_POST['phone'],
-        ':email' => $_POST['email'],
-        ':password' => $_POST['password'],
-        ':conf_passw' => $_POST['conf_passw']//password_hash($_POST['password'], PASSWORD_DEFAULT)
-      );
+            $params = array(
+            ':first_name' => $_POST['first_name'],
+            ':last_name' => $_POST['last_name'],
+            ':age' => $_POST['age'],
+            ':street' => $_POST['street'],
+            ':city' => $_POST['city'],
+            ':postal_code' => $_POST['postal_code'],
+            ':province' => $_POST['province'],
+            ':country' => $_POST['country'],
+            ':phone' => $_POST['phone'],
+            ':email' => $_POST['email'],
+            ':password' => $_POST['password'],
+            ':conf_passw' => $_POST['conf_passw']//password_hash($_POST['password'], PASSWORD_DEFAULT)
+            );
 
       // execute query
-      $stmt->execute($params);
+            $stmt->execute($params);
 
-      $user_id = $dbh->lastInsertId();
+            $user_id = $dbh->lastInsertId();
       //header('Location: redirect_form.php');
-      header('Location: redirect_form.php?user_id=' . $user_id);
+            header('Location: redirect_form.php?user_id=' . $user_id);
       //exit;
-        } catch(Exception $e) {
-          die($e->getMessage());
+        } catch (Exception $e) {
+            die($e->getMessage());
         }
-    
-  } // end if
-
+    } // end if
 } // END IF POST
 
 /**
@@ -124,12 +119,11 @@ include __DIR__ . '/../inc/header.inc.php';
     <title><?=$title?></title>
     <main><!--Main page -->
       <h1><?=$h1?></h1>
-  <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
+    <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
   
 
 
-<?php if(!$success) : ?>
-
+<?php if (!$success) : ?>
 <form method="post" action="register_page.php" novalidate>
   <input type="hidden" name="token" value="<?=getToken()?>" />
 <fieldset>
@@ -173,35 +167,34 @@ include __DIR__ . '/../inc/header.inc.php';
 </form>
 
 <?php else : ?>
-
 <h2>Thank you for your registration on our web site!</h2>
 
   <ul><!-- Loop through $_POST to output user -->
-  <?php foreach($result as $key => $value): ?>
+    <?php foreach ($result as $key => $value) : ?>
     <!-- Test each value to see if it's an array, and
       if it's NOT an array, we can print it out -->
-    <?php if(!is_array($value)) : ?>
+        <?php if (!is_array($value)) : ?>
       <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
       </li>
 
-    <?php endif; ?>
-  <?php endforeach; ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
     </ul>
 <?php endif; ?>
 
 <pre>
 
-  <?php // print_r($_SERVER) ?>
+    <?php // print_r($_SERVER) ?>
 
 </pre>
 
 </body>
   
-  <?php 
+    <?php
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
-  ?>    
+    ?>    
 </html>

@@ -64,8 +64,8 @@ include __DIR__ . '/../inc/header.inc.php';
   <title><?=$title?></title>
   <main>
     <h1><?=$h1?></h1>
-<div id="profile_wrapper"  style="background-color: #fc9">
-<div id="profile"></div>
+<div id="profile_wrapper">
+<div id="profile">
 
 <?php if ($result) : ?>
   <ul><!-- Loop through $_POST to output user -->
@@ -83,7 +83,7 @@ include __DIR__ . '/../inc/header.inc.php';
 <?php else : ?>
     <h2>There were some problem adding a new user</h2>
 <?php endif; ?>
-
+</div>
 </div>
 </body>
   

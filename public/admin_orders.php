@@ -16,6 +16,15 @@ require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
+// condition for cheching if user has admin access
+if(!$_SESSION['admin']  || !$_SESSION['logged_in'])
+  { 
+    setFlash('error','Not authorized, please log in as an admin');
+    header('Location: login_page.php'); 
+    die;
+  }
+
+  
  /**
   * assigning a new variable for title
   */
@@ -34,7 +43,6 @@ try {
         $query = "SELECT * FROM orders WHERE order_id = :order_id";
         $params = array(
           ':order_id' => $order_id);
-
     } elseif (!empty($_GET['s'])) {
         // we have a search
           $query = 'SELECT * FROM orders
@@ -116,7 +124,7 @@ include __DIR__ . '/../inc/header.inc.php';
     <h1><?=$h1?></h1> 
 
 <div id="admin_orders_page">
- <?php include __DIR__ . '/../inc/admin.inc.php'; ?>  
+    <?php include __DIR__ . '/../inc/admin.inc.php'; ?>  
   <div id="search">
       <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
           <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>

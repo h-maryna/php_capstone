@@ -114,7 +114,7 @@ include __DIR__ . '/../inc/header.inc.php';
     </tr>
     <?php foreach ($results as $key => $row) : ?>
     <tr>
-      <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
+      <td><a href="list_view.php?product_id=<?=$row['product_id']?> style=''"><?=$row['product_name']?></a></td>
       <td><img src = '/images/orders/<?=$row['product_image']?>'style="width: 100px; height: 75px;"/></td>
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>

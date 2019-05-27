@@ -28,7 +28,9 @@ $h1 = 'Coffee we offer';
 /**
  * include file which will be used as a template for each page as a header
  */
-if(empty($_GET['product_id'])) die('Please pick a product');
+if (empty($_GET['product_id'])) {
+    die('Please pick a product');
+}
 
 $product_id = intval($_GET['product_id']);
 
@@ -43,7 +45,7 @@ $query = 'SELECT
 
 // create your param array
 $params = [
-	':product_id' => $product_id
+    ':product_id' => $product_id
 ];
 
 // prepare query
@@ -60,34 +62,33 @@ include __DIR__ . '/../inc/header.inc.php';
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<title>Product Detail</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Product Detail</title>
 </head>
 <body>
 
-	<p><a href="shop_page.php">Back to product list</a></p>
+    <p><a href="shop_page.php">Back to product list</a></p>
 
 
 
-<h2><?=$result['product_name']?></h2>
+<h2 style="background-color: #fc9;"><?=$result['product_name']?></h2>
 
 <ul>
-<?php foreach($result as $key => $value) : ?>
+<?php foreach ($result as $key => $value) : ?>
+    <?php if ($key == 'availability') : ?>
+        <li><strong><?=$key?></strong>: <?=($value) ? 'yes' : 'no' ?></li>
 
-	<?php if($key == 'availability') : ?>
-		<li><strong><?=$key?></strong>: <?=($value) ? 'yes' : 'no' ?></li>
-
-		<?php elseif ($key == 'product_image') :?>
-		<li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> width="350" height="250" align="right" />
-		</li>
+    <?php elseif ($key == 'product_image') :?>
+        <li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> width="350" height="300" align="right" />
+        </li>
 
 
-		<?php elseif ($key == 'product_id') : ?>
-	<?php else : ?>
-		<li><strong><?=$key?></strong>: <?=$value?></li>
-	<?php endif; ?>
+    <?php elseif ($key == 'product_id') : ?>
+    <?php else : ?>
+        <li><strong><?=$key?></strong>: <?=$value?></li>
+    <?php endif; ?>
 
 <?php endforeach; ?>
 </ul>

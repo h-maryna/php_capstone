@@ -16,6 +16,15 @@ require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
 
+// condition for cheching if user has admin access
+if(!$_SESSION['admin']  || !$_SESSION['logged_in'])
+  { 
+    setFlash('error','Not authorized, please log in as an admin');
+    header('Location: login_page.php'); 
+    die;
+  }
+
+  
  /**
   * assigning a new variable for title
   */
@@ -28,20 +37,20 @@ $h1 = 'Coffee beans list';
 /**
  * include file which will be used as a template for each page as a header
  */
-if('POST' == $_SERVER['REQUEST_METHOD']){
-  $product_id = intval($_POST['product_id']);
-  $query = 'INSERT INTO product_arc SELECT * from product where product_id = :product_id';
-  $params = array(
+if ('POST' == $_SERVER['REQUEST_METHOD']) {
+    $product_id = intval($_POST['product_id']);
+    $query = 'INSERT INTO product_arc SELECT * from product where product_id = :product_id';
+    $params = array(
             ':product_id' =>$product_id
           );
-  $stmt = $dbh->prepare($query);
-  $stmt->execute($params);
-  $query = 'DELETE FROM product where product_id = :product_id';
-  $stmt=$dbh->prepare($query);
-  $stmt->execute($params);
-  setFlash('success', 'You successfully deleted one product!');
-  header('Location: admin_products.php');
-  die;
+    $stmt = $dbh->prepare($query);
+    $stmt->execute($params);
+    $query = 'DELETE FROM product where product_id = :product_id';
+    $stmt=$dbh->prepare($query);
+    $stmt->execute($params);
+    setFlash('success', 'You successfully deleted one product!');
+    header('Location: admin_products.php');
+    die;
 }
 try {
     if (!empty($_GET['roast'])) {
