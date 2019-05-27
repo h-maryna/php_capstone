@@ -77,7 +77,11 @@ class Validator
             $this->setError($field, 'Please provide a valid' . ' ' . $field);
         }
     }
-    
+    /**
+     * Check integer field, needs to match with pattern
+     * @param  integer $field and check if matches
+     * @return [type]        [description]
+     */
     public function integer($field)
     {
         $integer = filter_input(INPUT_POST, $field);
@@ -86,7 +90,12 @@ class Validator
             $this->setError($field, 'Please enter proper ' . ' ' . $field);
         }
     }
-
+    
+    /**
+     * check this field to match with pattern
+     * @param  postal code $field 
+     * @return if not match show error
+     */
     public function postal_code($field)
     {
         $postal_code = filter_input(INPUT_POST, $field);
@@ -95,32 +104,47 @@ class Validator
             $this->setError($field, 'Please provide a valid Canadian postal code');
         }
     }
-
+    
+    /**
+     * check password field
+     * @param  password $field 
+     * @return if not matches show error
+     */
     public function password($field)
     {
         $password = filter_input(INPUT_POST, $field);
         $pattern = '/(?=.*[A-Z]+)(?=.*[$%^&@#!+-~]+).{4,}/'; //Myp@SSword3!
         //$pattern = '/[A-z]{6}/'; // for testing
         if (!preg_match($pattern, $password)) {
-            $this->setError($field, 'Please provide a proper password, it should consist at least one number and special character');
+            $this->setError($field, 'Please provide a proper password, it should contain at least one number and at least one special character');
         }
     }
-
-  public function cvv($field)
+    
+    /**
+     * check if cvv code is meet requirements 
+     * @param  cvv $field 
+     * @return cvv
+     */
+    public function cvv($field)
     {
         $cvv = filter_input(INPUT_POST, $field);
         $pattern = '/[0-9]{3}/'; 
         if (!preg_match($pattern, $cvv)) {
-            $this->setError($field, 'Please provide a proper cvv code');
+            $this->setError($field, 'Please provide a proper cvv code, 3 numbers see back on your card');
         }
     }
-
-  public function credit_card($field)
+    
+    /**
+     * chek if credit card field matches with pattern
+     * @param  credit_card $field 
+     * @return if not matches set error message
+     */
+    public function credit_card($field)
     {
         $credit_card = filter_input(INPUT_POST, $field);
-        $pattern = '/[0-9]{16,19}/'; 
+        $pattern = '/[0-9]{16}/'; 
         if (!preg_match($pattern, $credit_card)) {
-            $this->setError($field, 'Please provide a proper cvv code');
+            $this->setError($field, 'Please provide a proper cvv code 16 characters');
         }
     }
 
