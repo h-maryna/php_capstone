@@ -101,12 +101,23 @@ class Validator
         }
     }
 
-  /*  public function cvv($field)
+  public function cvv($field)
     {
         $cvv = filter_input(INPUT_POST, $field);
         $pattern = '/[0-9]{3}/'; 
         if (!preg_match($pattern, $cvv)) {
             $this->setError($field, 'Please provide a proper cvv code');
         }
-    } */
+    }
+
+  public function credit_card($field)
+    {
+        $credit_card = filter_input(INPUT_POST, $field);
+        $pattern = '/[0-9]{16,19}/'; 
+        if (!preg_match($pattern, $credit_card)) {
+            $this->setError($field, 'Please provide a proper cvv code');
+        }
+    }
+
+
 }

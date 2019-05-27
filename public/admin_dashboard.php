@@ -29,7 +29,10 @@ $h1 = 'Here you can see list of all our orders';
 $query = 'SELECT(SELECT SUM(total) FROM orders),
                  (SELECT SUM(gst) FROM orders),
                  (SELECT SUM(pst) FROM orders),
-                 (SELECT COUNT(user_id) from user)
+                 (SELECT COUNT(user_id) FROM user),
+                 (SELECT MIN(age) FROM user),
+                 (SELECT AVG(total) FROM orders),
+                 (SELECT MAX(total) FROM orders)         
          ';
 
 $params = [];
@@ -39,13 +42,16 @@ $stmt = $dbh->prepare($query);
 $stmt->execute($params);
     
 $total = $stmt->fetch(\PDO::FETCH_ASSOC);
-
 foreach($total as $key => $value){
 
+// array to show data in a diagram
 $dataPoints = array( 
-	array("y" => $value, "label" => "Total"),
-	array("y" => $value, "label" => "GST"),
-	array("y" => $value, "label" => "PST"),
+	array("y" => $total['(SELECT SUM(total) FROM orders)'], "label" => "Total"),
+	array("y" => $total['(SELECT SUM(gst) FROM orders)'], "label" => "GST"),
+	array("y" => $total['(SELECT SUM(pst) FROM orders)'], "label" => "PST"),
+  array("y" => $total['(SELECT AVG(total) FROM orders)'], "label" => "AVG order"),
+  array("y" => $total['(SELECT MAX(total) FROM orders)'], "label" => "MAX order"),
+  
 );
 }
 /**
@@ -63,14 +69,31 @@ include __DIR__ . '/../inc/header.inc.php';
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </div>
 
-  <p></p>
+  <h2>Some statistics about our orders</h2>
   <ul>
-      <?php foreach($total as $key => $value) : ?>
+    <?php foreach($total as $key => $value) : ?>
+      <?php if($key == '(SELECT SUM(total) FROM orders)') : ?>
+      	<li><strong>Total sum from orders</strong> : <?=number_format($value, 2)?> CAD</li>
+      <?php elseif ($key == '(SELECT SUM(gst) FROM orders)') :?>
+    		<li><strong>Total gst from orders</strong> : <?=$value?> CAD</li>
+          <?php elseif ($key == '(SELECT SUM(pst) FROM orders)') :?>
+    		<li><strong>Total pst from orders</strong> : <?=$value?> CAD</li>
+    	 <?php elseif ($key == '(SELECT COUNT(user_id) FROM user)') :?>
+    		<li><strong>Total amount of customers</strong> : <?=$value?></li>
+    	<?php elseif ($key == '(SELECT MIN(age) FROM user)') :?>
+    		<li><strong>Minimum age of customers</strong> : <?=$value?></li>
+    	<?php elseif ($key == '(SELECT AVG(total) FROM orders)') :?>
+    		<li><strong>Average order per user</strong> : <?=number_format($value, 2)?> CAD</li>
+      <?php elseif ($key == '(SELECT MAX(total) FROM orders)') :?>
+        <li><strong>Maximum purchase from user</strong> : <?=number_format($value, 2)?> CAD</li>
+      
+    	<?php else : ?>
+    		<li><strong><?=$key?></strong>: <?=$value?></li>
+    	<?php endif; ?>
 
-      <li><strong><?=$key?></strong> : <?=$value?></li>
-
-     <?php endforeach; ?>
- </ul>
+    <?php endforeach; ?>
+  </ul>
+     
 
 <?php
 /**

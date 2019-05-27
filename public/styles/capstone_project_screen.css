@@ -258,12 +258,14 @@
       background-color: #000;
       color: #fff;
       padding: 15px;
+
     }
     h2{
       font-size: 20px;
       font-style: italic;
       font-weight: 700;
       margin-left: 5px;
+      padding: 8px;
     }  
     div#home_page{
       margin-left: 5px;
@@ -550,3 +552,4 @@
     h2 p{
       padding: 5px;
     }   
+

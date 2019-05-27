@@ -91,16 +91,37 @@ include __DIR__ . '/../inc/header.inc.php';
 ?>
 
     <title><?=$title?></title>
+
     <main><!--Main page -->
       <h1><?=$h1?></h1>
     <!-- List to show some customer's info -->
-      <ul>
-          <?php foreach($customer as $key => $value) : ?>
-
-          <li><strong><?=$key?></strong>: <?=$value?></li>
+      <h2 style="color: #fa9;">Your order has been processed and this is your official invoice:</h2>
+      <div id="invoice" style="text-align: left; text-decoration: underline; font-size: 26px; font-style: italic; background-color: #fc9; padding: 15px; width: 120px;" >INVOICE</div>
+     <ul>
+        <?php foreach($order as $key => $value) : ?>
+          <?php if($key == 'created_at') : ?>
+            <li><strong>Invoive Date/Time</strong> : <?=$value?></li>
+          <?php elseif ($key == 'order_id') :?>
+            <li><strong>Invoice Number</strong> : <?=$value?></li>
+          <?php elseif ($key == 'total') :?>
+            <li><strong>Paid Amount</strong> : <?=$value?> CAD</li>
+          <?php endif; ?>
     
          <?php endforeach; ?>
-     </ul>
+
+      <?php foreach($customer as $key => $value) : ?>
+       <?php if ($key == 'first_name') :?>
+        <li><strong>Customer First Name</strong> : <?=$value?></li>
+      <?php elseif ($key == 'last_name') :?>
+        <li><strong>Customer Last Name</strong> : <?=$value?></li>
+      <?php elseif ($key == 'email') :?>
+        <li><strong>Customer Email</strong> : <?=$value?></li>
+      
+      <?php endif; ?>
+
+    <?php endforeach; ?>
+  </ul>
+
   <!-- table to show some info about customer's order -->
    <table>
     <tr>
@@ -115,25 +136,23 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['product_name']?></td>
       <td><?=$row['price']?></td>
       <td><?=$row['quantity']?></td>
-<?php endforeach; ?>
+      <?php endforeach; ?>
+    </tr>
+    <tr> 
+      <td><?php foreach($order as $key => $value) : ?>
+          <?php if ($key == 'total') :?>
+            <strong>Paid Amount</strong></td>
+            <td colspan="3" style="text-align: right;"><strong> <?=$value?> CAD</strong>
+          <?php endif; ?>
+    
+         <?php endforeach; ?></td>
     </tr>
 </table>
 
 
-    <ul>
-          <?php foreach($order as $key => $value) : ?>
-
-          <li><strong><?=$key?></strong>: <?=$value?></li>
-    
-         <?php endforeach; ?>
-     </ul>
-
   <img src="/images/thankyou.png" width="auto">
 
-    <p><a href="shop_page.php" style="text-decoration: none; color: #f00">Continue to shopping</a></p>
-
-    <h2>There were some problem adding a new user</h2>
-
+    <p><a href="shop_page.php">Continue to shopping</a></p>
 
 
 </body>

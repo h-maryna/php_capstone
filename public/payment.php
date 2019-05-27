@@ -7,6 +7,10 @@
  */
 namespace classes;
 
+use classes\Ilogger;
+use classes\DatabaseLogger;
+use classes\FileLogger;
+
 require __DIR__ . '/../lib/functions.php';
 require __DIR__ . '/../config/config.php';
 require __DIR__ . '/../classes/Validator.php';
@@ -18,6 +22,7 @@ $title = 'payment';
  * assigning a new variable for h1
  */
 $h1 = 'You can start your payment here:';
+
 $product_id = intval($_SESSION['cart']);
 
 if (empty($_SESSION['logged_in'])) {
@@ -42,19 +47,31 @@ $success = false;
 
 // If the request is POST (a form submission)
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  
+
+// Our required fields
+$required = ['card_name', 'billing_address', 'credit_card', 'expmonth', 'cvv'];
+
+  // Make sure there is a POST value for each
+  // required field
+  foreach($required  as $key => $value) {
+    $v->required($value);
+    $v->string('card_name');
+    $v->string('billing_address');
+    $v->credit_card('credit_card');
+    $v->cvv('cvv'); 
+
+
   // Our required fields
    if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
        if($_SESSION['token'] != filter_input(INPUT_POST, 'token')){
            die('CSRF token mismatch');
            }
-        } 
-  
-  
+        } // if filter input
+ // end foreach  
+}
 
-  $errors = $v->errors();
+$errors = $v->errors();
 
-  
   
   // If there are no errors after processing all POST
    if(!$errors) {
@@ -104,11 +121,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
            //header('Location: redirect_form.php');
       header('Location: thankyou.php');
         die;
-
       //exit;
+      
         } catch(Exception $e) {
           die($e->getMessage());
-        }
+        } // end catch
     } // end if errors
 } // END IF POST
 
@@ -179,8 +196,8 @@ include __DIR__ . '/../inc/header.inc.php';
             </tr>
             <?php endforeach; ?>
             <tr>
-                <strong><td colspan="1">Total</td></strong>
-                <strong><td colspan="5"><?=getTotal()?></td></strong>
+                <td colspan="1"><strong>Total</strong></td>
+                <td colspan="5" style="text-align: right;"><strong><?=getTotal()?></strong></td>
             </tr>
             </div>
         </table>
@@ -189,6 +206,8 @@ include __DIR__ . '/../inc/header.inc.php';
 
 <form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
    <input type="hidden" name="token" value="<?=getToken()?>" />
+   <fieldset>
+        <legend>Payment Form</legend>
             <p><label for="card_name">Name on card</label></p>
             <input type="text" id="card_name" name="card_name" value="<?=clean('card_name')?>" placeholder="John More Doe"><br />
             <p><label for="billing_address">Billing address</label></p>
@@ -199,7 +218,9 @@ include __DIR__ . '/../inc/header.inc.php';
             <input type="date" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
             <p><label for="cvv">CVV</label></p>
             <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3"><br />
+    </fieldset>
             <p><button style="width: 120px">Complete Purchase</button></p>
+
 </form>
 
 
