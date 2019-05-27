@@ -52,7 +52,7 @@ $stmt->execute($params);
 $total = $stmt->fetch(\PDO::FETCH_ASSOC);
 foreach ($total as $key => $value) {
 // array to show data in a diagram
-    $dataPoints = array(
+$dataPoints = array(
     array("y" => $total['(SELECT SUM(total) FROM orders)'], "label" => "Total"),
     array("y" => $total['(SELECT SUM(gst) FROM orders)'], "label" => "GST"),
     array("y" => $total['(SELECT SUM(pst) FROM orders)'], "label" => "PST"),

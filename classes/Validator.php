@@ -99,8 +99,8 @@ class Validator
     public function password($field)
     {
         $password = filter_input(INPUT_POST, $field);
-        //$pattern = '/(?=.*[A-Z]+[$%^&@#!+-~]+[A-Z]{2}[a-zA-Z])/'; //Myp@SSword3!
-        $pattern = '/[A-z]{6}/'; // for testing
+        $pattern = '/(?=.*[A-Z]+)(?=.*[$%^&@#!+-~]+).{4,}/'; //Myp@SSword3!
+        //$pattern = '/[A-z]{6}/'; // for testing
         if (!preg_match($pattern, $password)) {
             $this->setError($field, 'Please provide a proper password, it should consist at least one number and special character');
         }

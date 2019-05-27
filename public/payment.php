@@ -54,10 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // required field
     foreach ($required as $key => $value) {
         $v->required($value);
-        $v->string('card_name');
-        $v->string('billing_address');
-        $v->credit_card('credit_card');
-        $v->cvv('cvv');
+
+       
 
 
     // Our required fields
@@ -68,12 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } // if filter input
    // end foreach
     }
+     $v->string('card_name');
+        $v->string('billing_address');
+        $v->credit_card('credit_card');
+        $v->cvv('cvv');
 
-    $errors = $v->errors();
+  
 
   
   // If there are no errors after processing all POST
-    if (!$errors) {
+    if (!$v->errors()) {
         try {
       // create query
             $query = "INSERT INTO
@@ -108,9 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $params = array(
                       ':order_id' => $order_id,
                       ':product_id' => $key,
-                       ':product_name' =>$item['product_name'],
-                       ':price' => $item['price'],
-                       ':quantity' => $item['qty']);
+                      ':product_name' =>$item['product_name'],
+                      ':price' => $item['price'],
+                      ':quantity' => $item['qty']);
                 $stmt = $dbh->prepare($query);
                 $stmt->execute($params);
             }
@@ -126,12 +128,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } // end if errors
 } // END IF POST
 
+// variable for detecting adn showing errors
+$errors = $v->errors();
+
 /**
  * include file which will be used as a template for each page as a header
  */
 include __DIR__ . '/../inc/header.inc.php';
 
-?> <title><?=$title?></title>
+?> 
+
+<?php include __DIR__ . '/../inc/flash.inc.php'; ?>
+<?php include __DIR__ . '/../lib/errors.inc.php'; ?>
+
+<title><?=$title?></title>
 <style>
     table{  /*CSS style for table */
       border-spacing: 0px;

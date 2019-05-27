@@ -43,7 +43,6 @@ if ('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')) {
   // normally we had pull our hashed password from the DB 
     $v->required('email');
     $v->required('password');
-    $v->password('password');
 
     if (!$v->errors()) {
         $query = "SELECT * FROM user WHERE email = :email";

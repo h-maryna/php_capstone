@@ -27,12 +27,8 @@ $product_id = intval($_SESSION['cart']);
  */
 include __DIR__ . '/../inc/header.inc.php';
 
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
+?>
+
     <title>View Cart</title>
     <style>
     table{  /*CSS style for table */
