@@ -104,7 +104,7 @@ include __DIR__ . '/../inc/header.inc.php';
           <?php elseif ($key == 'order_id') :?>
             <li><strong>Invoice Number</strong> : <?=$value?></li>
           <?php elseif ($key == 'total') :?>
-            <li><strong>Paid Amount</strong> : <?=$value?> CAD</li>
+            <li><strong>Paid Amount</strong> : <?=number_format($value, 1)?> CAD</li>
           <?php endif; ?>
     
          <?php endforeach; ?>
@@ -142,7 +142,7 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?php foreach($order as $key => $value) : ?>
           <?php if ($key == 'total') :?>
             <strong>Paid Amount</strong></td>
-            <td colspan="3" style="text-align: right;"><strong> <?=$value?> CAD</strong>
+            <td colspan="3" style="text-align: right;"><strong> <?=number_format($value, 1)?> CAD</strong>
           <?php endif; ?>
     
          <?php endforeach; ?></td>

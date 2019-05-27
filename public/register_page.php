@@ -130,38 +130,90 @@ include __DIR__ . '/../inc/header.inc.php';
   <legend>Registration Form</legend>
   <p><label for="first_name">First Name</label><br />
     <input type="text" name="first_name" 
-    value="<?=clean('first_name')?>" /></p>
+    value="<?=clean('first_name')?>" />
+    &nbsp;<?=(!empty($errors['first_name'])) ?
+      "<span class='errors'>{$errors['first_name']}</span>" : '' ?></p>
+
   <p><label for="last_name">Last Name</label><br />
     <input type="text" name="last_name"
-    value="<?=clean('last_name')?>" /></p>
+    value="<?=clean('last_name')?>" />
+    &nbsp;<?=(!empty($errors['last_name'])) ?
+      "<span class='errors'>{$errors['last_name']}</span>" : '' ?></p>
+
   <p><label for="age">Age</label><br />
     <input type="text" name="age"
-    value="<?=clean('age')?>" /></p>
+    value="<?=clean('age')?>" />
+     &nbsp;<?=(!empty($errors['age'])) ?
+      "<span class='errors'>{$errors['age']}</span>" : '' ?></p>
+
   <p><label for="street">Street</label><br />
     <input type="text" name="street" 
-    value="<?=clean('street')?>" /></p>
+    value="<?=clean('street')?>" />
+     &nbsp;<?=(!empty($errors['street'])) ?
+      "<span class='errors'>{$errors['street']}</span>" : '' ?></p>
+
   <p><label for="city">City</label><br />
     <input type="text" name="city" 
-    value="<?=clean('city')?>" /></p>
+    value="<?=clean('city')?>" />
+     &nbsp;<?=(!empty($errors['city'])) ?
+      "<span class='errors'>{$errors['city']}</span>" : '' ?></p>
+
   <p><label for="postal_code">Postal Code</label><br />
     <input type="text" name="postal_code"
-    value="<?=clean('postal_code')?>" /></p>
-  <p><label for="province">Province</label><br />
-    <input type="text" name="province"
-    value="<?=clean('province')?>" /></p>
+    value="<?=clean('postal_code')?>" />
+    &nbsp;<?=(!empty($errors['postal_code'])) ?
+      "<span class='errors'>{$errors['postal_code']}</span>" : '' ?></p>
+
+  
+   <p><!-- Field list of services -->
+      <label>Province</label><br />
+      <input list="province" name="province" value="<?=clean('province')?>" />
+      <datalist id="province">
+        <option value="Alberta"></option>
+        <option value="British Columbia"></option>
+        <option value="Manitoba"></option>
+        <option value="New Brunswick"></option>
+        <option value="Newfoundland and Labrador"></option>
+        <option value="Nova Scotia"></option>
+        <option value="Northwest Terrotories"></option>
+        <option value="Nunavut"></option>
+        <option value="Ontario"></option>
+        <option value="Prince Edward Island"></option>
+        <option value="Quebec"></option>
+        <option value="Sascatchewan"></option>
+        <option value="Yukon"></option>
+      </datalist> 
+      &nbsp;<?=(!empty($errors['province'])) ?
+      "<span class='errors'>{$errors['province']}</span>" : '' ?></p>
+
   <p><label for="country">Country</label><br />
     <input type="text" name="country"
-    value="<?=clean('country')?>" /></p>
+    value="<?=clean('country')?>" />
+    &nbsp;<?=(!empty($errors['country'])) ?
+      "<span class='errors'>{$errors['country']}</span>" : '' ?></p>
+
   <p><label for="phone">Phone</label><br />
     <input type="text" name="phone"
-    value="<?=clean('phone')?>" /></p>
+    value="<?=clean('phone')?>" />
+    &nbsp;<?=(!empty($errors['phone'])) ?
+      "<span class='errors'>{$errors['phone']}</span>" : '' ?></p>
+
   <p><label for="email">Email</label><br />
     <input type="text" name="email" 
-    value="<?=clean('email')?>" /></p>
+    value="<?=clean('email')?>" />
+    &nbsp;<?=(!empty($errors['email'])) ?
+      "<span class='errors'>{$errors['email']}</span>" : '' ?></p>
+
   <p><label for="password">Password</label><br />
-    <input type="password" name="password" /></p>
+    <input type="password" name="password" />
+    &nbsp;<?=(!empty($errors['password'])) ?
+      "<span class='errors'>{$errors['password']}</span>" : '' ?></p>
+
   <p><label for="conf_passw">Confirm password</label><br />
-    <input type="password" name="conf_passw" /></p>
+    <input type="password" name="conf_passw" />
+    &nbsp;<?=(!empty($errors['conf_passw'])) ?
+      "<span class='errors'>{$errors['conf_passw']}</span>" : '' ?></p>
+
   <p><button>Login</button></p>
 </fieldset>
 </form>

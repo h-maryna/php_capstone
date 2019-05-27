@@ -31,7 +31,7 @@ $title = 'admin_page';
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Welcome Admin!';
+$h1 = 'Here you can see all customers events';
 
 // Create query to select events from our log file
 $query = "SELECT * 
@@ -51,8 +51,7 @@ $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
 include __DIR__ . '/../inc/header.inc.php';
 
-?>  
-<?php include __DIR__ . '/../inc/flash.inc.php'; ?>
+?>
 
   <title><?=$title?></title>
 

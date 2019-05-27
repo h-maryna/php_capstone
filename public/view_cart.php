@@ -104,7 +104,7 @@ include __DIR__ . '/../inc/header.inc.php';
      <tr>
 <?php endforeach; ?>
         <td colspan="1"><strong>Total</strong></td>
-        <td colspan="4" style="text-align: right;"><strong><?=number_format(getTotal(), 1)?></strong></td>
+        <td colspan="4" style="text-align: right;"><strong><?=number_format(getTotal(), 1)?> CAD</strong></td>
         <td><p><a href="payment.php" style="width: 85px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
                                             padding-bottom: 2px; border-radius: 10px; font-size: 18px;
                                             color: #000; text-decoration: none; padding-right: 10px;">Make<br />a payment</a></p></td>

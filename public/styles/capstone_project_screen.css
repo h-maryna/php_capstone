@@ -129,13 +129,16 @@
     #admin_page div#nav_admin nav ul li a.page12,
     #admin_products_page div#nav_admin nav ul li a.page13,
     #admin_customers_page div#nav_admin nav ul li a.page14,
-    #admin_orders_page div#nav_admin nav ul li a.page15{
+    #admin_orders_page div#nav_admin nav ul li a.page15,
+    #admin_add_product div#nav_admin nav ul li a.page16{
       background-color: #f00;
       padding: 10px;
       margin-left: 5px;
       border-radius: 10px;
     }
-    
+    .errors{
+      color: #f00;
+    }
     #admin_results{
       left: 100px;
     }
@@ -443,7 +446,7 @@
       width: auto;
     }
     /*CSS style for inputs in text, email, tel, date, submit, reset lines */
-    input[type="text"],
+    input[list], input[type="text"],
     input[type="email"],
     input[type="tel"],
     input[type="date"],

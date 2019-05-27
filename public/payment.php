@@ -182,7 +182,6 @@ include __DIR__ . '/../inc/header.inc.php';
     }
     .errors{
       color: #f00;
-      font-size: 22px;
     }
 </style>
       <main>
@@ -219,16 +218,30 @@ include __DIR__ . '/../inc/header.inc.php';
    <input type="hidden" name="token" value="<?=getToken()?>" />
    <fieldset>
         <legend>Payment Form</legend>
-            <p><label for="card_name">Name on card</label></p>
-            <input type="text" id="card_name" name="card_name" value="<?=clean('card_name')?>" placeholder="John More Doe"><br />
-            <p><label for="billing_address">Billing address</label></p>
-            <input type="text" id="billing_address" name="billing_address" value="<?=clean('billing_address')?>" placeholder="Billing Address"><br />
-            <p><label for="credit_card">Credit card number</label></p>
-            <input type="text" id="credit_card" name="credit_card" value="<?=clean('credit_card')?>" placeholder="1111-2222-3333-4444" minlength="16" maxlength="19"><br />
-            <p><label for="expmonth">Expiration date</label></p>
-            <input type="month" id="expmonth" name="expmonth" placeholder="mm/yyyy"><br />
-            <p><label for="cvv">CVV</label></p>
-            <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3"><br />
+          <p><label for="card_name">Name on card</label></p>
+          <input type="text" id="card_name" name="card_name" value="<?=clean('card_name')?>" placeholder="John More Doe">
+          &nbsp;<?=(!empty($errors['card_name'])) ?
+            "<span class='errors'>{$errors['card_name']}</span>" : '' ?></p>
+
+          <p><label for="billing_address">Billing address</label></p>
+          <input type="text" id="billing_address" name="billing_address" value="<?=clean('billing_address')?>" placeholder="Billing Address">
+          &nbsp;<?=(!empty($errors['billing_address'])) ?
+            "<span class='errors'>{$errors['billing_address']}</span>" : '' ?></p>
+
+          <p><label for="credit_card">Credit card number</label></p>
+          <input type="text" id="credit_card" name="credit_card" value="<?=clean('credit_card')?>" placeholder="1111-2222-3333-4444" minlength="16" maxlength="19">
+          &nbsp;<?=(!empty($errors['credit_card'])) ?
+            "<span class='errors'>{$errors['credit_card']}</span>" : '' ?></p>
+
+          <p><label for="expmonth">Expiration date</label></p>
+          <input type="month" id="expmonth" name="expmonth" placeholder="mm/yyyy">
+          &nbsp;<?=(!empty($errors['expmonth'])) ?
+            "<span class='errors'>{$errors['expmonth']}</span>" : '' ?></p>
+
+          <p><label for="cvv">CVV</label></p>
+          <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3">
+          &nbsp;<?=(!empty($errors['cvv'])) ?
+            "<span class='errors'>{$errors['cvv']}</span>" : '' ?></p>
     </fieldset>
             <p><button style="width: 120px">Complete Purchase</button></p>
 

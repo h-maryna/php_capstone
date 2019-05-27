@@ -79,7 +79,7 @@ class Validator
         $string = filter_input(INPUT_POST, $field);
         $pattern = '/[a-zA-Z]{4,}/';
         if (!preg_match($pattern, $string)) {
-            $this->setError($field, 'Please provide a valid' . ' ' . $field);
+            $this->setError($field, 'Please provide a valid' . ' ' . $field . ', should contain at least 4 characters');
         }
     }
     /**
