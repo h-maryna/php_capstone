@@ -93,15 +93,12 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Product`.`Order/Product` ;
 
-CREATE TABLE IF NOT EXISTS `order/product`(
-  `order_id` INT NOT NULL,
-  `product_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `order_product`(
+  `order_id` INT(11) NOT NULL,
+  `product_id` INT(11) NOT NULL,
   `product_name` VARCHAR(45) NOT NULL,
   `price` FLOAT NOT NULL,
-  `quantity` DECIMAL NOT NULL,
-  `subtotal` FLOAT NOT NULL,
-  `delivery_cost` FLOAT NOT NULL,
-  `total` DECIMAL NOT NULL)
+  `quantity` DECIMAL NOT NULL)
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
