@@ -40,6 +40,7 @@ include __DIR__ . '/../inc/header.inc.php';
         <th>Subtotal</th>
         <th>PST</th>
         <th>GST</th>
+        <th></th>
       </tr>
       <div class="cart">
   <?php foreach ($_SESSION['cart'] as $key => $row) : ?>

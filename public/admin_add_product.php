@@ -170,7 +170,7 @@ include __DIR__ . '/../inc/header.inc.php';
 
     </form>
 
-<p><a href="admin_products.php">Go back to check products</a></p>
+<p><a href="admin_products.php">Go back to list of products</a></p>
 
 </main>
 <?php
