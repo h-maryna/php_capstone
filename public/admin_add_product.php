@@ -57,9 +57,9 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
             // create query
             $query = "INSERT INTO
 					   product
-					   (product_name, short_description, long_description, country_of_origin, weight, price, roast)
+					   (product_name, short_description, product_image, long_description, availability, country_of_origin, weight, price, roast)
 					   VALUES
-					   (:product_name, :short_description, :long_description, :country_of_origin, :weight, :price, :roast)";
+					   (:product_name, :short_description, :product_image, :long_description, :availability, :country_of_origin, :weight, :price, :roast)";
             
             // prepare query
             $stmt = $dbh->prepare($query);
@@ -67,7 +67,9 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
             $params = array(
                 ':product_name' => $_POST['product_name'],
                 ':short_description' => $_POST['short_description'],
+                ':product_image' => $_POST['product_image'],
                 ':long_description' => $_POST['long_description'],
+                ':availability' => $_POST['availability'],
                 ':country_of_origin' => $_POST['country_of_origin'],
                 ':weight' => $_POST['weight'],
                 ':price' => $_POST['price'],
@@ -116,11 +118,23 @@ include __DIR__ . '/../inc/header.inc.php';
             <input type="text" name="short_description" id="short_description" 
             value="<?=clean('short_description')?>" />
             </p>
+            
+            <p>
+            <label for="product_image">Product image</label><br />
+            <input type="text" name="product_image" id="product_image" 
+            value="<?=clean('product_image')?>" />
+            </p>
 
             <p>
             <label for="long_description">Long description</label><br />
             <input type="text" name="long_description" id="long_description" 
                    value="<?=clean('long_description')?>" />
+            </p>
+
+            <p>
+            <label for="availability">Availability</label><br />
+            <input type="text" name="availability" id="availability" 
+                   value="<?=clean('availability')?>" placeholder="1 or 0" />
             </p>
 
             <p>
