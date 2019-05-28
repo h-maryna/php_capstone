@@ -99,7 +99,7 @@ include __DIR__ . '/../inc/header.inc.php';
                              font-style: italic; 
                              background-color: #fc9; 
                              padding: 15px; 
-                             width: 120;" >INVOICE</div>
+                             width: 930px;" >INVOICE</div>
       <ul>
         <?php foreach($order as $key => $value) : ?>
             <?php if($key == 'created_at') : ?>
@@ -133,6 +133,7 @@ include __DIR__ . '/../inc/header.inc.php';
       <th>Price</th>
       <th>Quantity</th>
     </tr>
+
 <?php foreach ($line_items as $key => $row) : ?>
     <tr>
       <td><?=$row['order_id']?></td>
@@ -141,6 +142,7 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['quantity']?></td>
       <?php endforeach; ?>
     </tr>
+
     <tr> 
       <td><?php foreach($order as $key => $value) : ?>
           <?php if ($key == 'total') :?>

@@ -121,10 +121,16 @@ include __DIR__ . '/../inc/header.inc.php';
 <form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
   <input type="hidden" name="token" value="<?=getToken()?>" />
   <p><label for="email">Email</label><br />
-    <input type="text" name="email" 
-    value="<?=clean('email')?>" placeholder="Please enter your email"/></p>
+    <input type="text" 
+           name="email" 
+           id="email"
+           value="<?=clean('email')?>" 
+           placeholder="Please enter your email"/></p>
   <p><label for="password">Password</label><br />
-     <input type="password" name="password" placeholder="Your password" /><br />
+     <input type="password" 
+            name="password" 
+            id="password" 
+            placeholder="Your password" /><br />
   <p><button>Login</button></p>
 </form>
 
