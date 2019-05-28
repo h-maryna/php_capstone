@@ -61,8 +61,9 @@ if ('GET' == $_SERVER['REQUEST_METHOD']) {
 
         $_POST = $stmt->fetch(\PDO::FETCH_ASSOC);
 
-        // var_dump($result);
-        // $_POST = $result;
+       // var_dump($_POST);
+        //die;
+        //$_POST = $result;
     } catch (Exception $e) {
         echo $e->getMessage();
     }
@@ -81,8 +82,8 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
 					weight = :weight,
 					price = :price,
 					delivery_cost = :delivery_cost,
-					roast = : roast;
-					grind = : grind
+					roast = :roast;
+					grind = :grind
 					WHERE
 					product_id = :product_id';
 
@@ -100,11 +101,10 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
                     ':grind' => $_POST['grind'],
                     ':product_id' => $_POST['product_id']
             );
-
         try {
             $stmt = $dbh->prepare($query);
-
             if ($stmt->execute($params)) {
+
                 header('Location:admin_products.php?product_id=' . $_POST['product_id']);
                 die;
             } else {
@@ -133,54 +133,52 @@ include __DIR__ . '/../inc/header.inc.php';
 <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
     <fieldset>
         <legend>Edit Product</legend>
-
         <input type="hidden" name="product_id" 
         value="<?=clean('product_id')?>" />
 
         <p><label for="product_name">Product name</label><br />
             <input type="text" name="product_name" 
-            value="<?=clean('product_name')?>" id="product_name"/></p>
+            value="<?=clean('product_name')?>" /></p>
 
         <p><label for="short_description">Short description</label><br />
             <input type="text" name="short_description" 
-            value="<?=clean('short_description')?>" id="short_description"/></p>
+            value="<?=clean('short_description')?>" /></p>
 
         <p><label for="product_image">Product image</label><br />
             <input type="text" name="product_image" 
-            value="<?=clean('product_image')?>" id="product_image"/></p>
+            value="<?=clean('product_image')?>" /></p>
 
         <p><label for="long_description">Long description</label><br />
             <input type="text" name="long_description" 
-            value="<?=clean('long_description')?>" id="long_description"/></p>
+            value="<?=clean('long_description')?>" /></p>
 
         <p><label for="availability">Availability</label><br />
             <input type="text" name="availability" 
-            value="<?=clean('availability')?>" id="availability"/></p>
+            value="<?=clean('availability')?>" /></p>
 
         <p><label for="country_of_origin">Country of origin</label><br />
             <input type="text" name="country_of_origin" 
-            value="<?=clean('country_of_origin')?>" id="country_of_origin"/></p>
+            value="<?=clean('country_of_origin')?>" /></p>
 
         <p><label for="weight">Weight</label><br />
             <input type="text" name="weight" 
-            value="<?=clean('weight')?>" id="weight"/></p>
+            value="<?=clean('weight')?>" /></p>
 
         <p><label for="price">Price</label><br />
             <input type="text" name="price" 
-            value="<?=clean('price')?>" id="price"/></p>
+            value="<?=clean('price')?>" /></p>
 
         <p><label for="delivery_cost">Delivery cost</label><br />
             <input type="text" name="delivery_cost" 
-            value="<?=clean('delivery_cost')?>" id="delivery_cost"/></p>
+            value="<?=clean('delivery_cost')?>" /></p>
 
         <p><label for="roast">Roast</label><br />
             <input type="text" name="roast" 
-            value="<?=clean('roast')?>" id="roast" /></p>
+            value="<?=clean('roast')?>"  /></p>
 
         <p><label for="grind">Grind</label><br />
             <input type="text" name="grind" 
-            value="<?=clean('grind')?>" id="grind"/></p>
-
+            value="<?=clean('grind')?>" /></p>
         <p><button style="width: 110px">Update Product</button></p>
 
     </fieldset>
