@@ -125,9 +125,8 @@ include __DIR__ . '/../inc/header.inc.php';
 ?>
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?>
 
-      <title><?=$title?></title>
-      <main>
-        <h1><?=$h1?></h1>
+<main>
+    <h1><?=$h1?></h1>
 <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
 <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
 
@@ -140,53 +139,58 @@ include __DIR__ . '/../inc/header.inc.php';
 
         <p><label for="product_name">Product name</label><br />
             <input type="text" name="product_name" 
-            value="<?=clean('product_name')?>" /></p>
+            value="<?=clean('product_name')?>" id="product_name"/></p>
 
         <p><label for="short_description">Short description</label><br />
             <input type="text" name="short_description" 
-            value="<?=clean('short_description')?>" /></p>
+            value="<?=clean('short_description')?>" id="short_description"/></p>
 
         <p><label for="product_image">Product image</label><br />
             <input type="text" name="product_image" 
-            value="<?=clean('product_image')?>" /></p>
+            value="<?=clean('product_image')?>" id="product_image"/></p>
 
         <p><label for="long_description">Long description</label><br />
             <input type="text" name="long_description" 
-            value="<?=clean('long_description')?>" /></p>
+            value="<?=clean('long_description')?>" id="long_description"/></p>
 
         <p><label for="availability">Availability</label><br />
             <input type="text" name="availability" 
-            value="<?=clean('availability')?>" /></p>
+            value="<?=clean('availability')?>" id="availability"/></p>
 
         <p><label for="country_of_origin">Country of origin</label><br />
             <input type="text" name="country_of_origin" 
-            value="<?=clean('country_of_origin')?>" /></p>
+            value="<?=clean('country_of_origin')?>" id="country_of_origin"/></p>
 
         <p><label for="weight">Weight</label><br />
             <input type="text" name="weight" 
-            value="<?=clean('weight')?>" /></p>
+            value="<?=clean('weight')?>" id="weight"/></p>
 
         <p><label for="price">Price</label><br />
             <input type="text" name="price" 
-            value="<?=clean('price')?>" /></p>
+            value="<?=clean('price')?>" id="price"/></p>
 
         <p><label for="delivery_cost">Delivery cost</label><br />
             <input type="text" name="delivery_cost" 
-            value="<?=clean('delivery_cost')?>" /></p>
+            value="<?=clean('delivery_cost')?>" id="delivery_cost"/></p>
 
         <p><label for="roast">Roast</label><br />
             <input type="text" name="roast" 
-            value="<?=clean('roast')?>" /></p>
+            value="<?=clean('roast')?>" id="roast" /></p>
 
         <p><label for="grind">Grind</label><br />
             <input type="text" name="grind" 
-            value="<?=clean('grind')?>" /></p>
+            value="<?=clean('grind')?>" id="grind"/></p>
 
         <p><button style="width: 110px">Update Product</button></p>
 
     </fieldset>
 </form>
 
+</main>    
+<?php
+   /**
+   * include file which will be used as a template for each page as a footer
+   */
+    include __DIR__ . '/../inc/footer.inc.php';
 
-</body>
-</html>
+?>

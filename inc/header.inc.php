@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="utf-8" />
-    
+    <title><?=$title?></title>
     <meta name="description" content="Coffee Time is a coffee shop with variety of coffee drinks and baked goods, located in heart of city Winnipeg, in Downtown, address 123Portage Avenue" />
     <meta name="keyword" content="coffee shop, coffee cafe, cafe downtown winnipeg, coffee and baked goods, winnipeg, places to relax" />    
     
@@ -49,40 +49,77 @@
       <link rel="stylesheet" href="capstone_old_ie.css" type="text/css" />
     <![endif]-->
 
-    <!-- Assigning a new style to coffee_beans_page 
-      -- return changing a style
-    -->
-    <?php if ($title == 'shop_page') {
-         include __DIR__ . '/../inc/embedded.css';
-    }
-    ?>
+<!-- Assigning a new style to shop_page, admin_customers changing a style -->
+
+<?php if ($title == 'shop_page' ||  $title == 'admin_customers_page'){
+     include __DIR__ . '/../inc/embedded.css';
+}
+?>
     
-    <style>
-      /*To make our desktop to be responsible */
-      @media screen and (min-width: 769px){ /*for desctop */
-        #wrapper{
-          width: 960px; 
-          background-color: #fff;
-          position: relative;
-        }
-      }
-      @media screen and (max-width: 768px){ /*for mobile */
-        #wrapper{
-          width: 100%;
-          background-color: #f96;
-          margin: 0 auto; 
-          position: relative;
-        }
-      }
-      @media screen (min-width: 769px) and (max-width: 959px){ /*for devices more than 769px and less 959px */
-        #wrapper{
-          width: 100%;
-          background-color: #fff;
-          position: relative;
-        }
-      }
-      
-    </style>
+<style>
+  /*To make our desktop to be responsible */
+  @media screen and (min-width: 769px){ /*for desktop */
+    #wrapper{
+      width: 960px; 
+      background-color: #fff;
+      position: relative;
+    }
+  }
+  table{  /*CSS style for table */
+    border-spacing: 0px;
+    /*border: 1px solid #fc9;*/
+    border-collapse: collapse;
+    color: #000;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: inline-block;
+    margin: 15px 2px 5px 2px;
+  }
+  caption{  /*CSS style for caption in tables */
+    color: #000;
+    text-align: left;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+  td,th{
+    border: 1px solid #fb6; 
+  }
+  th{ 
+    color: #000;
+    background-color: #fc9;
+    text-align: center;
+  }
+  th img{
+    background-color: #fff;
+  }
+  td{
+    text-align: left;
+    padding: 5px;
+  }
+  h2 p{
+    padding: 5px;
+  }   
+
+  /*@media screen and (max-width: 768px){ /*for mobile */
+   /* #wrapper{
+      width: 100%;
+      background-color: #f96;
+      margin: 0 auto; 
+      position: relative;
+    }
+  }
+  
+  @media screen (min-width: 769px) and (max-width: 959px){ /*for devices more than 769px and less 959px */
+   /* #wrapper{
+      width: 100%;
+      background-color: #fff;
+      position: relative;
+    }
+  } */
+</style>
     <script src="old_ie.js"></script>
   </head> 
     

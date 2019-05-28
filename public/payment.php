@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 namespace classes;
 
@@ -137,117 +138,78 @@ $errors = $v->errors();
 include __DIR__ . '/../inc/header.inc.php';
 
 ?> 
-
+<!-- including flash methods and errors to show messages and errors to the customers -->
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?>
 <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
 
-<title><?=$title?></title>
-<style>
-    table{  /*CSS style for table */
-      border-spacing: 0px;
-      /*border: 1px solid #fc9;*/
-      border-collapse: collapse;
-      color: #000;
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-      display: inline-block;
-      margin: 15px 2px 5px 2px;
-    }
-    caption{  /*CSS style for caption in tables */
-      color: #000;
-      text-align: left;
-      font-weight: 700;
-      font-size: 20px;
-      padding: 5px;
-      margin-bottom: 5px;
-    }
-    td,th{
-      border: 1px solid #fb6; 
-    }
-    th{ 
-      color: #000;
-      background-color: #fc9;
-      text-align: center;
-    }
-    th img{
-      background-color: #fff;
-    }
-    td{
-      text-align: left;
-      padding: 5px;
-    }
-    h2 p{
-      padding: 5px;
-    }
-    .errors{
-      color: #f00;
-    }
-</style>
-      <main>
-        <h1><?=$h1?></h1>
-        <h2>Items in your cart: </h2>
-        <table>
-            <tr>
-              <th>Product name</th>
-              <th>Quantity</th>
-              <th>Subtotal</th>
-              <th>Pst</th>
-              <th>Gst</th>
-            </tr>
-            <div class="cart">
-            <?php foreach ($_SESSION['cart'] as $key => $row) : ?>
-            <tr>
-              <td><?=$row['product_name']?></td>
-              <td><?=$row['qty']?></td>
-              <td><?=getCartSubtotal()?></td>
-              <td><?=getPst()?></td>
-              <td><?=getGst()?></td>
-            </tr>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="1"><strong>Total</strong></td>
-                <td colspan="5" style="text-align: right;"><strong><?='$' . number_format(getTotal(), 1)?></strong></td>
-            </tr>
-            </div>
-        </table>
-<p><a href="shop_page.php">Back to shopping cart</a></p>
+<main>
+  <h1><?=$h1?></h1>
+  <h2>Items in your cart: </h2>
+    <table>
+      <tr>
+        <th>Product name</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th>Pst</th>
+        <th>Gst</th>
+      </tr>
+     
+      <?php foreach ($_SESSION['cart'] as $key => $row) : ?>
+      <tr>
+        <td><?=$row['product_name']?></td>
+        <td><?=$row['qty']?></td>
+        <td><?=getCartSubtotal()?></td>
+        <td><?=getPst()?></td>
+        <td><?=getGst()?></td>
+      </tr>
+      <?php endforeach; ?>
+      <tr>
+          <td><strong>Total</strong></td>
+          <td colspan="4" style="text-align: right;">
+              <strong><?=number_format(getTotal(), 1) . ' CAD'?>
+              </strong>
+          </td>
+      </tr>
+   
+    </table>
+  <p><a href="shop_page.php">Back to shopping cart</a></p>
 
 
-<form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
+  <form method="post" action="<?=filter_input(INPUT_SERVER, 'PHP_SELF', FILTER_SANITIZE_STRING)?>">
    <input type="hidden" name="token" value="<?=getToken()?>" />
    <fieldset>
         <legend>Payment Form</legend>
-          <p><label for="card_name">Name on card</label></p>
+          <p><label for="card_name">Name on card</label>
           <input type="text" id="card_name" name="card_name" value="<?=clean('card_name')?>" placeholder="John More Doe">
           &nbsp;<?=(!empty($errors['card_name'])) ?
             "<span class='errors'>{$errors['card_name']}</span>" : '' ?></p>
 
-          <p><label for="billing_address">Billing address</label></p>
+          <p><label for="billing_address">Billing address</label>
           <input type="text" id="billing_address" name="billing_address" value="<?=clean('billing_address')?>" placeholder="Billing Address">
           &nbsp;<?=(!empty($errors['billing_address'])) ?
             "<span class='errors'>{$errors['billing_address']}</span>" : '' ?></p>
 
-          <p><label for="credit_card">Credit card number</label></p>
+          <p><label for="credit_card">Credit card number</label>
           <input type="text" id="credit_card" name="credit_card" value="<?=clean('credit_card')?>" placeholder="1111-2222-3333-4444" minlength="16" maxlength="19">
           &nbsp;<?=(!empty($errors['credit_card'])) ?
             "<span class='errors'>{$errors['credit_card']}</span>" : '' ?></p>
 
-          <p><label for="expmonth">Expiration date</label></p>
-          <input type="month" id="expmonth" name="expmonth" placeholder="mm/yyyy">
+          <p><label for="expmonth">Expiration date</label>
+          <input type="month" id="expmonth" name="expmonth">
           &nbsp;<?=(!empty($errors['expmonth'])) ?
             "<span class='errors'>{$errors['expmonth']}</span>" : '' ?></p>
 
-          <p><label for="cvv">CVV</label></p>
+          <p><label for="cvv">CVV</label>
           <input type="text" id="cvv" name="cvv" placeholder="352" maxlength="3" minlength="3">
           &nbsp;<?=(!empty($errors['cvv'])) ?
             "<span class='errors'>{$errors['cvv']}</span>" : '' ?></p>
     </fieldset>
             <p><button style="width: 120px">Complete Purchase</button></p>
 
-</form>
+  </form>
 
 
+</main>
 
 <?php
 /**
@@ -256,5 +218,3 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-</body>
-</html>

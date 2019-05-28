@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -77,54 +78,22 @@ try {
     die;
 }
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
+
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-  <title><?=$title?></title>
-  <style>
-     table{  /*CSS style for table */
-      border-spacing: 0px;
-      border-collapse: collapse;
-      color: #000;
-      width: 960px;
-      height: auto;
-      border-radius: 15px;
-      display: inline-block;
-      margin: 15px 2px 5px 2px;
-    }
-    caption{  /*CSS style for caption in tables */
-      color: #000;
-      text-align: left;
-      font-weight: 700;
-      font-size: 20px;
-      padding: 5px;
-      margin-bottom: 5px;
-    }
-    td,th{
-      border: 1px solid #fb6; 
-    }
-    th{ 
-      color: #000;
-      background-color: #fc9;
-      text-align: center;
-    }
-    th img{
-      background-color: #fff;
-    }
-    td{
-      text-align: left;
-      padding: 5px;
-    }
-    h2 p{
-      padding: 5px;
-    } 
-  </style>
-  <main>
+<main>
       
-    <h1><?=$h1?></h1> 
+  <h1><?=$h1?></h1> 
 
-<div id="admin_orders_page">
-    <?php include __DIR__ . '/../inc/admin.inc.php'; ?>  
+  <div id="admin_orders_page">
+
+    <!-- including file which will be used as a template for admin pages -->
+  <?php include __DIR__ . '/../inc/admin.inc.php'; ?>  
+
   <div id="search">
       <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
           <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>
@@ -132,26 +101,35 @@ include __DIR__ . '/../inc/header.inc.php';
   </div>
  
   <!-- Only show this line if $_GET['s'] is set 
-    -- That is, only show this block if there is a search -->
+    That is, only show this block if there is a search -->
     <?php if (!empty($_GET['s'])) : ?>
-  <h3>Your search for <span class="search"><?=e($_GET['s'])?></span> returned <?=count($results)?> result(s)</h3>
+        <h3>Your search for <span class="search"><?=e($_GET['s'])?>
+        </span> returned <?=count($results)?> result(s)</h3>
 
     <?php endif; ?>
 
   <!-- End if -->
 
-  <p><a href="admin_add_order.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
-                                                    padding-bottom: 2px; border-radius: 10px; font-size: 18px;
-                                                    color: #000; text-decoration: none; padding-right: 10px;">Add</a></p>
+  <p><a href="admin_add_order.php" style="width: 75px; 
+                                          background-color: #fc9; 
+                                          padding-left: 10px; 
+                                          padding-top: 2px;
+                                          padding-bottom: 2px; 
+                                          border-radius: 10px; 
+                                          font-size: 18px;
+                                          color: #000;
+                                          text-decoration: none;
+                                          padding-right: 10px;">Add</a></p>
   <table>
     <tr>
       <th>Sub total</th>
       <th>GST</th>
       <th>PST</th>
       <th>Total</th>
-      <th>Custome Id</th>
+      <th>Customer Id</th>
       <th>CC num</th>
       <th>Auth code</th>
+      <th></th>
     </tr>
     <?php foreach ($results as $key => $row) : ?>
     <tr>
@@ -162,19 +140,24 @@ include __DIR__ . '/../inc/header.inc.php';
       <td><?=$row['customer_id']?></td>
       <td><?=$row['cc_num']?></td>
       <td><?=$row['auth_code']?></td>
-      <td><form action="" method="post">
-            <input type="hidden" name="edit" value="edit" />
-            <button>delete</button>
-          </form>
-          <p><a href="admin_update_orders.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
-                                                    padding-bottom: 2px; border-radius: 10px; font-size: 18px;
-                                                    color: #000; text-decoration: none; padding-right: 10px;">edit</a></p>    
+      <td><button>delete</button>
+          <p><a href="admin_update_orders.php" style="width: 75px; 
+                                                      background-color: #fc9; 
+                                                      padding-left: 10px; 
+                                                      padding-top: 2px;
+                                                      padding-bottom: 2px;
+                                                      border-radius: 10px; 
+                                                      font-size: 18px;
+                                                      color: #000; 
+                                                      text-decoration: none; 
+                                                      padding-right: 10px;">edit</a></p>    
       </td>
     </tr>
     <?php endforeach; ?>
   </table>
 
-</div>     
+  </div>
+</main>    
 <?php
 /**
  * include file which will be used as a template for each page as a  footer
@@ -182,7 +165,3 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-    </div>
-  </body>
-
-</html>

@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 namespace classes;
 
@@ -107,8 +108,11 @@ $errors = $v->errors();
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
+
+<!-- include functions for showing messages to the customers -->
+
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?>
-  <title><?=$title?></title>
+
   <main>
     <h1><?=$h1?></h1>
 
@@ -125,14 +129,12 @@ include __DIR__ . '/../inc/header.inc.php';
 </form>
 
 
+</main>
+<?php
+/**
+* include file which will be used as a template for each page as a footer
+*/
+include __DIR__ . '/../inc/footer.inc.php';
 
-</body>
-  
-    <?php
-  /**
-   * include file which will be used as a template for each page as a footer
-   */
-    include __DIR__ . '/../inc/footer.inc.php';
+?>    
 
-    ?>    
-</html>

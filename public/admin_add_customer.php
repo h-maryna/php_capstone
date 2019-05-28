@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -40,20 +41,27 @@ $h1 = 'Page is under construction!';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?> 
+<main>
+      <h1><?=$h1?></h1>
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?> 
-  <title><?=$title?></title>
-  <main>
 
-<div id="admin_add_customer">
-<?php include __DIR__ . '/../inc/admin.inc.php'; ?>
+  <div id="admin_adding_customer">
+  <!-- include file which will be used as a template for each page as a header -->
+ 
+  <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
 
-<img src="/images/construction.jpg" width="800px" height="550px" style="margin-left: 10px; margin-top: 25px">
-  
-    <?php
+    <img src="/images/construction.jpg" width="800" height="550" 
+                                        style="margin-left: 10px; margin-top: 25px"
+                                        alt="page is under construction" />
+
+  </div>
+</main>
+
+<?php
   /**
    * include file which will be used as a template for each page as a footer
    */
     include __DIR__ . '/../inc/footer.inc.php';
 
-    ?>    
-</html>
+?>    
+

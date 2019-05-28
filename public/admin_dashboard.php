@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -66,15 +67,15 @@ $dataPoints = array(
  */
 include __DIR__ . '/../inc/header.inc.php';
 ?>
-      <title><?=$title?></title>
-      <main>
-        <h1><?=$h1?></h1>
-        <div id="admin_dashboard_page">
-        <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
+  <main>
+      <h1><?=$h1?></h1>
+      <div id="admin_dashboard_page">
+
+      <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
     <div id="chartContainer" style="height: 370px; width: 75%;"></div>
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-</div>
+
 
   <h2>Some statistics about our orders</h2>
   <ul>
@@ -100,8 +101,8 @@ include __DIR__ . '/../inc/header.inc.php';
 
     <?php endforeach; ?>
   </ul>
-     
-
+ </div>   
+</main>
 <?php
 /**
  * include file which will be used as a template for each page as a  footer
@@ -109,7 +110,5 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-    </div>
-  </body>
 
-</html>
+

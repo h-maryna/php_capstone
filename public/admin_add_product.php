@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -27,12 +28,12 @@ if(!$_SESSION['admin']  || !$_SESSION['logged_in'])
  /**
   * assigning a new variable for title
   */
-$title = 'shop_page';
+$title = 'admin_add_product';
 
 /**
  * assigning a new variable for h1
  */
-$h1 = 'Coffee beans list';
+$h1 = 'Add a new product';
 
 // errors flag
 $errors = [];
@@ -56,9 +57,9 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
             // create query
             $query = "INSERT INTO
 					   product
-					   (product_name, short_description, country_of_origin)
+					   (product_name, short_description, long_description, country_of_origin, weight, price, roast)
 					   VALUES
-					   (:product_name, :short_description, :country_of_origin)";
+					   (:product_name, :short_description, :long_description, :country_of_origin, :weight, :price, :roast)";
             
             // prepare query
             $stmt = $dbh->prepare($query);
@@ -66,7 +67,12 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
             $params = array(
                 ':product_name' => $_POST['product_name'],
                 ':short_description' => $_POST['short_description'],
-                ':country_of_origin' => $_POST['country_of_origin']
+                ':long_description' => $_POST['long_description'],
+                ':country_of_origin' => $_POST['country_of_origin'],
+                ':weight' => $_POST['weight'],
+                ':price' => $_POST['price'],
+                ':roast' => $_POST['roast'],
+                
             );
 
             // execute query
@@ -74,62 +80,85 @@ if ('POST' == $_SERVER['REQUEST_METHOD']) {
 
             $author_id = $dbh->lastInsertId();
 
-            //header('Location: 05_author_detail.php?author_id=' . $author_id);
-            //exit;
+            header('Location: admin_products.php');
+            exit;
         } catch (Exception $e) {
             die($e->getMessage());
         }
     } // end if
 }// end IF POST
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
 <?php include __DIR__ . '/../inc/flash.inc.php'; ?>
-    <title>Add Product</title>
-    <style>
-        .errors {
-            color: #990000;
-        }
-    </style>
-</head>
-<body>
-
-<h1>Add a new product</h1>
+<main>
+  <h1><?=$h1?></h1>
 
 
 
-<form action="<?=$_SERVER['PHP_SELF'] ?>" method="post" novalidate>
+    <form action="<?=$_SERVER['PHP_SELF'] ?>" method="post" novalidate>
 
-    <fieldset>
-        <legend>Add New Product</legend>
+        <fieldset>
+            <legend>Add New Product</legend>
 
-        <p>
-        <label for="product_name">Product name</label><br />
-        <input type="text" name="product_name" id="product_name" 
-        value="<?=clean('product_name')?>" />
-        </p>
+            <p>
+            <label for="product_name">Product name</label><br />
+            <input type="text" name="product_name" id="product_name" 
+            value="<?=clean('product_name')?>" />
+            </p>
 
-        <p>
-        <label for="short_description">Short description</label><br />
-        <input type="text" name="short_description" id="short_description" 
-        value="<?=clean('short_description')?>" />
-        </p>
+            <p>
+            <label for="short_description">Short description</label><br />
+            <input type="text" name="short_description" id="short_description" 
+            value="<?=clean('short_description')?>" />
+            </p>
 
-        <p>
-        <label for="country_of_origin">Country</label><br />
-        <input type="text" name="country_of_origin" id="country_of_origin" value="<?=clean('country_of_origin')?>" />
-        </p>
+            <p>
+            <label for="long_description">Long description</label><br />
+            <input type="text" name="long_description" id="long_description" 
+                   value="<?=clean('long_description')?>" />
+            </p>
 
-        <p>
-        <button>Add</button>
-        </p>
+            <p>
+            <label for="country_of_origin">Country</label><br />
+            <input type="text" name="country_of_origin" id="country_of_origin" 
+                   value="<?=clean('country_of_origin')?>" />
+            </p>
 
-    </fieldset>
+            <p>
+            <label for="weight">Weight</label><br />
+            <input type="text" name="weight" id="weight" 
+            value="<?=clean('weight')?>" />
+            </p>
 
-</form>
+            
+            <p>
+            <label for="price">Price</label><br />
+            <input type="text" name="price" id="price" 
+            value="<?=clean('price')?>" />
+            </p>
+
+            <p>
+            <label for="roast">Roast</label><br />
+            <input type="text" name="roast" id="roast" 
+            value="<?=clean('roast')?>" />
+            </p>
+
+            <p>
+            <button>Add</button>
+            </p>
+
+        </fieldset>
+
+    </form>
 
 <p><a href="admin_products.php">Go back to check products</a></p>
+
+</main>
 <?php
 /**
  * include file which will be used as a template for each page as a  footer
@@ -137,7 +166,3 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-    </div>
-  </body>
-
-</html>

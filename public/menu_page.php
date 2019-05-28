@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -33,7 +34,6 @@ $h1 = 'Coffee Time Menu';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-    <title><?=$title?></title>
     <main>
       <h1><?=$h1?></h1>
       <fieldset id="menu">
@@ -93,10 +93,6 @@ include __DIR__ . '/../inc/header.inc.php';
    /**
    * include file which will be used as a template for each page as a footer
    */
-    include __DIR__ . '/../inc/header.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-    </div>
-  </body>
-
-</html>

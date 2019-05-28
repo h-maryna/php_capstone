@@ -230,7 +230,7 @@
       from {left: 0px;}
       to {left: 700px;}
     }
-
+    
     #cart{
       width: 150px;
     }
@@ -240,7 +240,7 @@
       display: block;
       background-color: #fff;
       line-height: 1.6em;
-      min-height: 1100px;
+      min-height: 600px;
       text-align: left;
       z-index: 10;
       margin: 0 auto;

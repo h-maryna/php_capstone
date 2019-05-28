@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -92,10 +93,15 @@ try {
     die;
 }
 
+/**
+ * include file which will be used as a template for each page as a header
+ */
 include __DIR__ . '/../inc/header.inc.php';
 ?>
-<?php include __DIR__ . '/../inc/flash.inc.php'; ?>
-      <title><?=$title?></title>
+
+<!-- including flash method to show messages to the customer/admin -->
+<?php include __DIR__ . '/../inc/flash.inc.php'; ?> 
+
       <main>
         <h1><?=$h1?></h1>
   <div id="admin_products_page">
@@ -113,12 +119,14 @@ include __DIR__ . '/../inc/header.inc.php';
           </form>
       </div>
 
-  <!-- Only show this line if $_GET['s'] is set 
-    -- That is, only show this block if there is a search -->
-    <?php if (!empty($_GET['s'])) : ?>
-  <h3>Your search for <span class="search"><?=e($_GET['s'])?></span> returned <?=count($results)?> result(s)</h3>
+<!-- Only show this line if $_GET['s'] is set 
+     That is, only show this block if there is a search -->
+  <?php if (!empty($_GET['s'])) : ?>
 
-    <?php endif; ?>
+  <h3>Your search for <span class="search"><?=e($_GET['s'])?>
+                    </span> returned <?=count($results)?> result(s)</h3>
+
+  <?php endif; ?>
 
   <!-- End if -->
   <p><a href="admin_add_product.php" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
@@ -138,7 +146,9 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php foreach ($results as $key => $row) : ?>
     <tr>
       <td><a href="list_view.php?product_id=<?=$row['product_id']?>"><?=$row['product_name']?></a></td>
-      <td><img src = '/images/orders/<?=$row['product_image']?>' style="width: 100px; height: 75px;"/></td>
+      <td><img src = "/images/orders/<?=$row['product_image']?>" 
+               alt="<?=$row['product_name']?>" 
+               style="width: 100px; height: 75px;"/></td>
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>
       <td><?=$row['grind']?></td>
@@ -148,9 +158,17 @@ include __DIR__ . '/../inc/header.inc.php';
             <input type="hidden" name="product_id" value="<?=$row['product_id']?>" />
             <button>delete</button>
           </form>
-      <p><a href="admin_update_products.php?product_id=<?=$row['product_id']?>" style="width: 75px; background-color: #fc9; padding-left: 10px; padding-top: 2px;
-                                                    padding-bottom: 2px; border-radius: 10px; font-size: 18px;
-                                                    color: #000; text-decoration: none; padding-right: 10px;">edit</a></p>    
+      <p><a href="admin_update_products.php?product_id=<?=$row['product_id']?>" 
+            style="width: 75px; 
+                   background-color: #fc9;
+                   padding-left: 10px; 
+                   padding-top: 2px;
+                   padding-bottom: 2px; 
+                   border-radius: 10px; 
+                   font-size: 18px;
+                   color: #000; 
+                   text-decoration: none;
+                   padding-right: 10px;">edit</a></p>    
          
       </td>
     </tr>
@@ -198,7 +216,3 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-    </div>
-  </body>
-
-</html>

@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -32,20 +33,9 @@ $h1 = 'Our Atmosphere';
  */
 include __DIR__ . '/../inc/header.inc.php';
 
-?>
-  <title><?=$title?></title>  
+?> 
   <main>
-    <!--<div id="mobile_img"><img src="images/mobile_image.jpg" style="width:100%" alt="cup with hot coffee and cookies" /></div>
-    <div id="inside"><img src="images/design_inside_465.jpg" 
-                          alt="Coffee Shop Inside" 
-                          width="465"
-                          height="310"/>
-    </div>      
-    <div id="outside"><img src="images/design_outside_465.jpg" 
-                           alt="Coffee Shop Outside"
-                           width="465"
-                          height="310"/>
-    </div> -->
+
 <div id="main_coffee_cup">
   <div id="letters">
     <div class="1">Come for</div>
@@ -65,10 +55,6 @@ include __DIR__ . '/../inc/header.inc.php';
       you will always be offered a cup of freshly roasted coffee with our 
       delishious baked goods.</p>
    
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2570.206450323106!2d-97.1376933486819!3d49.89492727930149!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52ea715b2c44c293%3A0xa62adcaf49a46bd5!2s123+Portage+Ave+E%2C+Winnipeg%2C+MB!5e0!3m2!1sen!2sca!4v1544223487033" 
-            style="border:0"
-            allowfullscreen>
-    </iframe>
     <h2>Location</h2>
       
     <p>Coffee Time is located on the east side of Portage Avenue at:</p>
@@ -97,15 +83,12 @@ include __DIR__ . '/../inc/header.inc.php';
     </div>
   </main>
   
-    <?php
+  <?php
 
- /**
- * include file which will be used as a template for each page as a footer
- */
-    include __DIR__ . '/../inc/footer.inc.php';
+/**
+* include file which will be used as a template for each page as a footer
+*/
+  include __DIR__ . '/../inc/footer.inc.php';
 
-    ?>
-  </div>
-</body>
-
-</html>
+  ?>
+ 

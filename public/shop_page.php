@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -72,29 +73,28 @@ try {
  */
 include __DIR__ . '/../inc/header.inc.php';
 ?>
-      <title><?=$title?></title>
-      <main>
-        <h1><?=$h1?></h1>
-        <div id="cart">
-              <form action="view_cart.php" method="post">
-                <input type="submit" name="action" value="View Cart" /><?=getCart()?>
-              </form>
-        </div>
-        <h2>Types of roast</h2>
+<main>
+  <h1><?=$h1?></h1>
+  <div id="cart">
+        <form action="view_cart.php" method="post">
+          <input type="submit" name="action" value="View Cart" /><?=getCart()?>
+        </form>
+  </div>
+  <h2>Types of roast</h2>
 
-        <ul>
-          <li><a href="shop_page.php?roast=roasted">Roasted</a></li>
-          <li><a href="shop_page.php?roast=unroasted">Unroasted</a></li>  
-        </ul>
+  <ul>
+    <li><a href="shop_page.php?roast=roasted">Roasted</a></li>
+    <li><a href="shop_page.php?roast=unroasted">Unroasted</a></li>  
+  </ul>
 
-      <div id="search">
-          <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
-              <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>
-          </form>
-      </div>
+<div id="search">
+    <form action="<?=basename($_SERVER['PHP_SELF'])?>" method="get">
+        <p><input type="text" name="s" placeholder="search" /></p><button>Search</button>
+    </form>
+</div>
 
   <!-- Only show this line if $_GET['s'] is set 
-    -- That is, only show this block if there is a search -->
+    That is, only show this block if there is a search -->
     <?php if (!empty($_GET['s'])) : ?>
   <h3>Your search for <span class="search"><?=e($_GET['s'])?></span> returned <?=count($results)?> result(s)</h3>
 
@@ -114,8 +114,8 @@ include __DIR__ . '/../inc/header.inc.php';
     </tr>
     <?php foreach ($results as $key => $row) : ?>
     <tr>
-      <td><a href="list_view.php?product_id=<?=$row['product_id']?> style=''"><?=$row['product_name']?></a></td>
-      <td><img src = '/images/orders/<?=$row['product_image']?>'style="width: 100px; height: 75px;"/></td>
+      <td><a href="list_view.php?product_id=<?=$row['product_id']?>" style=''><?=$row['product_name']?></a></td>
+      <td><img src = '/images/orders/<?=$row['product_image']?>' alt="<?=$row['product_name']?>" style="width: 100px; height: 75px;"/></td>
       <td><?=$row['country_of_origin']?></td>
       <td><?=$row['roast']?></td>
       <td><?=$row['grind']?></td>
@@ -178,7 +178,3 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-    </div>
-  </body>
-
-</html>

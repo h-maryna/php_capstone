@@ -89,38 +89,41 @@ $query3 = "SELECT first_name, last_name, email, street, city, postal_code, provi
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-
-    <title><?=$title?></title>
-
-    <main><!--Main page -->
-      <h1><?=$h1?></h1>
+<main><!--Main page -->
+  <h1><?=$h1?></h1>
     <!-- List to show some customer's info -->
-      <h2 style="color: #fa9;">Your order has been processed and this is your official invoice:</h2>
-      <div id="invoice" style="text-align: left; text-decoration: underline; font-size: 26px; font-style: italic; background-color: #fc9; padding: 15px; width: 120px;" >INVOICE</div>
-     <ul>
+    <h2 style="color: #fa9;">Your order has been processed and this is your official invoice:</h2>
+    <div id="invoice" style="text-align: left; 
+                             text-decoration: underline; 
+                             font-size: 26px; 
+                             font-style: italic; 
+                             background-color: #fc9; 
+                             padding: 15px; 
+                             width: 120;" >INVOICE</div>
+      <ul>
         <?php foreach($order as $key => $value) : ?>
-          <?php if($key == 'created_at') : ?>
-            <li><strong>Invoive Date/Time</strong> : <?=$value?></li>
-          <?php elseif ($key == 'order_id') :?>
-            <li><strong>Invoice Number</strong> : <?=$value?></li>
-          <?php elseif ($key == 'total') :?>
-            <li><strong>Paid Amount</strong> : <?=number_format($value, 1)?> CAD</li>
-          <?php endif; ?>
-    
-         <?php endforeach; ?>
-
-      <?php foreach($customer as $key => $value) : ?>
-       <?php if ($key == 'first_name') :?>
-        <li><strong>Customer First Name</strong> : <?=$value?></li>
-      <?php elseif ($key == 'last_name') :?>
-        <li><strong>Customer Last Name</strong> : <?=$value?></li>
-      <?php elseif ($key == 'email') :?>
-        <li><strong>Customer Email</strong> : <?=$value?></li>
+            <?php if($key == 'created_at') : ?>
+              <li><strong>Invoive Date/Time</strong> : <?=$value?></li>
+            <?php elseif ($key == 'order_id') :?>
+              <li><strong>Invoice Number</strong> : <?=$value?></li>
+            <?php elseif ($key == 'total') :?>
+              <li><strong>Paid Amount</strong> : <?=number_format($value, 1)?> CAD</li>
+            <?php endif; ?>
       
-      <?php endif; ?>
+           <?php endforeach; ?>
 
-    <?php endforeach; ?>
-  </ul>
+           <?php foreach($customer as $key => $value) : ?>
+           <?php if ($key == 'first_name') :?>
+            <li><strong>Customer First Name</strong> : <?=$value?></li>
+          <?php elseif ($key == 'last_name') :?>
+            <li><strong>Customer Last Name</strong> : <?=$value?></li>
+          <?php elseif ($key == 'email') :?>
+            <li><strong>Customer Email</strong> : <?=$value?></li>
+          
+           <?php endif; ?>
+
+        <?php endforeach; ?>
+      </ul>
 
   <!-- table to show some info about customer's order -->
    <table>
@@ -150,18 +153,17 @@ include __DIR__ . '/../inc/header.inc.php';
 </table>
 
 
-  <img src="/images/thankyou.png" width="auto">
+  <img src="/images/thankyou.png" width="960" height="550" alt="Thank you for shopping with us!">
 
     <p><a href="shop_page.php">Continue to shopping</a></p>
 
 
-</body>
+</main>
   
-    <?php
-  /**
-   * include file which will be used as a template for each page as a footer
-   */
-    include __DIR__ . '/../inc/footer.inc.php';
+<?php
+/**
+* include file which will be used as a template for each page as a footer
+*/
+include __DIR__ . '/../inc/footer.inc.php';
 
-    ?>    
-</html>
+?>    

@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 namespace classes;
 
@@ -116,11 +117,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  */
 include __DIR__ . '/../inc/header.inc.php';
 ?>
-    <title><?=$title?></title>
-    <main><!--Main page -->
-      <h1><?=$h1?></h1>
-    <?php include __DIR__ . '/../lib/errors.inc.php'; ?>
-  
+<main><!--Main page -->
+  <h1><?=$h1?></h1>
+<?php include __DIR__ . '/../lib/errors.inc.php'; ?>
+
 
 
 <?php if (!$success) : ?>
@@ -129,38 +129,38 @@ include __DIR__ . '/../inc/header.inc.php';
 <fieldset>
   <legend>Registration Form</legend>
   <p><label for="first_name">First Name</label><br />
-    <input type="text" name="first_name" 
+    <input type="text" name="first_name" id="first_name"
     value="<?=clean('first_name')?>" />
     &nbsp;<?=(!empty($errors['first_name'])) ?
       "<span class='errors'>{$errors['first_name']}</span>" : '' ?></p>
 
   <p><label for="last_name">Last Name</label><br />
     <input type="text" name="last_name"
-    value="<?=clean('last_name')?>" />
+    value="<?=clean('last_name')?>" id="last_name"/>
     &nbsp;<?=(!empty($errors['last_name'])) ?
       "<span class='errors'>{$errors['last_name']}</span>" : '' ?></p>
 
   <p><label for="age">Age</label><br />
-    <input type="text" name="age"
+    <input type="text" name="age" id="age"
     value="<?=clean('age')?>" />
      &nbsp;<?=(!empty($errors['age'])) ?
       "<span class='errors'>{$errors['age']}</span>" : '' ?></p>
 
   <p><label for="street">Street</label><br />
-    <input type="text" name="street" 
+    <input id="street" type="text" name="street" 
     value="<?=clean('street')?>" />
      &nbsp;<?=(!empty($errors['street'])) ?
       "<span class='errors'>{$errors['street']}</span>" : '' ?></p>
 
   <p><label for="city">City</label><br />
     <input type="text" name="city" 
-    value="<?=clean('city')?>" />
+    value="<?=clean('city')?>" id="city"/>
      &nbsp;<?=(!empty($errors['city'])) ?
       "<span class='errors'>{$errors['city']}</span>" : '' ?></p>
 
   <p><label for="postal_code">Postal Code</label><br />
     <input type="text" name="postal_code"
-    value="<?=clean('postal_code')?>" />
+    value="<?=clean('postal_code')?>" id="postal_code"/>
     &nbsp;<?=(!empty($errors['postal_code'])) ?
       "<span class='errors'>{$errors['postal_code']}</span>" : '' ?></p>
 
@@ -188,29 +188,29 @@ include __DIR__ . '/../inc/header.inc.php';
 
   <p><label for="country">Country</label><br />
     <input type="text" name="country"
-    value="<?=clean('country')?>" />
+    value="<?=clean('country')?>" id="country"/>
     &nbsp;<?=(!empty($errors['country'])) ?
       "<span class='errors'>{$errors['country']}</span>" : '' ?></p>
 
   <p><label for="phone">Phone</label><br />
     <input type="text" name="phone"
-    value="<?=clean('phone')?>" />
+    value="<?=clean('phone')?>" id="phone"/>
     &nbsp;<?=(!empty($errors['phone'])) ?
       "<span class='errors'>{$errors['phone']}</span>" : '' ?></p>
 
   <p><label for="email">Email</label><br />
     <input type="text" name="email" 
-    value="<?=clean('email')?>" />
+    value="<?=clean('email')?>" id="email"/>
     &nbsp;<?=(!empty($errors['email'])) ?
       "<span class='errors'>{$errors['email']}</span>" : '' ?></p>
 
   <p><label for="password">Password</label><br />
-    <input type="password" name="password" />
+    <input type="password" name="password" id="password"/>
     &nbsp;<?=(!empty($errors['password'])) ?
       "<span class='errors'>{$errors['password']}</span>" : '' ?></p>
 
   <p><label for="conf_passw">Confirm password</label><br />
-    <input type="password" name="conf_passw" />
+    <input type="password" name="conf_passw" id="conf_passw"/>
     &nbsp;<?=(!empty($errors['conf_passw'])) ?
       "<span class='errors'>{$errors['conf_passw']}</span>" : '' ?></p>
 
@@ -240,13 +240,12 @@ include __DIR__ . '/../inc/header.inc.php';
 
 </pre>
 
-</body>
-  
-    <?php
-  /**
-   * include file which will be used as a template for each page as a footer
-   */
-    include __DIR__ . '/../inc/footer.inc.php';
+</main> 
+<?php
+/**
+* include file which will be used as a template for each page as a footer
+*/
+include __DIR__ . '/../inc/footer.inc.php';
 
-    ?>    
-</html>
+?>    
+

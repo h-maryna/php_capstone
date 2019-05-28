@@ -3,9 +3,9 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
-
 namespace classes;
 
 use classes\Ilogger;
@@ -53,12 +53,10 @@ include __DIR__ . '/../inc/header.inc.php';
 
 ?>
 
-  <title><?=$title?></title>
-
-  <main>
-    <h1><?=$h1?></h1>
+<main>
+  <h1><?=$h1?></h1>
 <?php include __DIR__ . '/../inc/admin.inc.php'; ?>
-<div id="admin_page" style="background-color: #fff; margin-left: 150px" >
+<div style="background-color: #fff; margin-left: 150px" >
 
 <?php if ($result) : ?>
 <ul>
@@ -72,13 +70,14 @@ include __DIR__ . '/../inc/header.inc.php';
   <h2>Sorry ther is an error in your events</h2>
 <?php endif; ?>
 </div>
-</body>
-  
-    <?php
-  /**
-   * include file which will be used as a template for each page as a footer
-   */
-    include __DIR__ . '/../inc/footer.inc.php';
 
-    ?>    
-</html>
+</main> 
+ 
+<?php
+/**
+* include file which will be used as a template for each page as a footer
+*/
+include __DIR__ . '/../inc/footer.inc.php';
+
+?>    
+

@@ -3,7 +3,8 @@
  * WDD4
  * PHP CAPSTONE PROJECT
  * Instructor Steve George
- * Maryna Haidashevska
+ * Author: Maryna Haidashevska
+ * Date: May 28, 2019
  */
 
 namespace classes;
@@ -57,19 +58,17 @@ $stmt->execute($params);
 // fetch your result
 $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
+
+/**
+ * include file which will be used as a template for each page as a header
+ */
+
 include __DIR__ . '/../inc/header.inc.php';
 
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <title>Product Detail</title>
-</head>
-<body>
-
-    <p><a href="shop_page.php">Back to product list</a></p>
+?>
+<main>
+    <h1><?=$h1?></h1>
+<p><a href="shop_page.php">Back to product list</a></p>
 
 
 
@@ -81,9 +80,11 @@ include __DIR__ . '/../inc/header.inc.php';
         <li><strong><?=$key?></strong>: <?=($value) ? 'yes' : 'no' ?></li>
 
     <?php elseif ($key == 'product_image') :?>
-        <li><strong><?=$key?></strong>: <img src = <?="/images/orders/{$value}" ?> width="350" height="300" align="right" />
-        </li>
-
+        <img src = '<?="/images/orders/{$value}" ?>' 
+             width="400" 
+             height="300" 
+             align="right" 
+             alt="<?=$result['product_name']?>"/>
 
     <?php elseif ($key == 'product_id') : ?>
     <?php else : ?>
@@ -93,7 +94,7 @@ include __DIR__ . '/../inc/header.inc.php';
 <?php endforeach; ?>
 </ul>
 
-
+</main>
 <?php
 /**
  * include file which will be used as a template for each page as a  footer
@@ -101,6 +102,3 @@ include __DIR__ . '/../inc/header.inc.php';
     include __DIR__ . '/../inc/footer.inc.php';
 
 ?>
-
-</body>
-</html>
