@@ -130,7 +130,8 @@
     #admin_products_page div#nav_admin nav ul li a.page13,
     #admin_customers_page div#nav_admin nav ul li a.page14,
     #admin_orders_page div#nav_admin nav ul li a.page15,
-    #admin_add_product div#nav_admin nav ul li a.page16{
+    #admin_add_product div#nav_admin nav ul li a.page16
+    {
       background-color: #f00;
       padding: 10px;
       margin-left: 5px;
@@ -189,7 +190,9 @@
     body#register_page div#wrapper header nav ul#navlist li a.page6,
     body#profile_page div#wrapper header nav ul#navlist li a.page7,
     body#admin_page div#wrapper header nav ul#navlist li a.page9,
-    body#payment div#wrapper header nav ul#navlist li a.page8{
+    body#payment div#wrapper header nav ul#navlist li a.page8,
+    body#calendar div#wrapper header nav ul#navlist li a.page20
+    {
       background-color: #c60;
     }
 
@@ -197,7 +200,7 @@
       background-color: #000;
     }
 
-    div#letters{
+    div#letters #letters2{
       top: 100px;
       width: 150px;
       height: 0px;
@@ -213,11 +216,11 @@
 
     /* Safari 4.0 - 8.0 */
     
-    .1 .2 .3 .4 {-webkit-animation-timing-function: ease-in;}
+    .1 .2 .3 .4 .11 .22{-webkit-animation-timing-function: ease-in;}
     
 
     /* Standard syntax */
-    .1 .2 .3 .4{animation-timing-function: ease-in;}
+    .1 .2 .3 .4 .11 .22{animation-timing-function: ease-in;}
 
     /* Safari 4.0 - 8.0 */
     @-webkit-keyframes mymove {

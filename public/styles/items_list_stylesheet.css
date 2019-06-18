@@ -1,0 +1,36 @@
+/* CSS fo the PopUp window */
+body{
+  background-color: #ff9;
+  font-family: "Bradley Hand ITC", fantasy, sans-serif;
+}
+
+h1{
+  color: #930;
+  font-weight: 800;
+}
+table{  /*CSS style for table */
+  border-spacing: 0px;
+  border-collapse: collapse;
+  color: #000;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  display: inline-block;
+}
+td,th{
+  border: 1px solid #f60; 
+  padding: 6px;
+}
+th{ 
+  color: #000;
+  background-color: #fc9;
+  text-align: center;
+}
+td{
+  text-align: left;
+  padding: 5px;
+}
+p .deleted{
+  color: #c00;
+  padding: 5px;
+}

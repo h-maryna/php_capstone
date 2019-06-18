@@ -147,6 +147,7 @@
             <?php if (empty($_SESSION['logged_in'])) : ?>
             <li><a href="login_page.php" class="page5">LogIn</a></li>
             <li><a href="register_page.php" class="page6">Register</a></li>
+            <li><a href="calendar.php" class="page20">Projects</a></li>
             <?php else : ?>
                 <?php if (!empty($_SESSION['admin'])) :?>
               <li><a href="admin_dashboard.php" class="page10" style="background-color: #000">Admin Profile</a></li>
