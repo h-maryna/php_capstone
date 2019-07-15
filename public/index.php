@@ -43,9 +43,9 @@ include __DIR__ . '/../inc/header.inc.php';
     <div class="3">stay for</div>
     <div class="4">the cookies</div>
   </div>  
-    
+ </div>   
   <img src="images/home_coffee_cup.jpg" alt="coffee cup with smeling coffee" width="960" style="border-radius: 15px" />
-</div>
+
   
     <div id="home_page">
     <h1><?=$h1?></h1>

@@ -200,7 +200,7 @@
       background-color: #000;
     }
 
-    div#letters #letters2{
+    div#letters{
       top: 100px;
       width: 150px;
       height: 0px;
@@ -216,11 +216,11 @@
 
     /* Safari 4.0 - 8.0 */
     
-    .1 .2 .3 .4 .11 .22{-webkit-animation-timing-function: ease-in;}
+    .1 .2 .3 .4{-webkit-animation-timing-function: ease-in;}
     
 
     /* Standard syntax */
-    .1 .2 .3 .4 .11 .22{animation-timing-function: ease-in;}
+    .1 .2 .3 .4{animation-timing-function: ease-in;}
 
     /* Safari 4.0 - 8.0 */
     @-webkit-keyframes mymove {
